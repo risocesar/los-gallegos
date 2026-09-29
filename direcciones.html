@@ -1,166 +1,448 @@
 <!DOCTYPE html>
-<html lang="es">
 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_24 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_24" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_24');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  <!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Empresa Los Gallegos - Ficha Técnica de Direcciones</title>
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Fuentes Google Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- 1. Cliente oficial de Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- 2. Archivo central de conexión con tus credenciales -->
-  <script src="supabaseClient.js"></script>
-
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
   </style>
-</head>
 
-<body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex flex-col">
-  <div class="flex flex-1 min-h-screen">
-
-    <!-- BARRA LATERAL (SIDEBAR) -->
-    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0">
-      <div>
-        <!-- Logo Empresa Los Gallegos -->
-        <div class="p-5 border-b border-slate-100 flex items-center gap-3">
-          <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200">
-            LG
-          </div>
-          <div>
-            <h1 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight">Empresa Los Gallegos</h1>
-            <p class="text-[11px] text-slate-500 font-medium">CRM Operaciones</p>
-          </div>
+<body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex">
+<!-- SIDEBAR LATERAL -->
+<aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
+<div>
+<!-- Marca -->
+<div class="p-5 border-b border-slate-100 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200">
+          LG
         </div>
-
-        <div class="px-5 py-3 bg-slate-50/70 border-b border-slate-100">
-          <div class="flex items-center gap-2 text-slate-600 font-semibold text-[11px] uppercase tracking-wider">
-            <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-            </svg>
-            Catálogo & Registro
-          </div>
-          <p class="text-xs font-medium text-slate-700 mt-0.5">Ficha Técnica de Inmuebles</p>
-          <span class="inline-block text-[10px] text-slate-400">Historial fiscal y trazabilidad</span>
+<div>
+<h1 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight">Empresa Los Gallegos</h1>
+<p class="text-[11px] text-slate-500 font-medium">CRM Operaciones</p>
+</div>
+</div>
+<div class="px-5 py-3 bg-slate-50 border-b border-slate-100">
+<div class="flex items-center gap-2 text-slate-600 font-semibold text-[11px] uppercase tracking-wider">
+<svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Catálogo &amp; Registro
         </div>
-
-        <!-- Menú de Navegación -->
-        <nav class="p-3 space-y-1">
-          <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            <span>Gestión de Órdenes de Servicio</span>
-          </a>
-
-          <a href="agenda.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>Agenda de Servicios & Calendario</span>
-          </a>
-
-          <!-- ACTIVA: Ficha Técnica de Direcciones -->
-          <a href="direcciones.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm transition-colors">
-            <div class="flex items-center gap-3">
-              <svg class="w-4 h-4 text-slate-800 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-              <span>Ficha Técnica de Direcciones</span>
-            </div>
-            <span class="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Activo</span>
-          </a>
-
-          <a href="relevamientos.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <span>Relevamientos e Inspecciones</span>
-          </a>
-
-          <a href="facturacion.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <span>Facturación & OCR</span>
-          </a>
-        </nav>
-      </div>
-
-      <div class="p-4 border-t border-slate-200">
-        <div class="p-2.5 mb-3 bg-blue-50 border border-blue-200 rounded-lg text-[11px] text-blue-900 flex items-start gap-2">
-          <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span><strong>CUIT de Inmueble:</strong> Las deudas y facturas permanecen atadas a la dirección aunque cambie de administración.</span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- ÁREA PRINCIPAL -->
-    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
-        <div class="flex items-center gap-3 w-1/2">
-          <div class="relative w-full max-w-md">
-            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input type="text" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar inmueble por calle, CUIT o administración..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600">
-          </div>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <span id="badgeConexion" class="text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200">
-            ● Verificando conexión...
-          </span>
-          <button onclick="abrirModalAlta()" class="flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-sm transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-            + Dar de Alta Inmueble
+<p class="text-xs font-medium text-slate-700 mt-0.5">Ficha Técnica de Inmuebles</p>
+</div>
+<!-- Menú -->
+<nav class="p-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="index.html">
+<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Gestión de Órdenes de Servicio</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="agenda.html">
+<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Agenda de Servicios &amp; Calendario</span>
+</a>
+<!-- ACTIVO -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm" href="direcciones.html">
+<div class="flex items-center gap-3">
+<svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Ficha Técnica de Direcciones</span>
+</div>
+<span class="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Activo</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="relevamientos.html">
+<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Relevamientos e Inspecciones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="facturacion.html">
+<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Facturación &amp; OCR</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-slate-200 text-[11px] text-slate-500">
+<span class="font-bold text-slate-700">Trazabilidad Fiscal:</span> El CUIT se ata al inmueble físico.
+    </div>
+</aside>
+<!-- CONTENIDO DERECHO -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Header Superior -->
+<header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
+<div class="w-1/2">
+<input class="w-full max-w-md px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar inmueble por calle, CUIT o administración..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200" id="badgeConexion">
+          ● Conectando a Supabase...
+        </span>
+<button class="flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-sm transition" onclick="abrirModalAlta()" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          + Dar de Alta Inmueble
+        </button>
+</div>
+</header>
+<!-- Cuerpo -->
+<div class="p-8 max-w-7xl mx-auto w-full space-y-6 flex-1">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-[11px] font-bold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">Módulo Catálogo de Propiedades</span>
+<span class="text-[11px] text-slate-400">• Trazabilidad de Servicios y Facturación</span>
+</div>
+<h2 class="text-2xl font-bold text-slate-900 tracking-tight">Ficha Integral de Dirección &amp; Inmuebles</h2>
+<p class="text-xs text-slate-500 mt-1">Consulta el historial completo de trabajos, números de factura, estado de cobro y administración asignada a cada inmueble.</p>
+</div>
+<!-- Tarjetas métricas -->
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Direcciones Registradas</p>
+<p class="text-2xl font-bold text-slate-900 mt-1" id="totalInmuebles">0 <span class="text-xs font-normal text-slate-400">inmuebles</span></p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Administraciones Asignadas</p>
+<p class="text-2xl font-bold text-slate-900 mt-1" id="totalAdmins">0 <span class="text-xs font-normal text-slate-400">consorcios</span></p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Servicios Facturados</p>
+<p class="text-2xl font-bold text-slate-900 mt-1">$0 <span class="text-xs font-normal text-slate-400">cobrado</span></p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Facturas Pendientes</p>
+<p class="text-2xl font-bold text-slate-900 mt-1">$0 <span class="text-xs font-normal text-slate-400">saldo</span></p>
+</div>
+</div>
+<!-- Panel Doble: Directorio + Detalle -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[480px]">
+<!-- COLUMNA IZQUIERDA: LISTA -->
+<div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-slate-100">
+<h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Directorio de Inmuebles</h3>
+<span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600" id="contadorInmuebles">0 Total</span>
+</div>
+<div class="divide-y divide-slate-100 mt-3 flex-1 overflow-y-auto" id="listaInmuebles">
+<div class="py-12 text-center" id="emptyStateLista">
+<svg class="w-10 h-10 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<p class="text-xs font-semibold text-slate-700">No hay inmuebles cargados</p>
+<p class="text-[11px] text-slate-400 mt-1">Empieza dando de alta la primera dirección o consorcio.</p>
+<button class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition" onclick="abrirModalAlta()" type="button">
+                + Cargar Inmueble
+              </button>
+</div>
+</div>
+</div>
+<!-- COLUMNA DERECHA: DETALLE -->
+<div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col justify-center items-center text-center">
+<div id="panelDetalleVacio">
+<div class="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-3 text-slate-400">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<h4 class="text-sm font-bold text-slate-800">Ningún Inmueble Seleccionado</h4>
+<p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección del panel izquierdo o registra un nuevo consorcio para ver el detalle técnico e historial.</p>
+<button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition" onclick="abrirModalAlta()" type="button">
+              + Dar de Alta Primer Inmueble
+            </button>
+</div>
+<div class="hidden w-full text-left" id="panelDetalleContenido">
+<!-- Rellenado dinámico -->
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- MODAL FLOTANTE DE ALTA -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="modalAltaInmueble">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden">
+<div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+<div>
+<h3 class="text-sm font-bold text-slate-900">Dar de Alta Nuevo Inmueble / Consorcio</h3>
+<p class="text-[11px] text-slate-500">Se guardará directamente en Supabase (tabla <code>inmuebles_direcciones</code>)</p>
+</div>
+<button class="text-slate-400 hover:text-slate-700 text-lg font-bold" onclick="cerrarModalAlta()" type="button">✕</button>
+</div>
+<form class="p-6 space-y-4 text-xs" id="formAltaInmueble" onsubmit="guardarInmueble(event)">
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Dirección (Calle y Número) *</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmCalle" placeholder="Ej: Av. Santa Fe 3420" required="" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Piso / Depto</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmPiso" placeholder="Ej: PB / Depto 2" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Barrio / Localidad</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmBarrio" type="text" value="Palermo, CABA"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 mb-1">CUIT de Facturación *</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmCuit" placeholder="Ej: 30-70891452-9" required="" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Razón Social Fiscal *</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmRazon" placeholder="Ej: Consorcio Edificio Santa Fe 3420" required="" type="text"/>
+</div>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Administración Gestora</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmAdmin" placeholder="Ej: Administración Belgrano Propiedades" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Contacto Portería / Encargado</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmPortero" placeholder="Ej: Juan Gómez (Portero)" type="text"/>
+</div>
+<div>
+<label class="block font-semibold text-slate-700 mb-1">Teléfono Encargado</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:border-blue-600" id="inmTel" placeholder="Ej: 11 5566-7788" type="text"/>
+</div>
+</div>
+<div class="hidden p-3 rounded-lg text-xs" id="mensajeAlerta"></div>
+<div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+<button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition" onclick="cerrarModalAlta()" type="button">Cancelar</button>
+<button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition" id="btnGuardarInmueble" type="submit">
+            Guardar Inmueble
           </button>
-        </div>
-      </header>
+</div>
+</form>
+</div>
+</div>
+<!-- SCRIPT INTEGRADO Y BLINDADO -->
+<script>
+    // =========================================================================
+    // PEGA AQUÍ TUS CREDENCIALES DE SUPABASE:
+    // =========================================================================
+    const SUPABASE_URL = 'https://gquzbidfnyfjanfpygcf.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';
 
-      <!-- CONTENIDO PRINCIPAL -->
-      <div class="p-8 max-w-7xl mx-auto w-full space-y-6">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-[11px] font-bold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">Módulo Catálogo de Propiedades</span>
-            <span class="text-[11px] text-slate-400">• Trazabilidad de Servicios y Facturación</span>
+    // =========================================================================
+
+    let supabaseClient = null;
+    let inmueblesCargados = [];
+
+    // Inicialización al cargar la página
+    window.onload = function() {
+      // Intentamos cargar desde las constantes o desde supabaseCliente.js si existiera
+      if (typeof window.supabaseClient !== 'undefined') {
+        supabaseClient = window.supabaseClient;
+      } else if (SUPABASE_URL.startsWith('http') && !SUPABASE_URL.includes('TU-PROYECTO')) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+
+      const badge = document.getElementById('badgeConexion');
+      if (supabaseClient) {
+        badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+        badge.textContent = "● Conectado a Supabase";
+        cargarInmuebles();
+      } else {
+        badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200 cursor-pointer";
+        badge.textContent = "⚠️ Pegar URL y Key en líneas 205-206";
+        badge.onclick = () => alert("Abre direcciones.html y pega tu SUPABASE_URL y SUPABASE_ANON_KEY en las constantes del script.");
+      }
+    };
+
+    function abrirModalAlta() {
+      const modal = document.getElementById('modalAltaInmueble');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function cerrarModalAlta() {
+      const modal = document.getElementById('modalAltaInmueble');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.getElementById('mensajeAlerta').classList.add('hidden');
+      document.getElementById('formAltaInmueble').reset();
+    }
+
+    async function cargarInmuebles() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('inmuebles_direcciones')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+        inmueblesCargados = data || [];
+        renderizarLista(inmueblesCargados);
+      } catch (err) {
+        console.error("Error al leer:", err);
+      }
+    }
+
+    function filtrarInmuebles() {
+      const q = document.getElementById('inputBuscarInmueble').value.toLowerCase();
+      const filtrados = inmueblesCargados.filter(i => 
+        (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
+        (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
+        (i.razon_social_fiscal && i.razon_social_fiscal.toLowerCase().includes(q))
+      );
+      renderizarLista(filtrados);
+    }
+
+    function renderizarLista(items) {
+      const listaEl = document.getElementById('listaInmuebles');
+      const emptyState = document.getElementById('emptyStateLista');
+      const contador = document.getElementById('contadorInmuebles');
+      const totalInm = document.getElementById('totalInmuebles');
+
+      contador.textContent = `${items.length} Total`;
+      totalInm.innerHTML = `${inmueblesCargados.length} <span class="text-xs font-normal text-slate-400">inmuebles</span>`;
+
+      if (items.length === 0) {
+        if (emptyState) emptyState.classList.remove('hidden');
+        listaEl.innerHTML = '';
+        if (emptyState) listaEl.appendChild(emptyState);
+        return;
+      }
+
+      if (emptyState) emptyState.classList.add('hidden');
+      listaEl.innerHTML = '';
+
+      items.forEach((inm) => {
+        const card = document.createElement('div');
+        card.className = "p-3.5 hover:bg-slate-50 rounded-lg cursor-pointer transition border border-transparent hover:border-slate-200 mb-1";
+        card.onclick = () => mostrarDetalle(inm);
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs font-bold text-slate-900">${inm.direccion_calle} ${inm.piso_depto || ''}</p>
+              <p class="text-[11px] text-slate-500">${inm.razon_social_fiscal || 'Sin Razón Social'}</p>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono font-medium">CUIT: ${inm.cuit_facturacion}</span>
+                <span class="text-[10px] text-slate-400">${inm.barrio_localidad || 'CABA'}</span>
+              </div>
+            </div>
+            <span class="text-slate-400 text-xs">➔</span>
           </div>
-          <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Ficha Integral de Dirección & Inmuebles</h2>
-          <p class="text-xs text-slate-500 mt-1">Consulta el historial completo de trabajos, números de factura, estado de cobro y administración asignada a cada inmueble.</p>
-        </div>
+        `;
+        listaEl.appendChild(card);
+      });
+    }
 
-        <!-- TARJETAS DE TOTALES -->
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-            <p class="text-xs text-slate-500 font-medium">Direcciones Registradas</p>
-            <p id="totalInmuebles" class="text-2xl font-bold text-slate-900 mt-1">0 <span class="text-xs font-normal text-slate-400">inmuebles</span></p>
+    function mostrarDetalle(inm) {
+      document.getElementById('panelDetalleVacio').classList.add('hidden');
+      const panel = document.getElementById('panelDetalleContenido');
+      panel.classList.remove('hidden');
+      panel.innerHTML = `
+        <div class="space-y-4">
+          <div class="pb-3 border-b border-slate-100 flex items-start justify-between">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Consorcio Activo</span>
+              <h3 class="text-lg font-bold text-slate-900 mt-1">${inm.direccion_calle} ${inm.piso_depto || ''}</h3>
+              <p class="text-xs text-slate-500">${inm.razon_social_fiscal}</p>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded">CUIT: ${inm.cuit_facturacion}</span>
+            </div>
           </div>
 
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-            <p class="text-xs text-slate-500 font-medium">Administraciones Asignadas</p>
-            <p id="totalAdministraciones" class="text-2xl font-bold text-slate-900 mt-1">0 <span class="text-xs font-normal text-slate-400">consorcios</span></p>
+          <div class="grid grid-cols-2 gap-4 text-xs">
+            <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+              <p class="text-[11px] text-slate-400 font-medium">Localidad / Zona</p>
+              <p class="font-semibold text-slate-800 mt-0.5">${inm.barrio_localidad || 'CABA'}</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+              <p class="text-[11px] text-slate-400 font-medium">Contacto Portería / Encargado</p>
+              <p class="font-semibold text-slate-800 mt-0.5">${inm.contacto_porteria_nombre || 'No registrado'} (${inm.contacto_porteria_tel || 'S/N'})</p>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+            <p class="text-xs text-slate-500">Inmueble listo para despacho de cuadrillas.</p>
+            <a href="relevamientos.html" class="px-3.5 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition">
+              Cargar Relevamiento de Tanques ➔
+            </a>
           </div>
         </div>
+      `;
+    }
 
-      </div>
-    </main>
+    async function guardarInmueble(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnGuardarInmueble');
+      const alerta = document.getElementById('mensajeAlerta');
 
-  </div>
+      if (!supabaseClient) {
+        alerta.className = "p-3 rounded-lg text-xs bg-amber-50 text-amber-800 border border-amber-200 block";
+        alerta.textContent = "Faltan configurar las credenciales de Supabase.";
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "Guardando en Supabase...";
+
+      try {
+        const { data, error } = await supabaseClient
+          .from('inmuebles_direcciones')
+          .insert([
+            {
+              direccion_calle: document.getElementById('inmCalle').value,
+              piso_depto: document.getElementById('inmPiso').value,
+              barrio_localidad: document.getElementById('inmBarrio').value,
+              cuit_facturacion: document.getElementById('inmCuit').value,
+              razon_social_fiscal: document.getElementById('inmRazon').value,
+              contacto_porteria_nombre: document.getElementById('inmPortero').value,
+              contacto_porteria_tel: document.getElementById('inmTel').value
+            }
+          ])
+          .select();
+
+        if (error) throw error;
+
+        alerta.className = "p-3 rounded-lg text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 block";
+        alerta.textContent = "✅ ¡Inmueble guardado con éxito!";
+        
+        await cargarInmuebles();
+        setTimeout(() => {
+          cerrarModalAlta();
+        }, 1000);
+
+      } catch (err) {
+        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
+        alerta.textContent = "❌ Error al guardar: " + err.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Guardar Inmueble";
+      }
+    }
+  </script>
 </body>
 
+
+})();
+
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_24 -->
+</body>
 </html>
