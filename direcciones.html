@@ -16,15 +16,21 @@
   </style>
 </head>
 <body>
-<!-- STITCH_THREEJS_START:ANIMATION_24 class="fixed inset-0 w-full h-full bg-transparent" -->
+<!-- STITCH_THREEJS_START:ANIMATION_28 class="fixed inset-0 w-full h-full bg-transparent" -->
 <div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
 <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
-<div id="threejs-container-ANIMATION_24" style="width:100%;height:100%"></div>
+<div id="threejs-container-ANIMATION_28" style="width:100%;height:100%"></div>
 <script>
 (function() {
-  const container = document.getElementById('threejs-container-ANIMATION_24');
+  const container = document.getElementById('threejs-container-ANIMATION_28');
   const devicePixelRatio = window.devicePixelRatio || 1;
-  <!DOCTYPE html>
+  # Código Completo y Definitivo: direcciones.html
+## Empresa Los Gallegos - Ficha Técnica de Direcciones (Empty State en 0 + Conexión supabaseClient.js)
+
+Copia todo el contenido de este documento o el bloque de abajo y pégalo directamente en tu archivo `direcciones.html`.
+
+```html
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -34,14 +40,16 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- Supabase CDN -->
+<!-- 1. Librería Oficial Supabase JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- 2. Tu archivo supabaseClient.js en la misma carpeta -->
+<script src="supabaseClient.js"></script>
 <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
 
 <body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex">
-<!-- SIDEBAR LATERAL -->
+<!-- SIDEBAR LATERAL NAVEGACIÓN -->
 <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
 <div>
 <!-- Marca -->
@@ -61,7 +69,7 @@
         </div>
 <p class="text-xs font-medium text-slate-700 mt-0.5">Ficha Técnica de Inmuebles</p>
 </div>
-<!-- Menú -->
+<!-- Menú Enlaces -->
 <nav class="p-3 space-y-1">
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="index.html">
 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -93,24 +101,26 @@
 <span class="font-bold text-slate-700">Trazabilidad Fiscal:</span> El CUIT se ata al inmueble físico.
     </div>
 </aside>
-<!-- CONTENIDO DERECHO -->
+<!-- CONTENIDO PRINCIPAL -->
 <main class="flex-1 flex flex-col min-w-0">
 <!-- Header Superior -->
 <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
 <div class="w-1/2">
-<input class="w-full max-w-md px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar inmueble por calle, CUIT o administración..." type="text"/>
+<input class="w-full max-w-md px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o administración..." type="text"/>
 </div>
 <div class="flex items-center gap-3">
+<!-- Indicador de conexión -->
 <span class="text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200" id="badgeConexion">
           ● Conectando a Supabase...
         </span>
+<!-- Botón Alta Principal -->
 <button class="flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-sm transition" onclick="abrirModalAlta()" type="button">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
           + Dar de Alta Inmueble
         </button>
 </div>
 </header>
-<!-- Cuerpo -->
+<!-- Cuerpo de Ficha -->
 <div class="p-8 max-w-7xl mx-auto w-full space-y-6 flex-1">
 <div>
 <div class="flex items-center gap-2 mb-1">
@@ -120,7 +130,7 @@
 <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Ficha Integral de Dirección &amp; Inmuebles</h2>
 <p class="text-xs text-slate-500 mt-1">Consulta el historial completo de trabajos, números de factura, estado de cobro y administración asignada a cada inmueble.</p>
 </div>
-<!-- Tarjetas métricas -->
+<!-- Tarjetas métricas en CERO -->
 <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
 <p class="text-xs text-slate-500 font-medium">Direcciones Registradas</p>
@@ -139,53 +149,56 @@
 <p class="text-2xl font-bold text-slate-900 mt-1">$0 <span class="text-xs font-normal text-slate-400">saldo</span></p>
 </div>
 </div>
-<!-- Panel Doble: Directorio + Detalle -->
+<!-- Directorio + Detalle -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[480px]">
-<!-- COLUMNA IZQUIERDA: LISTA -->
+<!-- COLUMNA IZQUIERDA: DIRECTORIO -->
 <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex flex-col">
 <div class="flex items-center justify-between pb-3 border-b border-slate-100">
 <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Directorio de Inmuebles</h3>
 <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600" id="contadorInmuebles">0 Total</span>
 </div>
 <div class="divide-y divide-slate-100 mt-3 flex-1 overflow-y-auto" id="listaInmuebles">
-<div class="py-12 text-center" id="emptyStateLista">
-<svg class="w-10 h-10 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
-<p class="text-xs font-semibold text-slate-700">No hay inmuebles cargados</p>
-<p class="text-[11px] text-slate-400 mt-1">Empieza dando de alta la primera dirección o consorcio.</p>
-<button class="mt-4 px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition" onclick="abrirModalAlta()" type="button">
+<!-- Empty state inicial cuando la base está en cero -->
+<div class="py-16 text-center" id="emptyStateLista">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
+<p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+<p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
+<button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm" onclick="abrirModalAlta()" type="button">
                 + Cargar Inmueble
               </button>
 </div>
 </div>
 </div>
-<!-- COLUMNA DERECHA: DETALLE -->
+<!-- COLUMNA DERECHA: FICHA DETALLE -->
 <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col justify-center items-center text-center">
 <div id="panelDetalleVacio">
-<div class="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-3 text-slate-400">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<div class="w-14 h-14 rounded-2xl bg-blue-50/60 border border-blue-100 flex items-center justify-center mx-auto mb-3 text-blue-600">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
 </div>
 <h4 class="text-sm font-bold text-slate-800">Ningún Inmueble Seleccionado</h4>
-<p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección del panel izquierdo o registra un nuevo consorcio para ver el detalle técnico e historial.</p>
-<button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition" onclick="abrirModalAlta()" type="button">
+<p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección de la lista o registra un nuevo consorcio para ver el detalle técnico e historial fiscal.</p>
+<button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm" onclick="abrirModalAlta()" type="button">
               + Dar de Alta Primer Inmueble
             </button>
 </div>
 <div class="hidden w-full text-left" id="panelDetalleContenido">
-<!-- Rellenado dinámico -->
+<!-- Rellenado dinámico al hacer clic en una dirección -->
 </div>
 </div>
 </div>
 </div>
 </main>
-<!-- MODAL FLOTANTE DE ALTA -->
+<!-- MODAL FLOTANTE DE ALTA DE INMUEBLE -->
 <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="modalAltaInmueble">
-<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
 <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
 <div>
 <h3 class="text-sm font-bold text-slate-900">Dar de Alta Nuevo Inmueble / Consorcio</h3>
-<p class="text-[11px] text-slate-500">Se guardará directamente en Supabase (tabla <code>inmuebles_direcciones</code>)</p>
+<p class="text-[11px] text-slate-500">Se registrará en Supabase (tabla <code>inmuebles_direcciones</code>)</p>
 </div>
-<button class="text-slate-400 hover:text-slate-700 text-lg font-bold" onclick="cerrarModalAlta()" type="button">✕</button>
+<button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalAlta()" type="button">✕</button>
 </div>
 <form class="p-6 space-y-4 text-xs" id="formAltaInmueble" onsubmit="guardarInmueble(event)">
 <div>
@@ -236,40 +249,40 @@
 </form>
 </div>
 </div>
-<!-- SCRIPT INTEGRADO Y BLINDADO -->
+<!-- SCRIPT DE INTERACCIÓN Y CONEXIÓN ROBUSTA -->
 <script>
-    // =========================================================================
-    // PEGA AQUÍ TUS CREDENCIALES DE SUPABASE:
-    // =========================================================================
-    const SUPABASE_URL = 'https://gquzbidfnyfjanfpygcf.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';
-
-    // =========================================================================
-
-    let supabaseClient = null;
+    let db = null;
     let inmueblesCargados = [];
 
-    // Inicialización al cargar la página
-    window.onload = function() {
-      // Intentamos cargar desde las constantes o desde supabaseCliente.js si existiera
-      if (typeof window.supabaseClient !== 'undefined') {
-        supabaseClient = window.supabaseClient;
-      } else if (SUPABASE_URL.startsWith('http') && !SUPABASE_URL.includes('TU-PROYECTO')) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Verificación y arranque al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      inicializarClienteSupabase();
+    });
+
+    function inicializarClienteSupabase() {
+      const badge = document.getElementById('badgeConexion');
+
+      // 1. Prioridad: Cliente exportado por supabaseClient.js
+      if (typeof window.supabaseClient !== 'undefined' && window.supabaseClient) {
+        db = window.supabaseClient;
+      } else if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+        db = supabaseClient;
+      } else if (typeof window.supabase !== 'undefined' && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+        db = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
       }
 
-      const badge = document.getElementById('badgeConexion');
-      if (supabaseClient) {
+      if (db) {
         badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
         badge.textContent = "● Conectado a Supabase";
         cargarInmuebles();
       } else {
         badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200 cursor-pointer";
-        badge.textContent = "⚠️ Pegar URL y Key en líneas 205-206";
-        badge.onclick = () => alert("Abre direcciones.html y pega tu SUPABASE_URL y SUPABASE_ANON_KEY en las constantes del script.");
+        badge.textContent = "⚠️ Archivo supabaseClient.js no detectado";
+        badge.onclick = () => alert("Asegúrate de tener el archivo supabaseClient.js en la misma carpeta que direcciones.html con las credenciales de tu proyecto.");
       }
-    };
+    }
 
+    // Funciones del Modal
     function abrirModalAlta() {
       const modal = document.getElementById('modalAltaInmueble');
       modal.classList.remove('hidden');
@@ -284,10 +297,11 @@
       document.getElementById('formAltaInmueble').reset();
     }
 
+    // Cargar inmuebles desde Supabase
     async function cargarInmuebles() {
-      if (!supabaseClient) return;
+      if (!db) return;
       try {
-        const { data, error } = await supabaseClient
+        const { data, error } = await db
           .from('inmuebles_direcciones')
           .select('*')
           .order('created_at', { ascending: false });
@@ -296,12 +310,17 @@
         inmueblesCargados = data || [];
         renderizarLista(inmueblesCargados);
       } catch (err) {
-        console.error("Error al leer:", err);
+        console.error("Error al consultar inmuebles:", err);
       }
     }
 
+    // Filtro del buscador
     function filtrarInmuebles() {
-      const q = document.getElementById('inputBuscarInmueble').value.toLowerCase();
+      const q = document.getElementById('inputBuscarInmueble').value.toLowerCase().trim();
+      if (!q) {
+        renderizarLista(inmueblesCargados);
+        return;
+      }
       const filtrados = inmueblesCargados.filter(i => 
         (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
         (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
@@ -310,9 +329,9 @@
       renderizarLista(filtrados);
     }
 
+    // Renderizar directorio
     function renderizarLista(items) {
       const listaEl = document.getElementById('listaInmuebles');
-      const emptyState = document.getElementById('emptyStateLista');
       const contador = document.getElementById('contadorInmuebles');
       const totalInm = document.getElementById('totalInmuebles');
 
@@ -320,15 +339,22 @@
       totalInm.innerHTML = `${inmueblesCargados.length} <span class="text-xs font-normal text-slate-400">inmuebles</span>`;
 
       if (items.length === 0) {
-        if (emptyState) emptyState.classList.remove('hidden');
-        listaEl.innerHTML = '';
-        if (emptyState) listaEl.appendChild(emptyState);
+        listaEl.innerHTML = `
+          <div class="py-16 text-center">
+            <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+            <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
+            <button type="button" onclick="abrirModalAlta()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
+              + Cargar Inmueble
+            </button>
+          </div>
+        `;
         return;
       }
 
-      if (emptyState) emptyState.classList.add('hidden');
       listaEl.innerHTML = '';
-
       items.forEach((inm) => {
         const card = document.createElement('div');
         card.className = "p-3.5 hover:bg-slate-50 rounded-lg cursor-pointer transition border border-transparent hover:border-slate-200 mb-1";
@@ -350,6 +376,7 @@
       });
     }
 
+    // Mostrar ficha de detalle del inmueble seleccionado
     function mostrarDetalle(inm) {
       document.getElementById('panelDetalleVacio').classList.add('hidden');
       const panel = document.getElementById('panelDetalleContenido');
@@ -388,14 +415,15 @@
       `;
     }
 
+    // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
     async function guardarInmueble(e) {
       e.preventDefault();
       const btn = document.getElementById('btnGuardarInmueble');
       const alerta = document.getElementById('mensajeAlerta');
 
-      if (!supabaseClient) {
+      if (!db) {
         alerta.className = "p-3 rounded-lg text-xs bg-amber-50 text-amber-800 border border-amber-200 block";
-        alerta.textContent = "Faltan configurar las credenciales de Supabase.";
+        alerta.textContent = "⚠️ No se detectó la conexión a Supabase. Verifica tu archivo supabaseClient.js.";
         return;
       }
 
@@ -403,30 +431,30 @@
       btn.textContent = "Guardando en Supabase...";
 
       try {
-        const { data, error } = await supabaseClient
+        const nuevoInmueble = {
+          direccion_calle: document.getElementById('inmCalle').value.trim(),
+          piso_depto: document.getElementById('inmPiso').value.trim(),
+          barrio_localidad: document.getElementById('inmBarrio').value.trim(),
+          cuit_facturacion: document.getElementById('inmCuit').value.trim(),
+          razon_social_fiscal: document.getElementById('inmRazon').value.trim(),
+          contacto_porteria_nombre: document.getElementById('inmPortero').value.trim(),
+          contacto_porteria_tel: document.getElementById('inmTel').value.trim()
+        };
+
+        const { data, error } = await db
           .from('inmuebles_direcciones')
-          .insert([
-            {
-              direccion_calle: document.getElementById('inmCalle').value,
-              piso_depto: document.getElementById('inmPiso').value,
-              barrio_localidad: document.getElementById('inmBarrio').value,
-              cuit_facturacion: document.getElementById('inmCuit').value,
-              razon_social_fiscal: document.getElementById('inmRazon').value,
-              contacto_porteria_nombre: document.getElementById('inmPortero').value,
-              contacto_porteria_tel: document.getElementById('inmTel').value
-            }
-          ])
+          .insert([nuevoInmueble])
           .select();
 
         if (error) throw error;
 
         alerta.className = "p-3 rounded-lg text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 block";
-        alerta.textContent = "✅ ¡Inmueble guardado con éxito!";
+        alerta.textContent = "✅ ¡Inmueble guardado con éxito en la base de datos!";
         
         await cargarInmuebles();
         setTimeout(() => {
           cerrarModalAlta();
-        }, 1000);
+        }, 800);
 
       } catch (err) {
         alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
@@ -439,10 +467,11 @@
   </script>
 </body>
 
+```
 
 })();
 
 </div>
-<!-- STITCH_THREEJS_END:ANIMATION_24 -->
+<!-- STITCH_THREEJS_END:ANIMATION_28 -->
 </body>
 </html>
