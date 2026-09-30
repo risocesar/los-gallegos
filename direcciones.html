@@ -173,7 +173,6 @@
 <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
 <div>
 <h3 class="text-sm font-bold text-slate-900">Dar de Alta Nuevo Inmueble / Consorcio</h3>
-<p class="text-[11px] text-slate-500">Se registrará en Supabase (tabla <code>inmuebles_direcciones</code>)</p>
 </div>
 <button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalAlta()" type="button">✕</button>
 </div>
@@ -393,6 +392,7 @@
   // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
   async function guardarInmueble(e) {
     e.preventDefault();
+    alert("--> ¡La función guardarInmueble se está ejecutando!"); 
     if (!db) return;
 
     const btn = document.getElementById('btnGuardarInmueble');
