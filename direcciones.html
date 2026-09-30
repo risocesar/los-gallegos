@@ -388,28 +388,54 @@
   }
 
   // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
-  async function guardarInmueble(e) {
-    e.preventDefault();
-    alert("--> ¡La función guardarInmueble se está ejecutando!"); 
-    if (!db) return;
+async function guardarInmueble(e) {
+  e.preventDefault();
+  if (!db) return;
 
-    const btn = document.getElementById('btnGuardarInmueble');
-    const alerta = document.getElementById('mensajeAlerta');
+  const btn = document.getElementById('btnGuardarInmueble');
+  const alerta = document.getElementById('mensajeAlerta');
+  if (btn) btn.disabled = true;
 
-    // Deshabilitar botón durante la carga
-    if (btn) btn.disabled = true;
+  // ESTA LÍNEA MAGICA CAPTURA TODO EL FORMULARIO AUTOMÁTICAMENTE
+  const formData = new FormData(e.target);
 
-    // Capturar datos del formulario
-        const nuevoInmueble = {
-      // Revisa que en el HTML tu input tenga id="formCalle" (o el nombre exacto que uses)
-      direccion_calle: document.getElementById('formCalle') ? document.getElementById('formCalle').value : '',
-      piso_depto: document.getElementById('formPisoDepto') ? document.getElementById('formPisoDepto').value : '',
-      razon_social_fiscal: document.getElementById('formRazonSocial') ? document.getElementById('formRazonSocial').value : '',
-      cuit_facturacion: document.getElementById('formCuit') ? document.getElementById('formCuit').value : '',
-      barrio_localidad: document.getElementById('formLocalidad') ? document.getElementById('formLocalidad').value : '',
-      contacto_porteria_nombre: document.getElementById('formContactoNombre') ? document.getElementById('formContactoNombre').value : '',
-      contacto_porteria_tel: document.getElementById('formContactoTel') ? document.getElementById('formContactoTel').value : ''
-    };
+  // ESTOS NOMBRES COINCIDEN EXACTAMENTE CON TU IMAGEN DE SUPABASE
+  const nuevoInmueble = {
+    direccion_calle: formData.get('formCalle') || document.getElementById('formCalle')?.value || '',
+    piso_depto: formData.get('formPisoDepto') || document.getElementById('formPisoDepto')?.value || '',
+    barrio_localidad: formData.get('formLocalidad') || document.getElementById('formLocalidad')?.value || '',
+    cuit_facturacion: formData.get('formCuit') || document.getElementById('formCuit')?.value || '',
+    razon_social_fiscal: formData.get('formRazonSocial') || document.getElementById('formRazonSocial')?.value || '',
+    
+    // CORREGIDO: Coincide letra por letra con tu columna 'contacto_porteria_nombre'
+    contacto_porteria_nombre: formData.get('formContactoNombre') || document.getElementById('formContactoNombre')?.value || '',
+    
+    contacto_porteria_tel: formData.get('formContactoTel') || document.getElementById('formContactoTel')?.value || ''
+  };
+
+
+  try {
+    const { data, error } = await db
+      .from('inmuebles_direcciones')
+      .insert([nuevoInmueble])
+      .select();
+
+    if (error) throw error;
+
+    cerrarModalAlta();
+    await cargarInmuebles();
+
+  } catch (err) {
+    console.error("Error al guardar inmueble:", err);
+    if (alerta) {
+      alerta.textContent = `Error de Supabase: ${err.message}`;
+      alerta.classList.remove('hidden');
+    }
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
 
 
     try {
