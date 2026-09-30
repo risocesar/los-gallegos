@@ -228,220 +228,214 @@
 </div>
 <!-- SCRIPT DE INTERACCIÓN Y CONEXIÓN ROBUSTA -->
 <script>
-    let db = null;
-    let inmueblesCargados = [];
+  let db = null;
+  let inmueblesCargados = [];
 
-    // Verificación y arranque al cargar la página
-    window.addEventListener('DOMContentLoaded', () => {
-      inicializarClienteSupabase();
-    });
+  // Verificación y arranque al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    inicializarClienteSupabase();
+  });
 
-    function inicializarClienteSupabase() {
-      const badge = document.getElementById('badgeConexion');
+  function inicializarClienteSupabase() {
+    const badge = document.getElementById('badgeConexion');
 
-      // 1. Prioridad: Cliente exportado por supabaseClient.js
-      if (typeof window.supabaseClient !== 'undefined' && window.supabaseClient) {
-        db = window.supabaseClient;
-      } else if (typeof supabaseClient !== 'undefined' && supabaseClient) {
-        db = supabaseClient;
-      } else if (typeof window.supabase !== 'undefined' && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
-        db = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-      }
-
-      if (db) {
-        badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
-        badge.textContent = "● Conectado a Supabase";
-        cargarInmuebles();
-      } else {
-        badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200 cursor-pointer";
-        badge.textContent = "⚠️ Archivo supabaseClient.js no detectado";
-        badge.onclick = () => alert("Asegúrate de tener el archivo supabaseClient.js en la misma carpeta que direcciones.html con las credenciales de tu proyecto.");
-      }
+    // Asignamos directamente la instancia global creada en el head
+    if (typeof window.supabase !== 'undefined' && window.supabase) {
+      db = window.supabase;
+    } else if (typeof supabase !== 'undefined' && supabase) {
+      db = supabase;
     }
 
-    // Funciones del Modal
-    function abrirModalAlta() {
-      const modal = document.getElementById('modalAltaInmueble');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+    if (db) {
+      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+      badge.textContent = "● Conectado a Supabase";
+      cargarInmuebles();
+    } else {
+      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-rose-50 text-rose-700 border border-rose-200 cursor-pointer";
+      badge.textContent = "⚠️ Error de conexión a la Base de Datos";
+      badge.onclick = () => alert("No se pudo detectar la instancia global de Supabase. Revisa las credenciales en tu bloque de inicialización del HEAD.");
     }
+  }
 
-    function cerrarModalAlta() {
-      const modal = document.getElementById('modalAltaInmueble');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.getElementById('mensajeAlerta').classList.add('hidden');
-      document.getElementById('formAltaInmueble').reset();
+  // Funciones del Modal
+  function abrirModalAlta() {
+    const modal = document.getElementById('modalAltaInmueble');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function cerrarModalAlta() {
+    const modal = document.getElementById('modalAltaInmueble');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.getElementById('mensajeAlerta').classList.add('hidden');
+    document.getElementById('formAltaInmueble').reset();
+  }
+
+  // Cargar inmuebles desde Supabase
+  async function cargarInmuebles() {
+    if (!db) return;
+    try {
+      const { data, error } = await db
+        .from('inmuebles_direcciones')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      inmueblesCargados = data || [];
+      renderizarLista(inmueblesCargados);
+    } catch (err) {
+      console.error("Error al consultar inmuebles:", err);
     }
+  }
 
-    // Cargar inmuebles desde Supabase
-    async function cargarInmuebles() {
-      if (!db) return;
-      try {
-        const { data, error } = await db
-          .from('inmuebles_direcciones')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        if (error) throw error;
-        inmueblesCargados = data || [];
-        renderizarLista(inmueblesCargados);
-      } catch (err) {
-        console.error("Error al consultar inmuebles:", err);
-      }
+  // Filtro del buscador
+  function filtrarInmuebles() {
+    const q = document.getElementById('inputBuscarInmueble').value.toLowerCase().trim();
+    if (!q) {
+      renderizarLista(inmueblesCargados);
+      return;
     }
+    const filtrados = inmueblesCargados.filter(i =>
+      (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
+      (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
+      (i.razon_social_fiscal && i.razon_social_fiscal.toLowerCase().includes(q))
+    );
+    renderizarLista(filtrados);
+  }
 
-    // Filtro del buscador
-    function filtrarInmuebles() {
-      const q = document.getElementById('inputBuscarInmueble').value.toLowerCase().trim();
-      if (!q) {
-        renderizarLista(inmueblesCargados);
-        return;
-      }
-      const filtrados = inmueblesCargados.filter(i => 
-        (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
-        (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
-        (i.razon_social_fiscal && i.razon_social_fiscal.toLowerCase().includes(q))
-      );
-      renderizarLista(filtrados);
-    }
+  // Renderizar directorio
+  function renderizarLista(items) {
+    const listaEl = document.getElementById('listaInmuebles');
+    const contador = document.getElementById('contadorInmuebles');
+    const totalInm = document.getElementById('totalInmuebles');
 
-    // Renderizar directorio
-    function renderizarLista(items) {
-      const listaEl = document.getElementById('listaInmuebles');
-      const contador = document.getElementById('contadorInmuebles');
-      const totalInm = document.getElementById('totalInmuebles');
+    contador.textContent = `${items.length} Total`;
+    totalInm.innerHTML = `${inmueblesCargados.length} <span class="text-xs font-normal text-slate-400">inmuebles</span>`;
 
-      contador.textContent = `${items.length} Total`;
-      totalInm.innerHTML = `${inmueblesCargados.length} <span class="text-xs font-normal text-slate-400">inmuebles</span>`;
-
-      if (items.length === 0) {
-        listaEl.innerHTML = `
-          <div class="py-16 text-center">
-            <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-            </div>
-            <p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
-            <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
-            <button type="button" onclick="abrirModalAlta()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
-              + Cargar Inmueble
-            </button>
+    if (items.length === 0) {
+      listaEl.innerHTML = `
+        <div class="py-16 text-center">
+          <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
           </div>
-        `;
-        return;
-      }
-
-      listaEl.innerHTML = '';
-      items.forEach((inm) => {
-        const card = document.createElement('div');
-        card.className = "p-3.5 hover:bg-slate-50 rounded-lg cursor-pointer transition border border-transparent hover:border-slate-200 mb-1";
-        card.onclick = () => mostrarDetalle(inm);
-        card.innerHTML = `
-          <div class="flex items-start justify-between">
-            <div>
-              <p class="text-xs font-bold text-slate-900">${inm.direccion_calle} ${inm.piso_depto || ''}</p>
-              <p class="text-[11px] text-slate-500">${inm.razon_social_fiscal || 'Sin Razón Social'}</p>
-              <div class="flex items-center gap-2 mt-1">
-                <span class="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono font-medium">CUIT: ${inm.cuit_facturacion}</span>
-                <span class="text-[10px] text-slate-400">${inm.barrio_localidad || 'CABA'}</span>
-              </div>
-            </div>
-            <span class="text-slate-400 text-xs">➔</span>
-          </div>
-        `;
-        listaEl.appendChild(card);
-      });
-    }
-
-    // Mostrar ficha de detalle del inmueble seleccionado
-    function mostrarDetalle(inm) {
-      document.getElementById('panelDetalleVacio').classList.add('hidden');
-      const panel = document.getElementById('panelDetalleContenido');
-      panel.classList.remove('hidden');
-      panel.innerHTML = `
-        <div class="space-y-4">
-          <div class="pb-3 border-b border-slate-100 flex items-start justify-between">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Consorcio Activo</span>
-              <h3 class="text-lg font-bold text-slate-900 mt-1">${inm.direccion_calle} ${inm.piso_depto || ''}</h3>
-              <p class="text-xs text-slate-500">${inm.razon_social_fiscal}</p>
-            </div>
-            <div class="text-right">
-              <span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded">CUIT: ${inm.cuit_facturacion}</span>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4 text-xs">
-            <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <p class="text-[11px] text-slate-400 font-medium">Localidad / Zona</p>
-              <p class="font-semibold text-slate-800 mt-0.5">${inm.barrio_localidad || 'CABA'}</p>
-            </div>
-            <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
-              <p class="text-[11px] text-slate-400 font-medium">Contacto Portería / Encargado</p>
-              <p class="font-semibold text-slate-800 mt-0.5">${inm.contacto_porteria_nombre || 'No registrado'} (${inm.contacto_porteria_tel || 'S/N'})</p>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <p class="text-xs text-slate-500">Inmueble listo para despacho de cuadrillas.</p>
-            <a href="relevamientos.html" class="px-3.5 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition">
-              Cargar Relevamiento de Tanques ➔
-            </a>
-          </div>
+          <p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+          <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
+          <button type="button" onclick="abrirModalAlta()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
+            + Cargar Inmueble
+          </button>
         </div>
       `;
+      return;
     }
 
-    // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
-    async function guardarInmueble(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btnGuardarInmueble');
-      const alerta = document.getElementById('mensajeAlerta');
+    listaEl.innerHTML = '';
+    items.forEach((inm) => {
+      const card = document.createElement('div');
+      card.className = "p-3.5 hover:bg-slate-50 rounded-lg cursor-pointer transition border border-transparent hover:border-slate-200 mb-1";
+      card.onclick = () => mostrarDetalle(inm);
+      card.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-xs font-bold text-slate-900">${inm.direccion_calle} ${inm.piso_depto || ''}</p>
+            <p class="text-[11px] text-slate-500">${inm.razon_social_fiscal || 'Sin Razón Social'}</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono font-medium">CUIT: ${inm.cuit_facturacion}</span>
+              <span class="text-[10px] text-slate-400">${inm.barrio_localidad || 'CABA'}</span>
+            </div>
+          </div>
+          <span class="text-slate-400 text-xs">➔</span>
+        </div>
+      `;
+      listaEl.appendChild(card);
+    });
+  }
 
-      if (!db) {
-        alerta.className = "p-3 rounded-lg text-xs bg-amber-50 text-amber-800 border border-amber-200 block";
-        alerta.textContent = "⚠️ No se detectó la conexión a Supabase. Verifica tu archivo supabaseClient.js.";
-        return;
+  // Mostrar ficha de detalle del inmueble seleccionado
+  function mostrarDetalle(inm) {
+    document.getElementById('panelDetalleVacio').classList.add('hidden');
+    const panel = document.getElementById('panelDetalleContenido');
+    panel.classList.remove('hidden');
+    panel.innerHTML = `
+      <div class="space-y-4">
+        <div class="pb-3 border-b border-slate-100 flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Consorcio Activo</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-1">${inm.direccion_calle} ${inm.piso_depto || ''}</h3>
+            <p class="text-xs text-slate-500">${inm.razon_social_fiscal}</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded">CUIT: ${inm.cuit_facturacion}</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 text-xs">
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <p class="text-[11px] text-slate-400 font-medium">Localidad / Zona</p>
+            <p class="font-semibold text-slate-800 mt-0.5">${inm.barrio_localidad || 'CABA'}</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <p class="text-[11px] text-slate-400 font-medium">Contacto Portería / Encargado</p>
+            <p class="font-semibold text-slate-800 mt-0.5">${inm.contacto_porteria_nombre || 'No registrado'} (${inm.contacto_porteria_tel || 'S/N'})</p>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <p class="text-xs text-slate-500">Inmueble listo para despacho de cuadrillas.</p>
+          <a href="relevamientos.html" class="px-3.5 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition">
+            Cargar Relevamiento de Tanques ➔
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
+  async function guardarInmueble(e) {
+    e.preventDefault();
+    if (!db) return;
+
+    const btn = document.getElementById('btnGuardarInmueble');
+    const alerta = document.getElementById('mensajeAlerta');
+
+    // Deshabilitar botón durante la carga
+    if (btn) btn.disabled = true;
+
+    // Capturar datos del formulario
+    const nuevoInmueble = {
+      direccion_calle: document.getElementById('formCalle').value,
+      piso_depto: document.getElementById('formPisoDepto').value,
+      razon_social_fiscal: document.getElementById('formRazonSocial').value,
+      cuit_facturacion: document.getElementById('formCuit').value,
+      barrio_localidad: document.getElementById('formLocalidad').value,
+      contacto_porteria_nombre: document.getElementById('formContactoNombre').value,
+      contacto_porteria_tel: document.getElementById('formContactoTel').value
+    };
+
+    try {
+      const { data, error } = await db
+        .from('inmuebles_direcciones')
+        .insert([nuevoInmueble])
+        .select();
+
+      if (error) throw error;
+
+      // Cerrar modal y refrescar la lista
+      cerrarModalAlta();
+      await cargarInmuebles();
+
+    } catch (err) {
+      console.error("Error al guardar inmueble:", err);
+      if (alerta) {
+        alerta.textContent = `Error: ${err.message}`;
+        alerta.classList.remove('hidden');
       }
-
-      btn.disabled = true;
-      btn.textContent = "Guardando en Supabase...";
-
-      try {
-        const nuevoInmueble = {
-          direccion_calle: document.getElementById('inmCalle').value.trim(),
-          piso_depto: document.getElementById('inmPiso').value.trim(),
-          barrio_localidad: document.getElementById('inmBarrio').value.trim(),
-          cuit_facturacion: document.getElementById('inmCuit').value.trim(),
-          razon_social_fiscal: document.getElementById('inmRazon').value.trim(),
-          contacto_porteria_nombre: document.getElementById('inmPortero').value.trim(),
-          contacto_porteria_tel: document.getElementById('inmTel').value.trim()
-        };
-
-        const { data, error } = await db
-          .from('inmuebles_direcciones')
-          .insert([nuevoInmueble])
-          .select();
-
-        if (error) throw error;
-
-        alerta.className = "p-3 rounded-lg text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 block";
-        alerta.textContent = "✅ ¡Inmueble guardado con éxito en la base de datos!";
-        
-        await cargarInmuebles();
-        setTimeout(() => {
-          cerrarModalAlta();
-        }, 800);
-
-      } catch (err) {
-        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-        alerta.textContent = "❌ Error al guardar: " + err.message;
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "Guardar Inmueble";
-      }
+    } finally {
+      if (btn) btn.disabled = false;
     }
-  </script>
+  }
+</script>
+
 </body>
 
 </html>
