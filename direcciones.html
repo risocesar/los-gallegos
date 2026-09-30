@@ -8,10 +8,18 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<!-- 1. Librería Oficial Supabase JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<!-- 2. Tu archivo supabaseClient.js en la misma carpeta -->
-<script src="supabaseClient.js"></script>
+  <!-- 1. Librería Oficial Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. Inicialización directa de Supabase sin buscar archivos externos -->
+  <script>
+    const supabaseUrl = 'https://supabase.co'; // Pega tu URL de Supabase acá
+    const supabaseKey = 'tu-clave-anon-publica-larga';       // Pega tu clave Anon pública acá
+    
+    // Esto crea la variable global 'supabase' que heredarán el resto de tus funciones
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+  </script>
+
 <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
