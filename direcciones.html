@@ -399,22 +399,19 @@ async function guardarInmueble(e) {
   const alerta = document.getElementById('mensajeAlerta');
   if (btn) btn.disabled = true;
 
-  // ESTA LÍNEA MAGICA CAPTURA TODO EL FORMULARIO AUTOMÁTICAMENTE
-  const formData = new FormData(e.target);
-
-  // ESTOS NOMBRES COINCIDEN EXACTAMENTE CON TU IMAGEN DE SUPABASE
+  // CAPTURA DIRECTA Y MANUAL DE LOS VALORES REALES DE LA PANTALLA
   const nuevoInmueble = {
-    direccion_calle: formData.get('formCalle') || document.getElementById('formCalle')?.value || '',
-    piso_depto: formData.get('formPisoDepto') || document.getElementById('formPisoDepto')?.value || '',
-    barrio_localidad: formData.get('formLocalidad') || document.getElementById('formLocalidad')?.value || '',
-    cuit_facturacion: formData.get('formCuit') || document.getElementById('formCuit')?.value || '',
-    razon_social_fiscal: formData.get('formRazonSocial') || document.getElementById('formRazonSocial')?.value || '',
-    
-    // CORREGIDO: Coincide letra por letra con tu columna 'contacto_porteria_nombre'
-    contacto_porteria_nombre: formData.get('formContactoNombre') || document.getElementById('formContactoNombre')?.value || '',
-    
-    contacto_porteria_tel: formData.get('formContactoTel') || document.getElementById('formContactoTel')?.value || ''
+    direccion_calle: document.getElementById('formCalle')?.value || '',
+    piso_depto: document.getElementById('formPisoDepto')?.value || '',
+    barrio_localidad: document.getElementById('formLocalidad')?.value || 'CABA',
+    cuit_facturacion: document.getElementById('formCuit')?.value || '',
+    razon_social_fiscal: document.getElementById('formRazonSocial')?.value || '',
+    contacto_porteria_nombre: document.getElementById('formContactoNombre')?.value || '',
+    contacto_porteria_tel: document.getElementById('formContactoTel')?.value || ''
   };
+
+  // CONTROL EN CONSOLA: Esto te va a mostrar en tu pantalla qué está leyendo el código antes de mandarlo
+  console.log("Datos que se van a enviar a Supabase:", nuevoInmueble);
 
   try {
     const { data, error } = await db
@@ -428,7 +425,7 @@ async function guardarInmueble(e) {
     await cargarInmuebles();
 
   } catch (err) {
-    console.error("Error al guardar inmueble:", err);
+    console.error("Error al guardar inmueble en Supabase:", err);
     if (alerta) {
       alerta.textContent = `Error de Supabase: ${err.message}`;
       alerta.classList.remove('hidden');
