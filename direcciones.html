@@ -400,15 +400,17 @@
     if (btn) btn.disabled = true;
 
     // Capturar datos del formulario
-    const nuevoInmueble = {
-      direccion_calle: document.getElementById('formCalle').value,
-      piso_depto: document.getElementById('formPisoDepto').value,
-      razon_social_fiscal: document.getElementById('formRazonSocial').value,
-      cuit_facturacion: document.getElementById('formCuit').value,
-      barrio_localidad: document.getElementById('formLocalidad').value,
-      contacto_porteria_nombre: document.getElementById('formContactoNombre').value,
-      contacto_porteria_tel: document.getElementById('formContactoTel').value
+        const nuevoInmueble = {
+      // Revisa que en el HTML tu input tenga id="formCalle" (o el nombre exacto que uses)
+      direccion_calle: document.getElementById('formCalle') ? document.getElementById('formCalle').value : '',
+      piso_depto: document.getElementById('formPisoDepto') ? document.getElementById('formPisoDepto').value : '',
+      razon_social_fiscal: document.getElementById('formRazonSocial') ? document.getElementById('formRazonSocial').value : '',
+      cuit_facturacion: document.getElementById('formCuit') ? document.getElementById('formCuit').value : '',
+      barrio_localidad: document.getElementById('formLocalidad') ? document.getElementById('formLocalidad').value : '',
+      contacto_porteria_nombre: document.getElementById('formContactoNombre') ? document.getElementById('formContactoNombre').value : '',
+      contacto_porteria_tel: document.getElementById('formContactoTel') ? document.getElementById('formContactoTel').value : ''
     };
+
 
     try {
       const { data, error } = await db
