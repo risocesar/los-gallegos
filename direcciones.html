@@ -386,8 +386,7 @@
       </div>
     `;
   }
-
-  // Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
+// Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
 async function guardarInmueble(e) {
   e.preventDefault();
   if (!db) return;
@@ -413,7 +412,6 @@ async function guardarInmueble(e) {
     contacto_porteria_tel: formData.get('formContactoTel') || document.getElementById('formContactoTel')?.value || ''
   };
 
-
   try {
     const { data, error } = await db
       .from('inmuebles_direcciones')
@@ -436,30 +434,6 @@ async function guardarInmueble(e) {
   }
 }
 
-
-
-    try {
-      const { data, error } = await db
-        .from('inmuebles_direcciones')
-        .insert([nuevoInmueble])
-        .select();
-
-      if (error) throw error;
-
-      // Cerrar modal y refrescar la lista
-      cerrarModalAlta();
-      await cargarInmuebles();
-
-    } catch (err) {
-      console.error("Error al guardar inmueble:", err);
-      if (alerta) {
-        alerta.textContent = `Error: ${err.message}`;
-        alerta.classList.remove('hidden');
-      }
-    } finally {
-      if (btn) btn.disabled = false;
-    }
-  }
 </script>
 
 </body>
