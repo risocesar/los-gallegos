@@ -17,7 +17,7 @@
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';       // Pega tu clave Anon pública acá
     
     // Esto crea la variable global 'supabase' que heredarán el resto de tus funciones
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+     window.supabaseInstance = supabase.createClient(supabaseUrl, supabaseKey);
   </script>
 
 <style>
@@ -237,12 +237,10 @@
 
   function inicializarClienteSupabase() {
     const badge = document.getElementById('badgeConexion');
-
-    // Asignamos directamente la instancia global creada en el head
-    if (typeof window.supabase !== 'undefined' && window.supabase) {
-      db = window.supabase;
-    } else if (typeof supabase !== 'undefined' && supabase) {
-      db = supabase;
+    
+    // Leemos la instancia corregida
+    if (typeof window.supabaseInstance !== 'undefined' && window.supabaseInstance) {
+      db = window.supabaseInstance;
     }
 
     if (db) {
@@ -250,11 +248,11 @@
       badge.textContent = "● Conectado a Supabase";
       cargarInmuebles();
     } else {
-      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-rose-50 text-rose-700 border border-rose-200 cursor-pointer";
-      badge.textContent = "⚠️ Error de conexión a la Base de Datos";
-      badge.onclick = () => alert("No se pudo detectar la instancia global de Supabase. Revisa las credenciales en tu bloque de inicialización del HEAD.");
+      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-rose-50 text-rose-700 border border-rose-200";
+      badge.textContent = "⚠️ Error de instancia Supabase";
     }
   }
+
 
   // Funciones del Modal
   function abrirModalAlta() {
