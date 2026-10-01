@@ -372,8 +372,8 @@
 <span class="material-symbols-outlined text-[18px]">close</span>
 </button>
 </div>
-<!-- Formulario -->
-<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="tech-form">
+<!-- Formulario con función guardarTecnico -->
+<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="tech-form" onsubmit="guardarTecnico(event)">
 <!-- Alerta de Error Visible en Modal -->
 <div class="hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 flex items-start gap-2" id="modal-error-alert">
 <span class="material-symbols-outlined text-[18px] text-red-600 shrink-0 mt-0.5">error</span>
@@ -438,7 +438,7 @@
 </div>
 <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-2">
 <span class="material-symbols-outlined text-[16px] text-blue-600 mt-0.5">verified_user</span>
-<p class="text-[11px] text-slate-500">Se registrará automáticamente con estado <strong>Activo</strong> y vinculación directa en el campo <code>password</code> de <code class="font-mono text-slate-700">perfiles_usuarios</code>.</p>
+<p class="text-[11px] text-slate-500">Alta coordinada mediante Edge Function con Supabase Auth y registro en <code class="font-mono text-slate-700">perfiles_usuarios</code>.</p>
 </div>
 <!-- Botones de Acción -->
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
@@ -695,7 +695,11 @@
       electricidad: 'Electricidad'
     };
 
-    // Sincronización con tabla perfiles_usuarios de Supabase
+    // Sincronización con tabla perfiles_usuarios de Supabase (alias cargarTecnicos)
+    async function cargarTecnicos() {
+      await fetchTecnicos();
+    }
+
     async function fetchTecnicos() {
       if (!window.supabaseInstance) {
         renderTable();
@@ -852,94 +856,95 @@
       }).join('');
     }
 
-    // Modal Funcional: Dar de alta técnico con UUID y estructura completa
-    techForm.addEventListener('submit', async (e) => {
+    // Función principal: Conectar formulario con Edge Function /functions/v1/crear-usuario
+    async function guardarTecnico(e) {
       e.preventDefault();
 
       const btnSubmit = document.getElementById('btn-submit-form');
       if (modalErrorAlert) modalErrorAlert.classList.add('hidden');
 
-      const nombreInput = document.getElementById('form-nombre').value.trim();
-      const emailInput = document.getElementById('form-email').value.trim();
-      const passwordInput = document.getElementById('form-password').value;
-      const rolInput = document.getElementById('form-rol').value;
-      const gremioInput = document.getElementById('form-gremio').value;
-      const telefonoInput = document.getElementById('form-telefono').value.trim();
+      const techNombre = document.getElementById('form-nombre');
+      const techEmail = document.getElementById('form-email');
+      const techPassword = document.getElementById('form-password');
+      const techRol = document.getElementById('form-rol');
+      const techGremio = document.getElementById('form-gremio');
+      const techTelefono = document.getElementById('form-telefono');
 
-      const nuevoId = generarUUID();
+      const nombre = techNombre.value.trim();
+      const email = techEmail.value.trim();
+      const password = techPassword.value;
+      const rol = techRol.value;
+      const especialidad_gremio = techGremio.value;
+      const telefono = techTelefono.value.trim();
 
-      // Objeto preparado con compatibilidad máxima para perfiles_usuarios
-      const nuevoTecnicoPayload = {
-        id: nuevoId,
-        nombre_completo: nombreInput,
-        nombre: nombreInput,
-        email: emailInput,
-        telefono: telefonoInput,
-        rol: rolInput,
-        especialidad_gremio: gremioInput,
-        gremio: gremioInput,
-        password: passwordInput,
-        activo: true,
-        estado: 'activo',
-        created_at: new Date().toISOString()
-      };
-
+      // Indicador de estado solicitado en el botón de envío
       btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Guardando...</span>';
+      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Creando en Supabase Auth & Perfiles...</span>';
 
-      let guardadoEnSupabase = false;
+      try {
+        // Enviar POST a la Edge Function
+        const edgeFunctionUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co/functions/v1/crear-usuario';
+        const response = await fetch(edgeFunctionUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + supabaseKey
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            nombre: techNombre.value,
+            rol: techRol.value
+          })
+        });
 
-      if (window.supabaseInstance) {
-        try {
-          const { data, error } = await window.supabaseInstance
-            .from('perfiles_usuarios')
-            .insert([nuevoTecnicoPayload])
-            .select();
-
-          if (error) {
-            console.error('Error insert Supabase:', error);
-            // Mostrar alerta visible en el modal
-            if (modalErrorAlert && modalErrorText) {
-              modalErrorText.textContent = error.message || 'Error al comunicarse con Supabase. Revisa las políticas o campos.';
-              modalErrorAlert.classList.remove('hidden');
-            }
-            btnSubmit.disabled = false;
-            btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
-            return;
+        if (response.status >= 400) {
+          let errorMsg = `Error en el servidor (${response.status})`;
+          try {
+            const errData = await response.json();
+            errorMsg = errData.message || errData.error || errData.msg || JSON.stringify(errData);
+          } catch(errParse) {
+            const rawText = await response.text();
+            if (rawText) errorMsg = rawText;
           }
-
-          if (data && data[0]) {
-            tecnicos.unshift(data[0]);
-            guardadoEnSupabase = true;
-          }
-        } catch (err) {
-          console.error('Excepción al conectar con Supabase:', err);
-          if (modalErrorAlert && modalErrorText) {
-            modalErrorText.textContent = err.message || 'Ocurrió un error inesperado al registrar el usuario.';
-            modalErrorAlert.classList.remove('hidden');
-          }
-          btnSubmit.disabled = false;
-          btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
-          return;
+          throw new Error(errorMsg);
         }
-      }
 
-      // Si no hay Supabase o completó con éxito
-      if (!guardadoEnSupabase) {
-        tecnicos.unshift(nuevoTecnicoPayload);
-      }
+        // Usuario creado exitosamente con la Edge Function.
+        // Actualizar los campos adicionales en 'perfiles_usuarios' (telefono, especialidad_gremio)
+        const db = window.supabaseInstance;
+        if (db) {
+          const { error: updateError } = await db
+            .from('perfiles_usuarios')
+            .update({ 
+              telefono: telefono, 
+              especialidad_gremio: especialidad_gremio,
+              gremio: especialidad_gremio
+            })
+            .eq('email', email);
 
-      btnSubmit.disabled = false;
-      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
+          if (updateError) {
+            console.warn('Aviso al actualizar campos adicionales en perfiles_usuarios:', updateError);
+          }
+        }
 
-      closeModalAlta();
-      renderTable();
-      showToast(`Técnico ${nombreInput} registrado con éxito.`);
-      const syncTimeEl = document.getElementById('last-sync-time');
-      if (syncTimeEl) {
-        syncTimeEl.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        // Finalización exitosa
+        closeModalAlta();
+        techForm.reset();
+        showToast(`Técnico ${nombre} creado exitosamente en Supabase.`);
+        await cargarTecnicos();
+
+      } catch (error) {
+        console.error('Error al dar de alta técnico:', error);
+        if (modalErrorAlert && modalErrorText) {
+          modalErrorText.textContent = error.message || 'Error al comunicarse con la función de creación.';
+          modalErrorAlert.classList.remove('hidden');
+        }
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
       }
-    });
+    }
 
     // Formulario de Modificar Contraseña contra 'perfiles_usuarios'
     document.getElementById('password-form')?.addEventListener('submit', async (e) => {
@@ -1064,7 +1069,7 @@
     // Inicializar interfaz y sincronización de datos
     window.addEventListener('DOMContentLoaded', () => {
       initUserInterface();
-      fetchTecnicos();
+      cargarTecnicos();
     });
 </script>
 </body></html>
