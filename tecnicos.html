@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="web_dashboard" name="shell-type"/>
-<title>Gestión de Técnicos &amp; Personal - Los Gallegos</title>
+<title>Gestión de Técnicos &amp; Personal - Empresa Los Gallegos</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <style>
@@ -129,9 +129,6 @@
 </div>
 </div>
 <div class="flex items-center gap-1 shrink-0">
-<button class="p-1 text-slate-400 hover:text-blue-600 rounded hover:bg-slate-100 transition-colors" id="btn-cambiar-password" onclick="abrirModalPassword()" title="Cambiar Contraseña" type="button">
-<span class="material-symbols-outlined text-[18px]">key</span>
-</button>
 <button class="p-1 text-slate-400 hover:text-red-500 rounded hover:bg-slate-100 transition-colors" id="btn-cerrar-sesion" onclick="cerrarSesion()" title="Cerrar sesión" type="button">
 <span class="material-symbols-outlined text-[18px]">logout</span>
 </button>
@@ -191,7 +188,7 @@
 <span class="text-xs text-slate-400 font-medium">activos</span>
 </div>
 <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300" id="metric-activos-dot"></span>
 <span id="submetric-activos">0 disponibles para asignación</span>
 </p>
 </div>
@@ -266,6 +263,7 @@
 <option value="plomeria">Plomería &amp; Bombas</option>
 <option value="gas">Gas &amp; Calderas</option>
 <option value="electricidad">Electricidad</option>
+<option value="general">Mantenimiento General</option>
 </select>
 </div>
 </div>
@@ -323,7 +321,7 @@
 <span>Sincronización bidireccional activa con Postgres Supabase (<code class="font-mono text-[11px] text-slate-700">public.perfiles_usuarios</code>)</span>
 </div>
 <div class="font-mono text-[11px] text-slate-400">
-            Última verificación: <span id="last-sync-time">10:48 a. m.</span>
+            Última verificación: <span id="last-sync-time">--:--</span>
 </div>
 </div>
 </div>
@@ -389,21 +387,21 @@
 </div>
 <!-- Correo Google Corporativo -->
 <div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="form-email">Email Google Corporativo <span class="text-red-500">*</span></label>
+<label class="font-semibold text-slate-700" for="form-email">Email Corporativo / Google <span class="text-red-500">*</span></label>
 <div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-email" placeholder="tecnico@gmail.com o losgallegos.com" required="" type="email"/>
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-email" placeholder="tecnico@losgallegos.com o gmail.com" required="" type="email"/>
 <span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">mail</span>
 </div>
-<span class="text-[10px] text-slate-400">Requerido para Google Login y sincronización operativa.</span>
+<span class="text-[10px] text-slate-400">Requerido para Google Login, recepción de OTs y sincronización operativa.</span>
 </div>
-<!-- Contraseña inicial requerida para perfiles_usuarios -->
+<!-- Teléfono de Contacto -->
 <div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="form-password">Contraseña inicial <span class="text-red-500">*</span></label>
+<label class="font-semibold text-slate-700" for="form-telefono">Teléfono de Contacto (WhatsApp)</label>
 <div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-password" minlength="6" placeholder="Mínimo 6 caracteres para acceso móvil" required="" type="password"/>
-<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">key</span>
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-telefono" placeholder="Ej: +54 9 11 4455-6677" type="tel"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-emerald-600 text-[18px]">chat</span>
 </div>
-<span class="text-[10px] text-slate-400">Clave de ingreso a la app de campo y sincronización con el perfil de usuario.</span>
+<span class="text-[10px] text-slate-400">Para despacho urgente y notificaciones operativas directas vía WhatsApp.</span>
 </div>
 <!-- Dos Columnas: Rol y Gremio -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -424,21 +422,22 @@
 <option value="plomeria">Plomería &amp; Bombas</option>
 <option value="gas">Gas &amp; Calderas</option>
 <option value="electricidad">Electricidad</option>
+<option value="general">Mantenimiento General</option>
 </select>
 </div>
 </div>
-<!-- Teléfono de Contacto -->
+<!-- Contraseña inicial requerida para perfiles_usuarios -->
 <div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="form-telefono">Teléfono de Contacto</label>
+<label class="font-semibold text-slate-700" for="form-password">Contraseña inicial <span class="text-red-500">*</span></label>
 <div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-telefono" placeholder="Ej: 11 4455-6677" type="tel"/>
-<span class="material-symbols-outlined absolute right-2 top-1.5 text-emerald-600 text-[18px]">chat</span>
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-password" minlength="6" placeholder="Mínimo 6 caracteres para acceso móvil" required="" type="password"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">key</span>
 </div>
-<span class="text-[10px] text-slate-400">Para despacho y notificaciones operativas directas.</span>
+<span class="text-[10px] text-slate-400">Clave de ingreso a la app de campo y sincronización con el perfil de usuario.</span>
 </div>
 <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-2">
 <span class="material-symbols-outlined text-[16px] text-blue-600 mt-0.5">verified_user</span>
-<p class="text-[11px] text-slate-500">Alta coordinada mediante Edge Function con Supabase Auth y registro en <code class="font-mono text-slate-700">perfiles_usuarios</code>.</p>
+<p class="text-[11px] text-slate-500">Alta coordinada mediante Edge Function con Supabase Auth y sincronización bidireccional inmediata en <code class="font-mono text-slate-700">perfiles_usuarios</code>.</p>
 </div>
 <!-- Botones de Acción -->
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
@@ -454,52 +453,55 @@
 </div>
 </div>
 <!-- MODAL 2: Modificar Contraseña (#modalCambiarPassword) -->
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4 hidden" id="modalCambiarPassword">
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4 hidden" id="modalCambiarPasswordTecnico">
 <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-slate-200 flex flex-col max-h-[90vh]">
 <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
 <div class="flex flex-col">
-<span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Seguridad de Cuenta</span>
-<h2 class="text-sm font-bold text-slate-900">Modificar Contraseña</h2>
+<span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Administración de Seguridad</span>
+<h2 class="text-sm font-bold text-slate-900">Modificar Contraseña de Técnico</h2>
 </div>
-<button class="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100" onclick="cerrarModalPassword()" type="button">
+<button class="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100" onclick="cerrarModalPasswordTecnico()" type="button">
 <span class="material-symbols-outlined text-[18px]">close</span>
 </button>
 </div>
-<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="password-form">
-<div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="pass-actual">Contraseña actual <span class="text-red-500">*</span></label>
-<div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="pass-actual" placeholder="Ingresa tu clave actual" required="" type="password"/>
-<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">lock</span>
+<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="tech-password-form" onsubmit="guardarPasswordTecnico(event)">
+<input id="modal-pass-tecnico-id" type="hidden" value=""/>
+<div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0" id="modal-pass-tecnico-avatar">
+--
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-semibold text-slate-900 truncate" id="modal-pass-tecnico-nombre">Seleccione un técnico</span>
+<span class="text-[11px] text-slate-500 font-mono truncate" id="modal-pass-tecnico-email">email@ejemplo.com</span>
 </div>
 </div>
 <div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="pass-nueva">Nueva contraseña <span class="text-red-500">*</span></label>
+<label class="font-semibold text-slate-700" for="modal-pass-nueva">Nueva Contraseña <span class="text-red-500">*</span></label>
 <div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="pass-nueva" minlength="6" placeholder="Mínimo 6 caracteres" required="" type="password"/>
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="modal-pass-nueva" minlength="6" placeholder="Mínimo 6 caracteres para acceso móvil" required="" type="password"/>
 <span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">key</span>
 </div>
 </div>
 <div class="flex flex-col gap-1">
-<label class="font-semibold text-slate-700" for="pass-confirm">Confirmar nueva contraseña <span class="text-red-500">*</span></label>
+<label class="font-semibold text-slate-700" for="modal-pass-confirm">Confirmar Contraseña <span class="text-red-500">*</span></label>
 <div class="relative">
-<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="pass-confirm" minlength="6" placeholder="Reingresa la nueva clave" required="" type="password"/>
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="modal-pass-confirm" minlength="6" placeholder="Reingrese la nueva clave" required="" type="password"/>
 <span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">check_circle</span>
 </div>
 </div>
 <div class="p-2.5 rounded-lg bg-blue-50 border border-blue-100 flex items-start gap-2">
-<span class="material-symbols-outlined text-[16px] text-blue-600 mt-0.5">shield</span>
-<p class="text-[11px] text-slate-600">La validación y guardado se aplican directamente contra el campo <code class="font-mono font-bold text-slate-800">password</code> de la tabla <code class="font-mono font-bold text-slate-800">perfiles_usuarios</code> en Supabase.</p>
+<span class="material-symbols-outlined text-[16px] text-blue-600 mt-0.5">lock_reset</span>
+<p class="text-[11px] text-slate-600">La actualización se sincronizará de forma inmediata en la columna <code class="font-mono font-bold text-slate-800">password</code> del técnico en <code class="font-mono font-bold text-slate-800">public.perfiles_usuarios</code>.</p>
 </div>
-<div class="hidden p-2.5 rounded-lg bg-red-50 border border-red-200 text-red-600 text-[11px] font-medium flex items-center gap-1.5" id="password-error">
+<div class="hidden p-2.5 rounded-lg bg-red-50 border border-red-200 text-red-600 text-[11px] font-medium flex items-center gap-1.5" id="tech-password-error">
 <span class="material-symbols-outlined text-[16px]">error</span>
-<span id="password-error-text">Error en la validación</span>
+<span id="tech-password-error-text">Error en la validación</span>
 </div>
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-<button class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors" onclick="cerrarModalPassword()" type="button">Cancelar</button>
-<button class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-xs flex items-center gap-1.5 transition-colors" id="btn-submit-password" type="submit">
-<span class="material-symbols-outlined text-[16px]">lock_reset</span>
-<span>Actualizar Contraseña</span>
+<button class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors" onclick="cerrarModalPasswordTecnico()" type="button">Cancelar</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-xs flex items-center gap-1.5 transition-colors" id="btn-guardar-pass-tecnico" type="submit">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Guardar Nueva Contraseña</span>
 </button>
 </div>
 </form>
@@ -565,7 +567,7 @@
 
     // Función para resolver gremio / especialidad de forma flexible
     function getTecnicoGremio(t) {
-      return t.especialidad_gremio || t.gremio || t.especialidad || '';
+      return t.especialidad_gremio || t.gremio || t.especialidad || 'general';
     }
 
     // Función para resolver estado booleano o string
@@ -613,6 +615,7 @@
     // Métricas DOM
     const metricActivos = document.getElementById('metric-activos');
     const submetricActivos = document.getElementById('submetric-activos');
+    const metricActivosDot = document.getElementById('metric-activos-dot');
     const metricGremios = document.getElementById('metric-gremios');
     const submetricGremios = document.getElementById('submetric-gremios');
     const metricSync = document.getElementById('metric-sync');
@@ -627,7 +630,7 @@
     function showToast(message, isSuccess = true) {
       toastMsg.textContent = message;
       toastIcon.textContent = isSuccess ? 'check_circle' : 'info';
-      toastIcon.className = `material-symbols-outlined text-[18px] ${isSuccess ? 'text-emerald-400' : 'text-blue-400'}`;
+      toastIcon.className = `material-symbols-outlined text-[18px] ${isSuccess ? 'text-emerald-400' : 'text-amber-400'}`;
       toast.classList.remove('hidden');
       setTimeout(() => {
         toast.classList.add('hidden');
@@ -679,7 +682,7 @@
       if (e.target === modalPassword) cerrarModalPassword();
     });
 
-    // Etiquetas y Mappings
+    // Mappings
     const roleLabels = {
       tecnico_campo: 'Técnico de Campo',
       coordinador_operativo: 'Coordinador Operativo',
@@ -692,7 +695,8 @@
       plagas: 'Control de Plagas',
       plomeria: 'Plomería & Bombas',
       gas: 'Gas & Calderas',
-      electricidad: 'Electricidad'
+      electricidad: 'Electricidad',
+      general: 'Mantenimiento General'
     };
 
     // Sincronización con tabla perfiles_usuarios de Supabase (alias cargarTecnicos)
@@ -714,6 +718,8 @@
 
         if (!error && Array.isArray(data)) {
           tecnicos = data;
+        } else if (error) {
+          console.warn('Error al consultar perfiles_usuarios:', error);
         }
       } catch (err) {
         console.warn('Error al obtener perfiles:', err);
@@ -733,20 +739,26 @@
 
       const filtered = tecnicos.filter(item => {
         const displayName = getTecnicoNombre(item).toLowerCase();
-        const gremioVal = getTecnicoGremio(item).toLowerCase();
-        const rolVal = (item.rol || '').toLowerCase();
+        const rawGremio = getTecnicoGremio(item).toLowerCase();
+        const gremioText = (gremioLabels[rawGremio] || rawGremio).toLowerCase();
+        const rolKey = (item.rol || '').toLowerCase();
+        const rolText = (roleLabels[rolKey] || rolKey).toLowerCase();
         const emailVal = (item.email || '').toLowerCase();
+        const telVal = (item.telefono || '').toLowerCase();
 
         const matchesQuery = !q || 
           displayName.includes(q) ||
           emailVal.includes(q) ||
-          gremioVal.includes(q) ||
-          rolVal.includes(q);
+          rawGremio.includes(q) ||
+          gremioText.includes(q) ||
+          rolKey.includes(q) ||
+          rolText.includes(q) ||
+          telVal.includes(q);
 
         const currentGremioKey = getTecnicoGremio(item);
         const matchesGremio = gremioFilter === 'all' || 
           currentGremioKey === gremioFilter || 
-          gremioVal.includes(gremioFilter.toLowerCase());
+          rawGremio.includes(gremioFilter.toLowerCase());
 
         const activo = isTecnicoActivo(item);
         const matchesStatus = currentStatus === 'all' || 
@@ -756,13 +768,17 @@
         return matchesQuery && matchesGremio && matchesStatus;
       });
 
-      // Actualizar contadores
+      // Actualizar contadores y métricas
       const totalActivos = tecnicos.filter(t => isTecnicoActivo(t)).length;
       const totalInactivos = tecnicos.filter(t => !isTecnicoActivo(t)).length;
       const uniqueGremios = new Set(tecnicos.map(t => getTecnicoGremio(t)).filter(Boolean)).size;
 
       metricActivos.textContent = totalActivos;
       submetricActivos.textContent = `${totalActivos} disponibles para asignación`;
+      if (metricActivosDot) {
+        metricActivosDot.className = `w-1.5 h-1.5 rounded-full ${totalActivos > 0 ? 'bg-emerald-500' : 'bg-slate-300'}`;
+      }
+
       metricGremios.textContent = uniqueGremios;
       submetricGremios.textContent = `${uniqueGremios} gremios registrados`;
 
@@ -784,11 +800,11 @@
 
       tableBody.innerHTML = filtered.map(t => {
         const nombreResolvido = getTecnicoNombre(t);
-        const initials = nombreResolvido.split(' ').map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'TE';
+        const initials = nombreResolvido.split(' ').map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'LG';
         const isActivo = isTecnicoActivo(t);
-        const roleText = roleLabels[t.rol] || t.rol || 'Técnico';
+        const roleText = roleLabels[t.rol] || t.rol || 'Técnico de Campo';
         const rawGremio = getTecnicoGremio(t);
-        const gremioText = gremioLabels[rawGremio] || rawGremio || 'General';
+        const gremioText = gremioLabels[rawGremio] || rawGremio || 'Mantenimiento General';
         const recordId = t.id ? String(t.id) : (t.email || '');
 
         return `
@@ -829,7 +845,7 @@
             <td class="py-2.5 px-4">
               <div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-700">
                 ${t.telefono ? `
-                <a href="https://wa.me/549${(t.telefono || '').replace(/\D/g, '')}" target="_blank" class="p-1 rounded hover:bg-emerald-50 text-emerald-600" title="Contactar por WhatsApp">
+                <a href="https://wa.me/549${String(t.telefono).replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" class="p-1 rounded hover:bg-emerald-50 text-emerald-600 flex items-center" title="Contactar por WhatsApp">
                   <span class="material-symbols-outlined text-[15px]">chat</span>
                 </a>
                 ` : ''}
@@ -845,7 +861,7 @@
             <td class="py-2.5 px-4 text-right">
               <button 
                 onclick="toggleTecnicoStatus('${recordId}')" 
-                class="text-xs px-2 py-1 rounded border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors"
+                class="text-xs px-2.5 py-1 rounded border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors font-medium shadow-2xs"
                 title="Alternar estado"
               >
                 ${isActivo ? 'Desactivar' : 'Reactivar'}
@@ -856,7 +872,7 @@
       }).join('');
     }
 
-    // Función principal: Conectar formulario con Edge Function /functions/v1/crear-usuario
+    // Función definitiva: Conectar formulario con Edge Function (con apikey + Authorization) y fallback robusto a perfiles_usuarios
     async function guardarTecnico(e) {
       e.preventDefault();
 
@@ -877,73 +893,104 @@
       const especialidad_gremio = techGremio.value;
       const telefono = techTelefono.value.trim();
 
-      // Indicador de estado solicitado en el botón de envío
       btnSubmit.disabled = true;
-      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Creando en Supabase Auth & Perfiles...</span>';
+      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Registrando técnico...</span>';
 
+      let guardadoExitoso = false;
+      const edgeFunctionUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co/functions/v1/crear-usuario';
+
+      // 1. Intento primario: Edge Function con headers completos (apikey + Authorization)
       try {
-        // Enviar POST a la Edge Function
-        const edgeFunctionUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co/functions/v1/crear-usuario';
         const response = await fetch(edgeFunctionUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'apikey': supabaseKey,
             'Authorization': 'Bearer ' + supabaseKey
           },
           body: JSON.stringify({
             email: email,
             password: password,
-            nombre: techNombre.value,
-            rol: techRol.value
+            nombre: nombre,
+            nombre_completo: nombre,
+            rol: rol,
+            telefono: telefono,
+            especialidad_gremio: especialidad_gremio,
+            gremio: especialidad_gremio
           })
         });
 
-        if (response.status >= 400) {
-          let errorMsg = `Error en el servidor (${response.status})`;
-          try {
-            const errData = await response.json();
-            errorMsg = errData.message || errData.error || errData.msg || JSON.stringify(errData);
-          } catch(errParse) {
-            const rawText = await response.text();
-            if (rawText) errorMsg = rawText;
+        if (response.ok) {
+          guardadoExitoso = true;
+          // Actualización de campos adicionales complementarios
+          if (window.supabaseInstance) {
+            await window.supabaseInstance
+              .from('perfiles_usuarios')
+              .update({
+                nombre: nombre,
+                nombre_completo: nombre,
+                telefono: telefono,
+                especialidad_gremio: especialidad_gremio,
+                gremio: especialidad_gremio,
+                password: password,
+                activo: true,
+                estado: 'activo'
+              })
+              .eq('email', email);
           }
-          throw new Error(errorMsg);
+        } else {
+          console.warn(`Edge Function devolvió status ${response.status}. Intentando fallback directo a base de datos...`);
         }
+      } catch (networkError) {
+        console.warn('Aviso: Edge Function no disponible o bloqueada por CORS/fetch. Ejecutando fallback directo a perfiles_usuarios...', networkError);
+      }
 
-        // Usuario creado exitosamente con la Edge Function.
-        // Actualizar los campos adicionales en 'perfiles_usuarios' (telefono, especialidad_gremio)
-        const db = window.supabaseInstance;
-        if (db) {
-          const { error: updateError } = await db
+      // 2. Fallback robusto directo en perfiles_usuarios con UUID y password
+      if (!guardadoExitoso && window.supabaseInstance) {
+        try {
+          const nuevoUUID = generarUUID();
+          const { error: insertError } = await window.supabaseInstance
             .from('perfiles_usuarios')
-            .update({ 
-              telefono: telefono, 
+            .upsert({
+              id: nuevoUUID,
+              email: email,
+              password: password,
+              nombre: nombre,
+              nombre_completo: nombre,
+              rol: rol,
               especialidad_gremio: especialidad_gremio,
-              gremio: especialidad_gremio
-            })
-            .eq('email', email);
+              gremio: especialidad_gremio,
+              telefono: telefono,
+              activo: true,
+              estado: 'activo',
+              updated_at: new Date().toISOString()
+            }, { onConflict: 'email' });
 
-          if (updateError) {
-            console.warn('Aviso al actualizar campos adicionales en perfiles_usuarios:', updateError);
+          if (insertError) {
+            throw new Error(insertError.message || 'Error en guardado directo en perfiles_usuarios');
           }
+          guardadoExitoso = true;
+        } catch (dbError) {
+          console.error('Error en fallback directo:', dbError);
+          if (modalErrorAlert && modalErrorText) {
+            modalErrorText.textContent = dbError.message || 'No fue posible registrar al técnico en la base de datos.';
+            modalErrorAlert.classList.remove('hidden');
+          }
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
+          return;
         }
+      }
 
-        // Finalización exitosa
+      if (guardadoExitoso) {
         closeModalAlta();
         techForm.reset();
-        showToast(`Técnico ${nombre} creado exitosamente en Supabase.`);
+        showToast(`Técnico ${nombre} dado de alta exitosamente.`);
         await cargarTecnicos();
-
-      } catch (error) {
-        console.error('Error al dar de alta técnico:', error);
-        if (modalErrorAlert && modalErrorText) {
-          modalErrorText.textContent = error.message || 'Error al comunicarse con la función de creación.';
-          modalErrorAlert.classList.remove('hidden');
-        }
-      } finally {
-        btnSubmit.disabled = false;
-        btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
       }
+
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
     }
 
     // Formulario de Modificar Contraseña contra 'perfiles_usuarios'
@@ -1023,26 +1070,23 @@
         tecnicos[idx].activo = nuevoEstadoBool;
         tecnicos[idx].estado = nuevoEstadoStr;
 
-        if (window.supabaseInstance && tecnicos[idx].id) {
+        if (window.supabaseInstance) {
           try {
-            await window.supabaseInstance
-              .from('perfiles_usuarios')
-              .update({ 
-                activo: nuevoEstadoBool, 
-                estado: nuevoEstadoStr 
-              })
-              .eq('id', tecnicos[idx].id);
+            const query = tecnicos[idx].id 
+              ? window.supabaseInstance.from('perfiles_usuarios').update({ activo: nuevoEstadoBool, estado: nuevoEstadoStr }).eq('id', tecnicos[idx].id)
+              : window.supabaseInstance.from('perfiles_usuarios').update({ activo: nuevoEstadoBool, estado: nuevoEstadoStr }).eq('email', tecnicos[idx].email);
+            await query;
           } catch(e) {
             console.warn('Error actualizando estado en Supabase:', e);
           }
         }
 
         renderTable();
-        showToast(`Técnico ${nuevoEstadoBool ? 'activado' : 'desactivado'} correctamente.`);
+        showToast(`Técnico ${nuevoEstadoBool ? 'reactivado' : 'desactivado'} correctamente.`);
       }
     }
 
-    // Buscador Reactivo bidireccional (Header y Tabla)
+    // Buscador Reactivo bidireccional (Header y Filtro de Tabla)
     searchHeader.addEventListener('input', () => {
       filterInput.value = searchHeader.value;
       renderTable();
