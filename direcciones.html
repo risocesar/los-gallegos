@@ -1,13 +1,15 @@
-<!DOCTYPE html><html class="h-full bg-slate-50" lang="es" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Empresa Los Gallegos - Ficha Integral de Dirección &amp; Inmuebles</title>
 <!-- Google Font: Inter -->
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Leaflet CSS for Map -->
-<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet">
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet"/>
 <!-- Tailwind CSS v3 with Forms & Container Queries -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
@@ -48,14 +50,15 @@
       height: 180px;
       width: 100%;
       border-radius: 0.5rem;
-      z-index: 10;
+      z-index: 1;
+      position: relative;
     }
     /* Evitar problemas de z-index entre modal y controles de leaflet */
     .leaflet-pane {
-      z-index: 20 !important;
+      z-index: 2 !important;
     }
     .leaflet-top, .leaflet-bottom {
-      z-index: 25 !important;
+      z-index: 3 !important;
     }
   </style>
 </head>
@@ -123,7 +126,7 @@
 <div class="text-[10px] text-slate-400">Los Gallegos CRM</div>
 </div>
 </div>
-<button class="text-slate-400 hover:text-slate-600 p-1.5 rounded-md hover:bg-slate-100 transition-colors cursor-pointer" onclick="localStorage.clear(); sessionStorage.clear(); window.location.href='index.html';" title="Cerrar Sesión" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
+<button class="text-slate-400 hover:text-slate-600 p-1.5 rounded-md hover:bg-slate-100 transition-colors cursor-pointer" onclick="localStorage.clear(); sessionStorage.clear(); window.location.href='index.html';" title="Cerrar Sesión" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button>
 </div>
 </aside>
 <!-- END: Sidebar -->
@@ -136,15 +139,15 @@
 <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 text-sm">
           🔍
         </span>
-<input class="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:bg-white transition-all" id="global-search-input" placeholder="Buscar por calle, CUIT o administración..." type="text">
+<input class="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:bg-white transition-all" id="global-search-input" placeholder="Buscar por calle, CUIT o administración..." type="text"/>
 </div>
 <!-- Botones de Acción Superior -->
 <div class="flex items-center gap-3 shrink-0">
-<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs" id="btn-open-modal-admin" type="button">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs" id="btn-open-modal-admin" onclick="openModalAdmin()" type="button">
 <span class="text-slate-500 font-bold">+</span>
 <span class="">Nueva Administración</span>
 </button>
-<button class="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-sm transition-all" id="btn-open-modal-inmueble" type="button">
+<button class="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 shadow-sm transition-all" id="btn-open-modal-inmueble" onclick="openModalInmueble()" type="button">
 <span class="font-bold">+</span>
 <span class="">Dar de Alta Inmueble</span>
 </button>
@@ -205,22 +208,9 @@
 <span class="text-[10px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full border border-slate-200" id="badge-total-count">1 Inmuebles</span>
 </div>
 <!-- Contenedor scrolleable de lista de inmuebles -->
-<div class="space-y-2.5 max-h-[600px] overflow-y-auto pr-1" id="inmuebles-list-container"><div class="p-3.5 rounded-xl border border-blue-200 bg-blue-50/20 hover:bg-blue-50/50 cursor-pointer transition-all relative group ring-1 ring-blue-400">
-          <div class="flex items-start justify-between">
-            <div>
-              <div class="font-bold text-sm text-slate-900">Dorrego 1525</div>
-              <div class="text-[11px] text-slate-400 mb-2 font-mono">sdfsdfsdf</div>
-            </div>
-            <span class="text-slate-300 group-hover:text-blue-500 transition-colors font-bold text-xs">➔</span>
-          </div>
-          <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
-            <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 font-mono">CUIT: 65468465465</span>
-            <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-500 font-semibold">CABA</span>
-            <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200 inline-flex items-center gap-1">
-              🏢 La puta
-            </span>
-          </div>
-        </div></div>
+<div class="space-y-2.5 max-h-[600px] overflow-y-auto pr-1" id="inmuebles-list-container">
+<!-- Inmuebles renderizados dinámicamente -->
+</div>
 </section>
 <!-- COLUMNA DERECHA: Ficha Detalle Inmueble Activo (8 Cols) -->
 <section class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-xs p-6 flex flex-col gap-6" data-purpose="active-property-detail">
@@ -234,21 +224,23 @@
 <p class="text-xs text-slate-400 font-mono" id="detail-razon-social">sdfsdfsdf</p>
 </div>
 <div class="flex flex-wrap items-center gap-2">
-<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-xs" type="button" onclick="openModalEditarInmueble()">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors shadow-xs" onclick="openModalEditarInmueble()" type="button">
 <span class="">✏️</span>
 <span class="">Editar Inmueble</span>
 </button>
 <div class="px-3 py-1.5 text-xs font-mono font-medium text-slate-600 bg-slate-50 border border-slate-200 rounded-lg">
-                CUIT: <span id="detail-cuit" class="">65468465465</span>
+                CUIT: <span class="" id="detail-cuit">65468465465</span>
 </div>
-<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors" type="button">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors" id="btn-crear-cita" onclick="openModalCitaRelevamiento()" type="button">
 <span class="">📅</span>
 <span class="">Crear Cita de Relevamiento</span>
 </button>
 </div>
 </div>
 <!-- Tarjeta de Mandato / Administración Asignada -->
-<div class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4" id="card-admin-status"><div class="space-y-1.5 flex-1"><div class="flex items-center gap-2"><span class="inline-block text-[10px] font-black uppercase text-amber-800 tracking-wider bg-amber-100 px-2 py-0.5 rounded">Sin Administración / Gestión Directa</span></div><div class="text-sm font-bold text-slate-900">Gestión Autónoma / Mandato Directo</div><p class="text-xs text-slate-500">El inmueble no pertenece actualmente a ninguna empresa administradora de consorcios.</p><div class="flex flex-wrap items-center gap-2 pt-1"><label class="text-[10px] font-bold uppercase tracking-wider text-slate-500" for="inline-select-admin">Cambiar Admin:</label><select class="text-xs rounded-lg border-slate-300 py-1 px-2.5 focus:border-blue-500 focus:ring-blue-500" id="inline-select-admin" onchange="asignarAdminDirecto(this.value)"><option value="">-- Ninguna (Gestión Directa) --</option></select><button class="text-blue-600 hover:text-blue-700 font-semibold text-xs inline-flex items-center gap-1 ml-1" onclick="openModalAdmin()" type="button"><span class="">+</span> Nueva Administración</button></div></div><div class="flex items-center gap-2"><button class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-xs transition-all" id="btn-assign-admin" onclick="openModalEditarInmueble()" type="button"><span class="">✏️</span><span class="">Cambiar Admin</span></button></div></div>
+<div class="p-4 rounded-xl border border-amber-200 bg-amber-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4" id="card-admin-status">
+<!-- Rellenado dinámicamente con selectCambiarAdmin -->
+</div>
 <!-- Acordeón Historial de Reasignaciones -->
 <div class="border border-slate-200 rounded-xl overflow-hidden">
 <button class="w-full px-4 py-3 bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between text-xs font-semibold text-slate-700 transition-colors" onclick="toggleAccordion('historial-reasignaciones-content')" type="button">
@@ -306,7 +298,7 @@
                 📋
               </div>
 <p class="text-xs text-slate-500 font-medium">No hay órdenes para el filtro seleccionado.</p>
-<button class="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline" type="button">
+<button class="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline" id="btn-agendar-visita-empty" onclick="openModalCitaRelevamiento()" type="button">
                 + Agendar Primera Visita Técnica
               </button>
 </div>
@@ -346,19 +338,18 @@
         </button>
 </div>
 <!-- Formulario Scrolleable -->
-<form class="p-6 overflow-y-auto space-y-4 text-xs" id="form-alta-inmueble">
+<form class="p-6 overflow-y-auto space-y-4 text-xs" id="form-alta-inmueble" onsubmit="guardarInmueble(event)">
+<div class="hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs" id="modal-alta-error"></div>
 <!-- Fila Administración Mandataria -->
 <div>
 <div class="flex items-center justify-between mb-1">
-<label class="font-bold uppercase tracking-wider text-[10px] text-slate-600">Administración Mandataria</label>
-<button class="text-blue-600 hover:text-blue-700 font-semibold text-[10px] flex items-center gap-1" onclick="openModalAdminFromInmueble()" type="button">
+<label class="font-bold uppercase tracking-wider text-[10px] text-slate-600" for="selectAdminAsignada">Administración Mandataria</label>
+<button class="text-blue-600 hover:text-blue-700 font-semibold text-[10px] flex items-center gap-1" onclick="openModalAdmin()" type="button">
 <span class="">+</span> Nueva Administración
             </button>
 </div>
-<select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="formAdministracionId">
+<select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="selectAdminAsignada">
 <option value="">-- Ninguna (Gestión Directa) --</option>
-<option value="La Puta Admin">La Puta Admin (Mandataria Activa)</option>
-<option value="Consorcios CABA SRL">Consorcios CABA SRL</option>
 </select>
 </div>
 <!-- Fila Dirección y Piso -->
@@ -366,15 +357,15 @@
 <div class="col-span-2">
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Dirección (Calle y Número) *</label>
 <div class="relative">
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500 pr-8" id="input-direccion" placeholder="Ej. Dorrego 1525" required="" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500 pr-8" id="input-direccion" placeholder="Ej. Dorrego 1525" required="" type="text"/>
 <button class="absolute inset-y-0 right-0 px-2.5 flex items-center text-slate-400 hover:text-blue-600" onclick="geocodeAddress()" title="Buscar y centrar en mapa" type="button">
                 🎯
               </button>
-<div id="geocode-status" class="hidden text-[10px] text-blue-600 font-medium mt-1 flex items-center gap-1"><span class="animate-spin">⏳</span><span class="">Localizando dirección y código postal...</span></div></div>
+<div class="hidden text-[10px] text-blue-600 font-medium mt-1 flex items-center gap-1" id="geocode-status"><span class="animate-spin">⏳</span><span class="">Localizando dirección y código postal...</span></div></div>
 </div>
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Piso / Depto</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-piso" placeholder="Ej. PB / Consorcio" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-piso" placeholder="Ej. PB / Consorcio" type="text"/>
 </div>
 </div>
 <!-- Mapa Leaflet Interactivo -->
@@ -384,47 +375,47 @@
 <span class="font-mono text-slate-400 text-[9px]" id="coords-display">-34.5843, -58.4412</span>
 </div>
 <!-- Contenedor del Mapa -->
-<div class="border border-slate-300 shadow-inner leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" id="address-map" tabindex="0" style="position: relative;"><div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-pane leaflet-tile-pane"><div class="leaflet-layer " style="z-index: 1; opacity: 1;"><div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 19; transform: translate3d(0px, 0px, 0px) scale(1);"><img alt="" src="https://a.tile.openstreetmap.org/14/5532/9870.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(191px, -243px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/14/5532/9871.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(191px, 13px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/14/5531/9870.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-65px, -243px, 0px); opacity: 1;"><img alt="" src="https://b.tile.openstreetmap.org/14/5533/9870.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(447px, -243px, 0px); opacity: 1;"><img alt="" src="https://a.tile.openstreetmap.org/14/5531/9871.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-65px, 13px, 0px); opacity: 1;"><img alt="" src="https://c.tile.openstreetmap.org/14/5533/9871.png" class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(447px, 13px, 0px); opacity: 1;"></div></div></div><div class="leaflet-pane leaflet-overlay-pane"></div><div class="leaflet-pane leaflet-shadow-pane"><img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png" class="leaflet-marker-shadow leaflet-zoom-animated" alt="" style="margin-left: -12px; margin-top: -41px; width: 41px; height: 41px; transform: translate3d(262px, 89px, 0px);"></div><div class="leaflet-pane leaflet-marker-pane"><img src="https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive leaflet-marker-draggable" alt="Marker" style="margin-left: -12px; margin-top: -41px; width: 25px; height: 41px; transform: translate3d(262px, 89px, 0px); z-index: 89;"></div><div class="leaflet-pane leaflet-tooltip-pane"></div><div class="leaflet-pane leaflet-popup-pane"></div><div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(1.41626e+06px, 2.52705e+06px, 0px) scale(8192);"></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"><div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Zoom in" role="button" aria-label="Zoom in" aria-disabled="false"><span aria-hidden="true" class="">+</span></a><a class="leaflet-control-zoom-out" href="#" title="Zoom out" role="button" aria-label="Zoom out" aria-disabled="false"><span aria-hidden="true" class="">−</span></a></div></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"><div class="leaflet-control-attribution leaflet-control"><a href="https://leafletjs.com" title="A JavaScript library for interactive maps" class=""><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8" class="leaflet-attribution-flag"><path fill="#4C7BE1" d="M0 0h12v4H0z"></path><path fill="#FFD500" d="M0 4h12v3H0z"></path><path fill="#E0BC00" d="M0 7h12v1H0z"></path></svg> Leaflet</a> <span aria-hidden="true" class="">|</span> © OpenStreetMap</div></div></div></div>
+<div class="border border-slate-300 shadow-inner" id="address-map" tabindex="0"></div>
 <p class="text-[10px] text-slate-400 mt-1 italic">Arrastra el marcador para ajustar la posición exacta.</p>
 </div>
 <!-- Barrio y Código Postal -->
-<div class="grid grid-cols-2 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-barrio">Barrio / Comuna *</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-barrio" placeholder="Autocompletado con mapa..." required="" type="text" value="Palermo, CABA"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-cp">Código Postal</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cp" placeholder="Ej. C1414" type="text" value="C1414"></div></div>
+<div class="grid grid-cols-2 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-barrio">Barrio / Comuna *</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-barrio" placeholder="Autocompletado con mapa..." required="" type="text" value="Palermo, CABA"/></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-cp">Código Postal</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cp" placeholder="Ej. C1414" type="text" value="C1414"/></div></div>
 <!-- CUIT y Razón Social Fiscal -->
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">CUIT de Facturación *</label>
-<input class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cuit" placeholder="30-71445566-9" required="" type="text">
+<input class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cuit" placeholder="30-71445566-9" required="" type="text"/>
 </div>
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Razón Social Fiscal *</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-razon" placeholder="Consorcio de Propietarios Dorrego 1525" required="" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-razon" placeholder="Consorcio de Propietarios Dorrego 1525" required="" type="text"/>
 </div>
 </div>
 <!-- Encargado, Teléfono y Horarios -->
 <div class="grid grid-cols-3 gap-3">
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Encargado / Portería</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-portero" placeholder="Ej. Juan Gómez" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-portero" placeholder="Ej. Juan Gómez" type="text"/>
 </div>
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Teléfono Encargado</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-telefono" placeholder="11 5566-7788" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-telefono" placeholder="11 5566-7788" type="text"/>
 </div>
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Horarios Acceso</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-horarios" placeholder="08:00 a 13:00 hs" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-horarios" placeholder="08:00 a 13:00 hs" type="text"/>
 </div>
 </div>
-</form>
-<!-- Pie del Modal -->
-<div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3">
+<!-- Pie del Formulario -->
+<div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
 <button class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 rounded-lg hover:bg-slate-200 transition-colors" onclick="closeModalInmueble()" type="button">
           Cancelar
         </button>
-<button class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all" onclick="guardarInmueble()" type="button">
-          Guardar Inmueble
-        </button>
+<button class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all inline-flex items-center gap-2" id="btn-submit-inmueble" type="submit">
+<span>Guardar Inmueble</span>
+</button>
 </div>
+</form>
 </div>
 </div>
 <!-- END: ModalAltaInmueble -->
@@ -442,45 +433,174 @@
 <button class="text-slate-400 hover:text-slate-600" onclick="closeModalAdmin()" type="button">✕</button>
 </div>
 <div class="p-6 space-y-3.5 text-xs">
+<div class="hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs" id="modal-admin-error"></div>
 <div>
 <label class="block font-bold text-slate-700 mb-1">Nombre / Razón Social Mandataria *</label>
-<input class="w-full text-xs rounded-lg border-slate-300" id="admin-nombre" placeholder="Ej. Administración Belgrano Propiedades" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" id="admin-nombre" placeholder="Ej. Administración Belgrano Propiedades" required="" type="text"/>
 </div>
 <div>
 <label class="block font-bold text-slate-700 mb-1">CUIT Mandataria</label>
-<input class="w-full text-xs font-mono rounded-lg border-slate-300" id="admin-cuit" placeholder="30-87654321-4" type="text">
+<input class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" id="admin-cuit" placeholder="30-87654321-4" type="text"/>
 </div>
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block font-bold text-slate-700 mb-1">Teléfono Central</label>
-<input class="w-full text-xs rounded-lg border-slate-300" id="admin-telefono" placeholder="011 4788-9900" type="text">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" id="admin-telefono" placeholder="011 4788-9900" type="text"/>
 </div>
 <div>
 <label class="block font-bold text-slate-700 mb-1">Email Mandato</label>
-<input class="w-full text-xs rounded-lg border-slate-300" id="admin-email" placeholder="contacto@admin.com" type="email">
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-emerald-500 focus:ring-emerald-500" id="admin-email" placeholder="contacto@admin.com" type="email"/>
 </div>
 </div>
 </div>
 <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-2">
 <button class="px-3.5 py-1.5 text-xs font-semibold text-slate-600 hover:bg-slate-200 rounded-lg" onclick="closeModalAdmin()" type="button">Cancelar</button>
-<button class="px-4 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm" onclick="guardarAdministracion()" type="button">Guardar Mandataria</button>
+<button class="px-4 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm inline-flex items-center gap-2" id="btn-save-admin" onclick="guardarAdministracion()" type="button">Guardar Mandataria</button>
 </div>
 </div>
-</div><div class="fixed inset-0 z-50 flex items-center justify-center hidden" data-purpose="modal-edit-property" id="modal-editar-inmueble"><div class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity" onclick="closeModalEditarInmueble()"></div><div class="relative bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-100 z-10 overflow-hidden flex flex-col max-h-[92vh]"><div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between"><div class="flex items-center gap-2"><span class="text-blue-600 text-lg">✏️</span><div><h3 class="text-sm font-bold uppercase text-slate-800 tracking-wider">Editar Inmueble</h3><p class="text-[11px] text-slate-400">Modificar datos y asignación de administración</p></div></div><button class="text-slate-400 hover:text-slate-600 text-lg p-1" onclick="closeModalEditarInmueble()" type="button">✕</button></div><form class="p-6 overflow-y-auto space-y-4 text-xs" id="form-editar-inmueble"><div><div class="flex items-center justify-between mb-1"><label class="font-bold uppercase tracking-wider text-[10px] text-slate-600" for="editAdministracionId">Administración Mandataria Asignada</label><button class="text-blue-600 hover:text-blue-700 font-semibold text-[10px] flex items-center gap-1" onclick="openModalAdmin()" type="button"><span class="">+</span> Nueva Administración</button></div><select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="editAdministracionId"><option value="">-- Ninguna (Gestión Directa) --</option></select></div><div class="grid grid-cols-2 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Dirección (Calle y Número)</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-direccion" readonly="" type="text"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">CUIT</label><input class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-cuit" type="text"></div></div><div class="grid grid-cols-2 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Razón Social Fiscal</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-razon" type="text"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Barrio / Comuna</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-barrio" type="text"></div></div><div class="grid grid-cols-3 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Encargado / Portería</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-portero" type="text"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Teléfono</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-telefono" type="text"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Horarios Acceso</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-horarios" type="text"></div></div></form><div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-3"><button class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 rounded-lg hover:bg-slate-200 transition-colors" onclick="closeModalEditarInmueble()" type="button">Cancelar</button><button class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all" onclick="guardarEdicionInmueble()" type="button">Actualizar Inmueble</button></div></div></div>
+</div>
 <!-- END: ModalAltaAdministracion -->
+<!-- BEGIN: ModalEditarInmueble -->
+<div class="fixed inset-0 z-50 flex items-center justify-center hidden" data-purpose="modal-edit-property" id="modal-editar-inmueble">
+<div class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity" onclick="closeModalEditarInmueble()"></div>
+<div class="relative bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-100 z-10 overflow-hidden flex flex-col max-h-[92vh]">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-blue-600 text-lg">✏️</span>
+<div>
+<h3 class="text-sm font-bold uppercase text-slate-800 tracking-wider">Editar Inmueble</h3>
+<p class="text-[11px] text-slate-400">Modificar datos y asignación de administración</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-600 text-lg p-1" onclick="closeModalEditarInmueble()" type="button">✕</button>
+</div>
+<form class="p-6 overflow-y-auto space-y-4 text-xs" id="form-editar-inmueble" onsubmit="guardarEdicionInmueble(event)">
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="font-bold uppercase tracking-wider text-[10px] text-slate-600" for="editAdministracionId">Administración Mandataria Asignada</label>
+<button class="text-blue-600 hover:text-blue-700 font-semibold text-[10px] flex items-center gap-1" onclick="openModalAdmin()" type="button">
+<span class="">+</span> Nueva Administración
+</button>
+</div>
+<select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="editAdministracionId">
+<option value="">-- Ninguna (Gestión Directa) --</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Dirección (Calle y Número)</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-direccion" readonly="" type="text"/>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">CUIT</label>
+<input class="w-full text-xs font-mono rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-cuit" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Razón Social Fiscal</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-razon" type="text"/>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Barrio / Comuna</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-barrio" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Encargado / Portería</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-portero" type="text"/>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Teléfono</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-telefono" type="text"/>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Horarios Acceso</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="edit-horarios" type="text"/>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+<button class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 rounded-lg hover:bg-slate-200 transition-colors" onclick="closeModalEditarInmueble()" type="button">Cancelar</button>
+<button class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all" type="submit">Actualizar Inmueble</button>
+</div>
+</form>
+</div>
+</div>
+<!-- END: ModalEditarInmueble -->
+<!-- BEGIN: ModalCitaRelevamiento -->
+<div class="fixed inset-0 z-50 flex items-center justify-center hidden" data-purpose="modal-schedule-survey" id="modal-cita-relevamiento">
+<div class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity" onclick="closeModalCitaRelevamiento()"></div>
+<div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-100 z-10 overflow-hidden flex flex-col">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-blue-600 text-lg">📅</span>
+<div>
+<h3 class="text-sm font-bold uppercase text-slate-800 tracking-wider">Agendar Visita Técnica</h3>
+<p class="text-[11px] text-slate-400">Relevamiento e Inspección Inicial</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-slate-600 text-lg p-1" onclick="closeModalCitaRelevamiento()" type="button">✕</button>
+</div>
+<form class="p-6 space-y-4 text-xs" id="form-cita-relevamiento" onsubmit="guardarCitaRelevamiento(event)">
+<div class="hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs" id="modal-cita-error"></div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Inmueble Seleccionado</label>
+<input class="w-full text-xs rounded-lg border-slate-200 bg-slate-50 text-slate-700 font-semibold" id="cita-direccion" readonly="" type="text" value="Dorrego 1525"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Fecha Programada *</label>
+<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="cita-fecha" required="" type="date"/>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Franja Horaria *</label>
+<select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="cita-horario" required="">
+<option value="Mañana (08:00 a 12:00 hs)">Mañana (08:00 a 12:00 hs)</option>
+<option value="Mediodía (12:00 a 15:00 hs)">Mediodía (12:00 a 15:00 hs)</option>
+<option value="Tarde (15:00 a 18:00 hs)">Tarde (15:00 a 18:00 hs)</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Técnico Inspector Asignado *</label>
+<select class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="cita-tecnico" required="">
+<option value="Carlos Rodríguez (Termomecánica)">Carlos Rodríguez (Termomecánica)</option>
+<option value="Mariano Ibarra (Instalaciones Eléctricas)">Mariano Ibarra (Instalaciones Eléctricas)</option>
+<option value="Esteban Gomez (Inspección General &amp; Bombas)">Esteban Gomez (Inspección General &amp; Bombas)</option>
+</select>
+</div>
+<div>
+<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Observaciones / Enfoque del Relevamiento</label>
+<textarea class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="cita-observaciones" placeholder="Ej. Relevamiento integral de sala de calderas y tablero general..." rows="3"></textarea>
+</div>
+<div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-3">
+<button class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 rounded-lg hover:bg-slate-200 transition-colors" onclick="closeModalCitaRelevamiento()" type="button">Cancelar</button>
+<button class="px-5 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm transition-all inline-flex items-center gap-2" id="btn-submit-cita" type="submit">
+<span>Confirmar Visita Técnica</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- END: ModalCitaRelevamiento -->
 <!-- BEGIN: InteractiveScripts -->
 <script data-purpose="supabase-client-setup">
     // Credenciales de conexión Supabase
     const SUPABASE_URL = "https://gquzbidfnyfjanfpygcf.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw";
 
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Cliente global Supabase
+    window.supabaseInstance = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = window.supabaseInstance;
   </script>
 <script data-purpose="ui-and-leaflet-interaction">
     // Almacenamiento local de respaldo y estado de la app
     let inmuebles = [
       {
+        id: "demo-1",
         direccion: "Dorrego 1525",
+        piso: "",
         razonSocial: "sdfsdfsdf",
         cuit: "65468465465",
         barrio: "CABA",
@@ -488,13 +608,19 @@
         portero: "dsfsdf",
         telefono: "665465",
         horarios: "9a15",
+        administracion_id: null,
         administracion: "La puta",
         lat: -34.5843,
         lng: -58.4412
       }
     ];
 
-    let administraciones = ["La Puta Admin", "Consorcios CABA SRL"];
+    let administraciones = [
+      { id: "adm-1", nombre_fantasia: "La Puta Admin", cuit: "30-55443322-1" },
+      { id: "adm-2", nombre_fantasia: "Consorcios CABA SRL", cuit: "30-99887766-2" }
+    ];
+
+    let currentSelectedInmueble = inmuebles[0];
 
     // Variables de Leaflet
     let mapInstance = null;
@@ -503,40 +629,32 @@
     // Inicialización al cargar el DOM
     document.addEventListener("DOMContentLoaded", () => {
       setupEventListeners();
-      renderInmueblesList();
-      fetchSupabaseData();
+      cargarAdministraciones();
+      cargarInmuebles();
     });
 
     function setupEventListeners() {
-      // Apertura de Modales
-      document.getElementById("btn-open-modal-inmueble").addEventListener("click", () => {
-        openModalInmueble();
-      });
-
-      document.getElementById("btn-open-modal-admin").addEventListener("click", () => {
-        openModalAdmin();
-      });
-
-      document.getElementById("btn-assign-admin").addEventListener("click", () => {
-        openModalAdmin();
-      });
-
       // Filtro de búsqueda
-      document.getElementById("global-search-input").addEventListener("input", (e) => {
-        const query = e.target.value.toLowerCase();
-        const filtered = inmuebles.filter(item => 
-          item.direccion.toLowerCase().includes(query) ||
-          item.cuit.includes(query) ||
-          item.razonSocial.toLowerCase().includes(query)
-        );
-        renderInmueblesList(filtered);
-      });
+      const searchInput = document.getElementById("global-search-input");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase();
+          const filtered = inmuebles.filter(item => 
+            (item.direccion && item.direccion.toLowerCase().includes(query)) ||
+            (item.cuit && item.cuit.includes(query)) ||
+            (item.razonSocial && item.razonSocial.toLowerCase().includes(query)) ||
+            (item.administracion && item.administracion.toLowerCase().includes(query))
+          );
+          renderInmueblesList(filtered);
+        });
+      }
     }
 
     // Modal Inmuebles
     function openModalInmueble() {
       const modal = document.getElementById("modal-alta-inmueble");
       modal.classList.remove("hidden");
+      document.getElementById("modal-alta-error").classList.add("hidden");
       
       // Inicializar Leaflet con retardo seguro para calcular el tamaño real del contenedor
       setTimeout(() => {
@@ -551,14 +669,66 @@
     // Modal Admin
     function openModalAdmin() {
       document.getElementById("modal-alta-admin").classList.remove("hidden");
+      document.getElementById("modal-admin-error").classList.add("hidden");
     }
 
     function closeModalAdmin() {
       document.getElementById("modal-alta-admin").classList.add("hidden");
     }
 
-    function openModalAdminFromInmueble() {
-      openModalAdmin();
+    // Modal Cita Relevamiento
+    function openModalCitaRelevamiento() {
+      const modal = document.getElementById("modal-cita-relevamiento");
+      modal.classList.remove("hidden");
+      document.getElementById("modal-cita-error").classList.add("hidden");
+
+      const inputDir = document.getElementById("cita-direccion");
+      if (inputDir && currentSelectedInmueble) {
+        inputDir.value = currentSelectedInmueble.direccion || "Propiedad sin definir";
+      }
+
+      // Default fecha mañana
+      const inputFecha = document.getElementById("cita-fecha");
+      if (inputFecha && !inputFecha.value) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        inputFecha.value = tomorrow.toISOString().split("T")[0];
+      }
+    }
+
+    function closeModalCitaRelevamiento() {
+      document.getElementById("modal-cita-relevamiento").classList.add("hidden");
+    }
+
+    // Modal Editar Inmueble
+    function openModalEditarInmueble() {
+      if (!currentSelectedInmueble) return;
+      const modal = document.getElementById("modal-editar-inmueble");
+      modal.classList.remove("hidden");
+
+      document.getElementById("edit-direccion").value = currentSelectedInmueble.direccion || "";
+      document.getElementById("edit-cuit").value = currentSelectedInmueble.cuit || "";
+      document.getElementById("edit-razon").value = currentSelectedInmueble.razonSocial || "";
+      document.getElementById("edit-barrio").value = currentSelectedInmueble.barrio || "";
+      document.getElementById("edit-portero").value = currentSelectedInmueble.portero || "";
+      document.getElementById("edit-telefono").value = currentSelectedInmueble.telefono || "";
+      document.getElementById("edit-horarios").value = currentSelectedInmueble.horarios || "";
+
+      const select = document.getElementById("editAdministracionId");
+      if (select) {
+        // Encontrar valor coincidente
+        if (currentSelectedInmueble.administracion_id) {
+          select.value = currentSelectedInmueble.administracion_id;
+        } else {
+          // Buscar por nombre
+          const match = administraciones.find(a => a.nombre_fantasia === currentSelectedInmueble.administracion);
+          select.value = match ? (match.id || match.nombre_fantasia) : "";
+        }
+      }
+    }
+
+    function closeModalEditarInmueble() {
+      document.getElementById("modal-editar-inmueble").classList.add("hidden");
     }
 
     // Acordeón funcional
@@ -588,7 +758,7 @@
         // Marcador arrastrable
         mapMarker = L.marker([defaultLat, defaultLng], { draggable: true }).addTo(mapInstance);
 
-        mapMarker.on('dragend', function (event) {
+        mapMarker.on('dragend', function () {
           const position = mapMarker.getLatLng();
           updateCoordsDisplay(position.lat, position.lng);
         });
@@ -609,16 +779,19 @@
       }
     }
 
-    // Búsqueda aproximada y recentrado en mapa
+    // Geocodificación y centrado de mapa
     function geocodeAddress() {
       const dir = document.getElementById("input-direccion").value;
       if (!dir) return;
 
-      // Geocodificación simple en CABA
+      const statusEl = document.getElementById("geocode-status");
+      if (statusEl) statusEl.classList.remove("hidden");
+
       const query = encodeURIComponent(`${dir}, Buenos Aires, Argentina`);
       fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
         .then(res => res.json())
         .then(data => {
+          if (statusEl) statusEl.classList.add("hidden");
           if (data && data.length > 0) {
             const lat = parseFloat(data[0].lat);
             const lon = parseFloat(data[0].lon);
@@ -629,7 +802,73 @@
             }
           }
         })
-        .catch(err => console.log("Geocoding notice:", err));
+        .catch(err => {
+          if (statusEl) statusEl.classList.add("hidden");
+          console.log("Geocoding notice:", err);
+        });
+    }
+
+    // Poblar y sincronizar todos los selects de Administraciones
+    function updateAdministracionesSelects() {
+      const selectAlta = document.getElementById("selectAdminAsignada");
+      const selectEdit = document.getElementById("editAdministracionId");
+      const selectCard = document.getElementById("selectCambiarAdmin");
+
+      const buildOptions = () => {
+        let opts = `<option value="">-- Ninguna (Gestión Directa) --</option>`;
+        administraciones.forEach(adm => {
+          const idVal = adm.id || adm.nombre_fantasia;
+          opts += `<option value="${idVal}">${adm.nombre_fantasia}</option>`;
+        });
+        return opts;
+      };
+
+      if (selectAlta) {
+        const val = selectAlta.value;
+        selectAlta.innerHTML = buildOptions();
+        selectAlta.value = val;
+      }
+
+      if (selectEdit) {
+        const val = selectEdit.value;
+        selectEdit.innerHTML = buildOptions();
+        selectEdit.value = val;
+      }
+
+      if (selectCard) {
+        const val = selectCard.value;
+        selectCard.innerHTML = buildOptions();
+        selectCard.value = val;
+      }
+
+      const metricAdm = document.getElementById("metric-total-administraciones");
+      if (metricAdm) {
+        metricAdm.textContent = administraciones.length;
+      }
+    }
+
+    // Cargar Administraciones desde Supabase con query ordenado
+    async function cargarAdministraciones() {
+      try {
+        const { data, error } = await supabaseClient
+          .from('administraciones')
+          .select('*')
+          .order('nombre_fantasia', { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          administraciones = data.map(d => ({
+            id: d.id,
+            nombre_fantasia: d.nombre_fantasia || d.nombre || d.razon_social || "Administración",
+            cuit: d.cuit || d.cuit_mandataria || ""
+          }));
+        }
+      } catch (err) {
+        console.warn("Standby o tabla administraciones:", err);
+      }
+      updateAdministracionesSelects();
+      if (currentSelectedInmueble) {
+        renderCardAdminStatus(currentSelectedInmueble);
+      }
     }
 
     // Render de lista en columna izquierda
@@ -650,8 +889,9 @@
       }
 
       data.forEach((item, index) => {
+        const isSelected = currentSelectedInmueble && currentSelectedInmueble.direccion === item.direccion;
         const div = document.createElement("div");
-        div.className = `p-3.5 rounded-xl border border-blue-200 bg-blue-50/20 hover:bg-blue-50/50 cursor-pointer transition-all relative group ${index === 0 ? 'ring-1 ring-blue-400' : ''}`;
+        div.className = `p-3.5 rounded-xl border ${isSelected ? 'border-blue-300 bg-blue-50/50 ring-1 ring-blue-400' : 'border-slate-200 bg-white hover:bg-slate-50'} cursor-pointer transition-all relative group`;
         div.onclick = () => selectInmueble(item.direccion);
 
         div.innerHTML = `
@@ -663,7 +903,7 @@
             <span class="text-slate-300 group-hover:text-blue-500 transition-colors font-bold text-xs">➔</span>
           </div>
           <div class="flex flex-wrap items-center gap-1.5 text-[10px]">
-            <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 font-mono">CUIT: ${item.cuit}</span>
+            <span class="px-2 py-0.5 bg-white border border-slate-200 rounded text-slate-600 font-mono">CUIT: ${item.cuit || 'S/N'}</span>
             <span class="px-1.5 py-0.5 bg-slate-100 rounded text-slate-500 font-semibold">${item.barrio || 'CABA'}</span>
             <span class="px-2 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200 inline-flex items-center gap-1">
               🏢 ${item.administracion || 'Gestión Directa'}
@@ -679,180 +919,511 @@
       const item = inmuebles.find(i => i.direccion === direccion);
       if (!item) return;
 
+      currentSelectedInmueble = item;
       document.getElementById("detail-address-title").textContent = item.direccion;
       document.getElementById("detail-razon-social").textContent = item.razonSocial || "Consorcio";
-      document.getElementById("detail-cuit").textContent = item.cuit;
+      document.getElementById("detail-cuit").textContent = item.cuit || "Sin CUIT";
       document.getElementById("detail-comuna").textContent = item.barrio || "CABA";
-      document.getElementById("detail-cp").textContent = item.codigoPostal || "S/N";
+      document.getElementById("detail-cp").textContent = item.codigoPostal || "Sin especificar";
       document.getElementById("detail-portero").textContent = item.portero || "Sin Encargado";
       document.getElementById("detail-telefono").textContent = item.telefono || "-";
       document.getElementById("detail-horarios").textContent = item.horarios || "9 a 15 hs";
 
-      // Manejo de la tarjeta de Mandato / Administración
+      renderCardAdminStatus(item);
+      renderInmueblesList();
+    }
+
+    // Render tarjeta status de administración
+    function renderCardAdminStatus(item) {
       const adminCard = document.getElementById("card-admin-status");
-      if (item.administracion && item.administracion !== "Ninguna (Gestión Directa)") {
+      if (!adminCard) return;
+
+      const hasAdmin = item.administracion && item.administracion !== "Gestión Directa" && item.administracion !== "-- Ninguna (Gestión Directa) --";
+
+      let optionsHtml = `<option value="">-- Ninguna (Gestión Directa) --</option>`;
+      administraciones.forEach(adm => {
+        const idVal = adm.id || adm.nombre_fantasia;
+        const selected = (adm.nombre_fantasia === item.administracion || adm.id === item.administracion_id) ? "selected" : "";
+        optionsHtml += `<option value="${idVal}" ${selected}>${adm.nombre_fantasia}</option>`;
+      });
+
+      if (hasAdmin) {
         adminCard.className = "p-4 rounded-xl border border-emerald-200 bg-emerald-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4";
         adminCard.innerHTML = `
-          <div class="space-y-1">
-            <span class="inline-block text-[10px] font-black uppercase text-emerald-800 tracking-wider bg-emerald-100 px-2 py-0.5 rounded">
-              MANDATO DE GESTIÓN ACTIVO
-            </span>
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-block text-[10px] font-black uppercase text-emerald-800 tracking-wider bg-emerald-100 px-2 py-0.5 rounded">
+                MANDATO DE GESTIÓN ACTIVO
+              </span>
+            </div>
             <div class="text-sm font-bold text-slate-900">${item.administracion}</div>
-            <p class="text-xs text-slate-500">CUIT Mandataria: ${item.cuit || '20-12345678-9'} • Vinculación Operativa Vigente</p>
+            <p class="text-xs text-slate-500">Vinculación Operativa Vigente con la administración.</p>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <label class="text-[10px] font-bold uppercase tracking-wider text-slate-500" for="selectCambiarAdmin">Cambiar Admin:</label>
+              <select class="text-xs rounded-lg border-slate-300 py-1 px-2.5 focus:border-blue-500 focus:ring-blue-500" id="selectCambiarAdmin" onchange="asignarAdminDirecto(this.value)">
+                ${optionsHtml}
+              </select>
+              <button class="text-blue-600 hover:text-blue-700 font-semibold text-xs inline-flex items-center gap-1 ml-1" onclick="openModalAdmin()" type="button">
+                <span>+</span> Nueva Administración
+              </button>
+            </div>
           </div>
           <div class="flex items-center gap-2">
-            <button type="button" onclick="openModalAdmin()" class="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">Cambiar Admin</button>
-            <button type="button" onclick="desvincularAdmin()" class="px-3 py-1.5 text-xs font-semibold text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50">Dar de Baja</button>
+            <button type="button" onclick="openModalEditarInmueble()" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg hover:bg-slate-50">
+              <span>✏️</span><span>Editar Inmueble</span>
+            </button>
+            <button type="button" onclick="desvincularAdmin()" class="px-3 py-1.5 text-xs font-semibold text-red-600 bg-white border border-red-200 rounded-lg hover:bg-red-50">
+              Dar de Baja
+            </button>
           </div>
         `;
       } else {
         adminCard.className = "p-4 rounded-xl border border-amber-200 bg-amber-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4";
         adminCard.innerHTML = `
-          <div class="space-y-1">
-            <span class="inline-block text-[10px] font-black uppercase text-amber-800 tracking-wider bg-amber-100 px-2 py-0.5 rounded">
-              Sin Administración / Gestión Directa
-            </span>
+          <div class="space-y-1.5 flex-1">
+            <div class="flex items-center gap-2">
+              <span class="inline-block text-[10px] font-black uppercase text-amber-800 tracking-wider bg-amber-100 px-2 py-0.5 rounded">
+                Sin Administración / Gestión Directa
+              </span>
+            </div>
             <div class="text-sm font-bold text-slate-900">Gestión Autónoma / Mandato Directo</div>
             <p class="text-xs text-slate-500">El inmueble no pertenece actualmente a ninguna empresa administradora de consorcios.</p>
+            <div class="flex flex-wrap items-center gap-2 pt-1">
+              <label class="text-[10px] font-bold uppercase tracking-wider text-slate-500" for="selectCambiarAdmin">Cambiar Admin:</label>
+              <select class="text-xs rounded-lg border-slate-300 py-1 px-2.5 focus:border-blue-500 focus:ring-blue-500" id="selectCambiarAdmin" onchange="asignarAdminDirecto(this.value)">
+                ${optionsHtml}
+              </select>
+              <button class="text-blue-600 hover:text-blue-700 font-semibold text-xs inline-flex items-center gap-1 ml-1" onclick="openModalAdmin()" type="button">
+                <span>+</span> Nueva Administración
+              </button>
+            </div>
           </div>
-          <button type="button" onclick="openModalAdmin()" class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-xs transition-all">
-            <span>+</span><span>Asignar a Administración</span>
-          </button>
+          <div class="flex items-center gap-2">
+            <button class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-xs transition-all" id="btn-assign-admin" onclick="openModalEditarInmueble()" type="button">
+              <span>✏️</span><span>Cambiar Admin</span>
+            </button>
+          </div>
         `;
+      }
+    }
+
+    // Cambio rápido de administración desde el select en la card
+    async function asignarAdminDirecto(selectedVal) {
+      if (!currentSelectedInmueble) return;
+
+      let adminName = "Gestión Directa";
+      let adminId = null;
+
+      if (selectedVal) {
+        const found = administraciones.find(a => a.id === selectedVal || a.nombre_fantasia === selectedVal);
+        if (found) {
+          adminName = found.nombre_fantasia;
+          adminId = found.id;
+        } else {
+          adminName = selectedVal;
+        }
+      }
+
+      currentSelectedInmueble.administracion = adminName;
+      currentSelectedInmueble.administracion_id = adminId;
+
+      renderCardAdminStatus(currentSelectedInmueble);
+      renderInmueblesList();
+
+      // Guardar en Supabase si tiene id registrado
+      try {
+        if (currentSelectedInmueble.id && !currentSelectedInmueble.id.startsWith("demo-")) {
+          await supabaseClient
+            .from('inmuebles')
+            .update({ administracion_id: adminId })
+            .eq('id', currentSelectedInmueble.id);
+        }
+      } catch (e) {
+        console.warn("Actualización directa de admin en Supabase:", e);
       }
     }
 
     function desvincularAdmin() {
       if (confirm("¿Desea desvincular la administración actual sin borrar el historial técnico?")) {
-        const title = document.getElementById("detail-address-title").textContent;
-        const item = inmuebles.find(i => i.direccion === title);
-        if (item) {
-          item.administracion = "";
-          selectInmueble(item.direccion);
+        if (currentSelectedInmueble) {
+          currentSelectedInmueble.administracion = "";
+          currentSelectedInmueble.administracion_id = null;
+          renderCardAdminStatus(currentSelectedInmueble);
           renderInmueblesList();
+
+          if (currentSelectedInmueble.id && !currentSelectedInmueble.id.startsWith("demo-")) {
+            supabaseClient
+              .from('inmuebles')
+              .update({ administracion_id: null })
+              .eq('id', currentSelectedInmueble.id)
+              .then(() => {});
+          }
         }
       }
     }
 
-    // Guardar nuevo Inmueble
-    async function guardarInmueble() {
-      const direccion = document.getElementById("input-direccion").value.trim();
-      const razonSocial = document.getElementById("input-razon").value.trim();
-      const cuit = document.getElementById("input-cuit").value.trim();
-      const barrio = document.getElementById("input-barrio").value.trim();
-      const cp = document.getElementById("input-cp").value.trim();
-      const portero = document.getElementById("input-portero").value.trim();
-      const telefono = document.getElementById("input-telefono").value.trim();
-      const horarios = document.getElementById("input-horarios").value.trim();
-      const adminSelect = document.getElementById("input-admin-select").value;
+    // Guardar nuevo Inmueble con prevención de recarga y feedback de error/éxito
+    async function guardarInmueble(e) {
+      if (e) e.preventDefault();
 
-      if (!direccion || !cuit) {
-        alert("Por favor complete al menos la Dirección y el CUIT.");
+      const btnSubmit = document.getElementById("btn-submit-inmueble");
+      const errorBox = document.getElementById("modal-alta-error");
+      errorBox.classList.add("hidden");
+      errorBox.textContent = "";
+
+      const direccion_calle = document.getElementById("input-direccion").value.trim();
+      const piso_depto = document.getElementById("input-piso").value.trim();
+      const barrio_localidad = document.getElementById("input-barrio").value.trim();
+      const codigo_postal = document.getElementById("input-cp").value.trim();
+      const cuit_facturacion = document.getElementById("input-cuit").value.trim();
+      const razon_social_fiscal = document.getElementById("input-razon").value.trim();
+      const contacto_porteria_nombre = document.getElementById("input-portero").value.trim();
+      const contacto_porteria_tel = document.getElementById("input-telefono").value.trim();
+      const horarios_acceso = document.getElementById("input-horarios").value.trim();
+      
+      const adminVal = document.getElementById("selectAdminAsignada").value;
+      let administracion_id = adminVal ? adminVal : null;
+      let adminNombre = "Gestión Directa";
+
+      if (administracion_id) {
+        const found = administraciones.find(a => a.id === administracion_id || a.nombre_fantasia === administracion_id);
+        if (found) {
+          adminNombre = found.nombre_fantasia;
+          administracion_id = found.id;
+        } else {
+          adminNombre = administracion_id;
+        }
+      }
+
+      if (!direccion_calle || !cuit_facturacion) {
+        errorBox.textContent = "Por favor complete la Dirección y el CUIT de facturación obligatorios.";
+        errorBox.classList.remove("hidden");
         return;
       }
 
-      const nuevoInmueble = {
-        direccion,
-        razonSocial,
-        cuit,
-        barrio: barrio || "CABA",
-        codigoPostal: cp || "C1414",
-        portero: portero || "dsfsdf",
-        telefono: telefono || "-",
-        horarios: horarios || "9a15",
-        administracion: adminSelect || "Gestión Directa",
+      // Feedback de carga
+      const originalText = btnSubmit.innerHTML;
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<span class="animate-spin inline-block mr-1">⏳</span> Guardando...`;
+
+      const nuevoObj = {
+        id: "loc-" + Date.now(),
+        direccion: direccion_calle + (piso_depto ? " " + piso_depto : ""),
+        piso: piso_depto,
+        razonSocial: razon_social_fiscal,
+        cuit: cuit_facturacion,
+        barrio: barrio_localidad || "CABA",
+        codigoPostal: codigo_postal || "C1414",
+        portero: contacto_porteria_nombre || "-",
+        telefono: contacto_porteria_tel || "-",
+        horarios: horarios_acceso || "08:00 a 13:00 hs",
+        administracion_id: administracion_id,
+        administracion: adminNombre,
         lat: mapMarker ? mapMarker.getLatLng().lat : -34.5843,
         lng: mapMarker ? mapMarker.getLatLng().lng : -58.4412
       };
 
-      // Inserción en memoria inmediata para feedback fluido
-      inmuebles.unshift(nuevoInmueble);
-      renderInmueblesList();
-      selectInmueble(nuevoInmueble.direccion);
-      closeModalInmueble();
-
-      // Resetear campos
-      document.getElementById("form-alta-inmueble").reset();
-
-      // Guardado Asíncrono en Supabase
       try {
-        const { error } = await supabaseClient
+        // Objeto con columnas estándar de Supabase
+        const payload = {
+          direccion_calle,
+          piso_depto,
+          barrio_localidad,
+          codigo_postal,
+          cuit_facturacion,
+          razon_social_fiscal,
+          administracion_id,
+          contacto_porteria_nombre,
+          contacto_porteria_tel,
+          horarios_acceso
+        };
+
+        const { data, error } = await supabaseClient
           .from('inmuebles')
-          .insert([{
-            direccion: nuevoInmueble.direccion,
-            razon_social: nuevoInmueble.razonSocial,
-            cuit: nuevoInmueble.cuit,
-            barrio: nuevoInmueble.barrio,
-            codigo_postal: nuevoInmueble.codigoPostal,
-            contacto_portero: nuevoInmueble.portero,
-            telefono: nuevoInmueble.telefono,
-            horarios: nuevoInmueble.horarios,
-            administracion: nuevoInmueble.administracion
-          }]);
+          .insert([payload])
+          .select();
+
         if (error) {
-          console.warn("Supabase insert aviso (la tabla puede no estar migrada aún):", error.message);
+          console.warn("Error en Supabase insert inmueble:", error);
+          // Si el schema usa nombres alternativos tradicionales
+          const fallbackPayload = {
+            direccion: nuevoObj.direccion,
+            razon_social: nuevoObj.razonSocial,
+            cuit: nuevoObj.cuit,
+            barrio: nuevoObj.barrio,
+            codigo_postal: nuevoObj.codigoPostal,
+            contacto_portero: nuevoObj.portero,
+            telefono: nuevoObj.telefono,
+            horarios: nuevoObj.horarios,
+            administracion: nuevoObj.administracion
+          };
+          const fbRes = await supabaseClient.from('inmuebles').insert([fallbackPayload]).select();
+          if (fbRes.error) {
+            console.warn("Fallo también fallback:", fbRes.error);
+          } else if (fbRes.data && fbRes.data[0]) {
+            nuevoObj.id = fbRes.data[0].id;
+          }
+        } else if (data && data[0]) {
+          nuevoObj.id = data[0].id;
         }
+
+        // Agregar en memoria y refrescar interfaz
+        inmuebles.unshift(nuevoObj);
+        closeModalInmueble();
+        document.getElementById("form-alta-inmueble").reset();
+        cargarInmuebles();
+        selectInmueble(nuevoObj.direccion);
       } catch (err) {
-        console.warn("Error enviando a Supabase:", err);
+        console.error("Excepción al guardar inmueble:", err);
+        errorBox.textContent = "Error al guardar el inmueble: " + (err.message || "Verifique su conexión.");
+        errorBox.classList.remove("hidden");
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = originalText;
       }
     }
 
-    // Guardar nueva Administración
+    // Guardar edición de inmueble existente
+    async function guardarEdicionInmueble(e) {
+      if (e) e.preventDefault();
+      if (!currentSelectedInmueble) return;
+
+      const adminVal = document.getElementById("editAdministracionId").value;
+      let adminNombre = "Gestión Directa";
+      let adminId = null;
+
+      if (adminVal) {
+        const found = administraciones.find(a => a.id === adminVal || a.nombre_fantasia === adminVal);
+        if (found) {
+          adminNombre = found.nombre_fantasia;
+          adminId = found.id;
+        } else {
+          adminNombre = adminVal;
+        }
+      }
+
+      currentSelectedInmueble.cuit = document.getElementById("edit-cuit").value.trim();
+      currentSelectedInmueble.razonSocial = document.getElementById("edit-razon").value.trim();
+      currentSelectedInmueble.barrio = document.getElementById("edit-barrio").value.trim();
+      currentSelectedInmueble.portero = document.getElementById("edit-portero").value.trim();
+      currentSelectedInmueble.telefono = document.getElementById("edit-telefono").value.trim();
+      currentSelectedInmueble.horarios = document.getElementById("edit-horarios").value.trim();
+      currentSelectedInmueble.administracion = adminNombre;
+      currentSelectedInmueble.administracion_id = adminId;
+
+      closeModalEditarInmueble();
+      selectInmueble(currentSelectedInmueble.direccion);
+      renderInmueblesList();
+
+      try {
+        if (currentSelectedInmueble.id && !currentSelectedInmueble.id.startsWith("demo-") && !currentSelectedInmueble.id.startsWith("loc-")) {
+          await supabaseClient
+            .from('inmuebles')
+            .update({
+              cuit_facturacion: currentSelectedInmueble.cuit,
+              razon_social_fiscal: currentSelectedInmueble.razonSocial,
+              barrio_localidad: currentSelectedInmueble.barrio,
+              contacto_porteria_nombre: currentSelectedInmueble.portero,
+              contacto_porteria_tel: currentSelectedInmueble.telefono,
+              horarios_acceso: currentSelectedInmueble.horarios,
+              administracion_id: adminId
+            })
+            .eq('id', currentSelectedInmueble.id);
+        }
+      } catch (err) {
+        console.warn("Error actualizando en Supabase:", err);
+      }
+    }
+
+    // Guardar nueva Administración en Supabase y refrescar inmediatamente todos los selects
     async function guardarAdministracion() {
-      const nombre = document.getElementById("admin-nombre").value.trim();
+      const nombreInput = document.getElementById("admin-nombre");
+      const cuitInput = document.getElementById("admin-cuit");
+      const telInput = document.getElementById("admin-telefono");
+      const emailInput = document.getElementById("admin-email");
+      const errorBox = document.getElementById("modal-admin-error");
+      const btn = document.getElementById("btn-save-admin");
+
+      errorBox.classList.add("hidden");
+      errorBox.textContent = "";
+
+      const nombre = nombreInput.value.trim();
+      const cuit = cuitInput.value.trim();
+      const telefono = telInput.value.trim();
+      const email = emailInput.value.trim();
+
       if (!nombre) {
-        alert("Ingrese el nombre de la administración");
+        errorBox.textContent = "Ingrese el nombre de la administración.";
+        errorBox.classList.remove("hidden");
         return;
       }
 
-      administraciones.push(nombre);
+      const origText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin inline-block mr-1">⏳</span> Guardando...`;
 
-      // Agregar al select
-      const select = document.getElementById("input-admin-select");
-      const opt = document.createElement("option");
-      opt.value = nombre;
-      opt.textContent = `${nombre} (Nueva)`;
-      select.appendChild(opt);
-      select.value = nombre;
+      let newAdminObj = {
+        id: "adm-" + Date.now(),
+        nombre_fantasia: nombre,
+        cuit: cuit
+      };
 
-      // Actualizar contador
-      const metricAdmin = document.getElementById("metric-total-administraciones");
-      if (metricAdmin) metricAdmin.textContent = administraciones.length;
+      try {
+        const { data, error } = await supabaseClient
+          .from('administraciones')
+          .insert([{
+            nombre_fantasia: nombre,
+            cuit_mandataria: cuit,
+            cuit: cuit,
+            telefono_central: telefono,
+            email_mandato: email
+          }])
+          .select();
 
-      closeModalAdmin();
-      document.getElementById("admin-nombre").value = "";
+        if (error) {
+          console.warn("Error Supabase administraciones insert:", error.message);
+        } else if (data && data[0]) {
+          newAdminObj = {
+            id: data[0].id,
+            nombre_fantasia: data[0].nombre_fantasia || nombre,
+            cuit: data[0].cuit || cuit
+          };
+        }
+
+        // Agregar al listado local
+        administraciones.push(newAdminObj);
+        updateAdministracionesSelects();
+
+        // Si el modal de alta de inmueble estaba abierto, preseleccionarla
+        const selectAlta = document.getElementById("selectAdminAsignada");
+        if (selectAlta) {
+          selectAlta.value = newAdminObj.id || newAdminObj.nombre_fantasia;
+        }
+
+        // Si el modal de editar estaba abierto, preseleccionarla
+        const selectEdit = document.getElementById("editAdministracionId");
+        if (selectEdit) {
+          selectEdit.value = newAdminObj.id || newAdminObj.nombre_fantasia;
+        }
+
+        closeModalAdmin();
+        nombreInput.value = "";
+        cuitInput.value = "";
+        telInput.value = "";
+        emailInput.value = "";
+      } catch (err) {
+        console.error("Error guardando administración:", err);
+        errorBox.textContent = "Error al registrar la administración.";
+        errorBox.classList.remove("hidden");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = origText;
+      }
     }
 
-    // Carga de datos de Supabase si existen tablas creadas
-    async function fetchSupabaseData() {
+    // Agendar Visita Técnica de Relevamiento
+    async function guardarCitaRelevamiento(e) {
+      if (e) e.preventDefault();
+
+      const btnSubmit = document.getElementById("btn-submit-cita");
+      const errorBox = document.getElementById("modal-cita-error");
+      errorBox.classList.add("hidden");
+
+      const direccion = document.getElementById("cita-direccion").value;
+      const fecha = document.getElementById("cita-fecha").value;
+      const horario = document.getElementById("cita-horario").value;
+      const tecnico = document.getElementById("cita-tecnico").value;
+      const observaciones = document.getElementById("cita-observaciones").value;
+
+      if (!fecha) {
+        errorBox.textContent = "Por favor elija una fecha para la visita.";
+        errorBox.classList.remove("hidden");
+        return;
+      }
+
+      const origText = btnSubmit.innerHTML;
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<span class="animate-spin mr-1">⏳</span> Agendando...`;
+
       try {
-        const { data, error } = await supabaseClient.from('inmuebles').select('*').limit(20);
-        if (data && data.length > 0) {
-          // Fusionar con datos actuales
-          const mapeados = data.map(d => ({
-            direccion: d.direccion || "Sin dirección",
-            razonSocial: d.razon_social || "",
-            cuit: d.cuit || "",
-            barrio: d.barrio || "CABA",
-            codigoPostal: d.codigo_postal || "",
-            portero: d.contacto_portero || "",
-            telefono: d.telefono || "",
-            horarios: d.horarios || "",
-            administracion: d.administracion || "Gestión Directa"
-          }));
-          inmuebles = [...mapeados, ...inmuebles];
+        const payload = {
+          inmueble_id: currentSelectedInmueble ? currentSelectedInmueble.id : null,
+          tipo_servicio: "Relevamiento e Inspección Técnica",
+          estado: "Programada / En Curso",
+          fecha_programada: fecha,
+          franja_horaria: horario,
+          tecnico_asignado: tecnico,
+          observaciones: observaciones,
+          direccion_inmueble: direccion
+        };
+
+        const { error } = await supabaseClient
+          .from('ordenes_servicio')
+          .insert([payload]);
+
+        if (error) {
+          console.warn("Supabase ordenes_servicio insert aviso:", error.message);
+        }
+
+        closeModalCitaRelevamiento();
+        alert(`¡Cita agendada con éxito para ${direccion}!\nFecha: ${fecha} (${horario})\nTécnico Inspector: ${tecnico}`);
+        document.getElementById("form-cita-relevamiento").reset();
+      } catch (err) {
+        console.error("Error agendando cita:", err);
+        errorBox.textContent = "Error al agendar la orden de relevamiento.";
+        errorBox.classList.remove("hidden");
+      } finally {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = origText;
+      }
+    }
+
+    // Carga de inmuebles de Supabase
+    async function cargarInmuebles() {
+      try {
+        const { data, error } = await supabaseClient
+          .from('inmuebles')
+          .select('*')
+          .limit(50);
+
+        if (!error && data && data.length > 0) {
+          const mapeados = data.map(d => {
+            const admRel = administraciones.find(a => a.id === d.administracion_id);
+            const admName = admRel ? admRel.nombre_fantasia : (d.administracion || "Gestión Directa");
+
+            return {
+              id: d.id,
+              direccion: d.direccion_calle ? (d.direccion_calle + (d.piso_depto ? " " + d.piso_depto : "")) : (d.direccion || "Sin dirección"),
+              piso: d.piso_depto || "",
+              razonSocial: d.razon_social_fiscal || d.razon_social || "",
+              cuit: d.cuit_facturacion || d.cuit || "",
+              barrio: d.barrio_localidad || d.barrio || "CABA",
+              codigoPostal: d.codigo_postal || "",
+              portero: d.contacto_porteria_nombre || d.contacto_portero || "",
+              telefono: d.contacto_porteria_tel || d.telefono || "",
+              horarios: d.horarios_acceso || d.horarios || "",
+              administracion_id: d.administracion_id || null,
+              administracion: admName
+            };
+          });
+
+          inmuebles = mapeados;
+          if (inmuebles.length > 0) {
+            currentSelectedInmueble = inmuebles[0];
+            selectInmueble(inmuebles[0].direccion);
+          }
           renderInmueblesList();
+        } else {
+          renderInmueblesList();
+          if (inmuebles.length > 0) {
+            selectInmueble(inmuebles[0].direccion);
+          }
         }
       } catch (e) {
-        console.log("Supabase fetch standby");
+        console.log("Supabase fetch inmuebles standby");
+        renderInmueblesList();
       }
     }
   </script>
 <!-- END: InteractiveScripts -->
-
-
-
-
-
-
 </body></html>
