@@ -370,7 +370,7 @@
 <button class="absolute inset-y-0 right-0 px-2.5 flex items-center text-slate-400 hover:text-blue-600" onclick="geocodeAddress()" title="Buscar y centrar en mapa" type="button">
                 🎯
               </button>
-</div>
+<div id="geocode-status" class="hidden text-[10px] text-blue-600 font-medium mt-1 flex items-center gap-1"><span class="animate-spin">⏳</span><span class="">Localizando dirección y código postal...</span></div></div>
 </div>
 <div>
 <label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Piso / Depto</label>
@@ -388,16 +388,7 @@
 <p class="text-[10px] text-slate-400 mt-1 italic">Arrastra el marcador para ajustar la posición exacta.</p>
 </div>
 <!-- Barrio y Código Postal -->
-<div class="grid grid-cols-2 gap-3">
-<div>
-<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Barrio / Comuna *</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-barrio" required="" type="text" value="Palermo, CABA">
-</div>
-<div>
-<label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1">Código Postal</label>
-<input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cp" type="text" value="C1414">
-</div>
-</div>
+<div class="grid grid-cols-2 gap-3"><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-barrio">Barrio / Comuna *</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-barrio" placeholder="Autocompletado con mapa..." required="" type="text" value="Palermo, CABA"></div><div><label class="block font-bold uppercase tracking-wider text-[10px] text-slate-600 mb-1" for="input-cp">Código Postal</label><input class="w-full text-xs rounded-lg border-slate-300 focus:border-blue-500 focus:ring-blue-500" id="input-cp" placeholder="Ej. C1414" type="text" value="C1414"></div></div>
 <!-- CUIT y Razón Social Fiscal -->
 <div class="grid grid-cols-2 gap-3">
 <div>
@@ -858,6 +849,8 @@
     }
   </script>
 <!-- END: InteractiveScripts -->
+
+
 
 
 
