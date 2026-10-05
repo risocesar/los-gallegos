@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head>
+<!DOCTYPE html><html lang="es" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Empresa Los Gallegos - Ficha Técnica de Direcciones</title>
@@ -117,7 +117,7 @@
 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
 <div>
 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total de Direcciones</p>
-<p class="text-3xl font-bold text-slate-900 mt-1" id="totalInmuebles">1 <span class="text-xs font-normal text-slate-400">en Supabase</span></p>
+<p class="text-3xl font-bold text-slate-900 mt-1" id="totalInmuebles">0 <span class="text-xs font-normal text-slate-400">en Supabase</span></p>
 </div>
 <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold border border-blue-100">
             🏢
@@ -126,7 +126,7 @@
 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
 <div>
 <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Total de Administraciones</p>
-<p class="text-3xl font-bold text-slate-900 mt-1" id="totalAdmins">1 <span class="text-xs font-normal text-slate-400">consorcios</span></p>
+<p class="text-3xl font-bold text-slate-900 mt-1" id="totalAdmins">0 <span class="text-xs font-normal text-slate-400">empresas</span></p>
 </div>
 <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold border border-emerald-100">
             📑
@@ -142,28 +142,18 @@
 <span class="text-base">🏢</span>
 <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Directorio de Inmuebles</h3>
 </div>
-<span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600" id="contadorInmuebles">1 Inmuebles</span>
+<span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600" id="contadorInmuebles">0 Inmuebles</span>
 </div>
-<div class="divide-y divide-slate-100 mt-3 flex-1 overflow-y-auto" id="listaInmuebles">
-          <div onclick="seleccionarInmueble(0)" class="p-3.5 hover:bg-slate-50 rounded-xl cursor-pointer transition border border-transparent hover:border-slate-200 mb-1.5 ">
-            <div class="flex items-start justify-between">
-              <div>
-                <p class="text-xs font-bold text-slate-900">Dorrego 1525 </p>
-                <p class="text-[11px] text-slate-500 mt-0.5">chu</p>
-                <div class="flex items-center gap-2 mt-1.5">
-                  <span class="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono font-medium border border-blue-100">CUIT: 2000123091239</span>
-                  <span class="text-[10px] text-slate-400">Palermo</span>
-                  <span class="text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">👤 cesar</span>
-                </div>
-              </div>
-              <span class="text-slate-400 text-xs mt-1">➔</span>
-            </div>
-          </div>
-        </div>
+<div class="divide-y divide-slate-100 mt-3 flex-1 overflow-y-auto" id="listaInmuebles"><div class="py-16 text-center" id="emptyStateInicial">
+  <div class="w-12 h-12 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-lg border border-slate-100">🏢</div>
+  <p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+  <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando un inmueble o una administración para iniciar la gestión operativa.</p>
+  <button type="button" onclick="abrirModalAlta()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">+ Dar de Alta Inmueble</button>
+</div></div>
 </div>
 <!-- COLUMNA DERECHA: FICHA DETALLE ACTIVO -->
 <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col" id="panelDetalleContenedor">
-<div id="panelDetalleVacio" class="hidden">
+<div id="panelDetalleVacio" class="">
 <div class="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center mx-auto mb-3 text-blue-600 text-2xl font-bold">
               🏢
             </div>
@@ -173,7 +163,7 @@
               + Dar de Alta Primer Inmueble
             </button>
 </div>
-<div class="w-full text-left space-y-4" id="panelDetalleContenido"><div class="space-y-4"><div class="pb-3 border-b border-slate-100 flex items-start justify-between"><div><div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Inmueble Activo</span><span class="text-[10px] font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded">Ref: INM-001</span></div><h3 class="text-xl font-bold text-slate-900 mt-1">Dorrego 1525 (PB / Consorcio)</h3><p class="text-xs text-slate-500">Consorcio de Propietarios Dorrego 1525</p></div><div class="flex items-center gap-2"><button type="button" onclick="abrirModalEdicion()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1.5"><span class="">✏️</span><span class="">Editar Inmueble</span></button><span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1.5 rounded border border-slate-200">CUIT: 2000123091239</span></div></div><div class="p-4 bg-slate-50 rounded-xl border border-slate-200"><div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-200/80"><div><span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Administración Mandataria Asignada</span><h4 class="text-sm font-bold text-slate-900">chu (Administración Balvanera SRL)</h4><p class="text-[11px] text-slate-500">CUIT Mandataria: 30-71445566-9 • Tel: 11 4555-0199</p></div><div class="flex items-center gap-2"><button type="button" onclick="abrirModalAsignarAdmin()" class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold transition shadow-xs">Cambiar Admin</button><button type="button" onclick="abrirModalDesvincularAdmin()" class="px-2.5 py-1.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold transition flex items-center gap-1"><span class="">⚠️</span><span class="">Dar de Baja de Administración</span></button></div></div><p class="text-[11px] text-slate-500"><span class="font-semibold text-slate-700">Nota Operativa:</span> Al desvincular, el inmueble conservará intacto su CUIT fiscal propio y todo el historial de servicios.</p></div><div class="grid grid-cols-2 gap-3 text-xs"><div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ubicación &amp; Localidad</p><p class="font-bold text-slate-800 text-sm mt-0.5">Palermo, CABA</p><p class="text-[11px] text-slate-500">CP: C1414</p></div><div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Contacto en Sitio / Portería</p><p class="font-bold text-slate-800 text-sm mt-0.5">cesar</p><p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">📞 Sin teléfono guardado</p></div><div class="col-span-2 p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Horarios Habilitados de Acceso</p><p class="font-bold text-slate-800 text-sm mt-0.5">Lunes a Viernes 08:00 a 13:00 hs</p></div></div><div class="p-3 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start gap-2.5"><span class="text-base">🔑</span><div><p class="font-bold text-[11px]">Protocolo de Llaves &amp; Acceso a Salas Técnicas</p><p class="text-[11px] text-amber-800 mt-0.5">Solicitar llaves de azotea y sala de máquinas en portería con el encargado de turno.</p></div></div><div class="pt-3 border-t border-slate-100 flex items-center justify-end"><button type="button" onclick="abrirModalCrearCita()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-2"><span class="">📅</span><span class="">Crear Cita de Relevamiento ➔</span></button></div></div></div>
+<div class="w-full text-left space-y-4 hidden" id="panelDetalleContenido"><div class="space-y-4"><div class="pb-3 border-b border-slate-100 flex items-start justify-between"><div><div class="flex items-center gap-2"><span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Inmueble Activo</span><span class="text-[10px] font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded">Ref: INM-001</span></div><h3 class="text-xl font-bold text-slate-900 mt-1">Dorrego 1525 (PB / Consorcio)</h3><p class="text-xs text-slate-500">Consorcio de Propietarios Dorrego 1525</p></div><div class="flex items-center gap-2"><button type="button" onclick="abrirModalEdicion()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1.5"><span class="">✏️</span><span class="">Editar Inmueble</span></button><span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1.5 rounded border border-slate-200">CUIT: 2000123091239</span></div></div><div class="p-4 bg-slate-50 rounded-xl border border-slate-200"><div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-200/80"><div><span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Administración Mandataria Asignada</span><h4 class="text-sm font-bold text-slate-900">chu (Administración Balvanera SRL)</h4><p class="text-[11px] text-slate-500">CUIT Mandataria: 30-71445566-9 • Tel: 11 4555-0199</p></div><div class="flex items-center gap-2"><button type="button" onclick="abrirModalAsignarAdmin()" class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold transition shadow-xs">Cambiar Admin</button><button type="button" onclick="abrirModalDesvincularAdmin()" class="px-2.5 py-1.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold transition flex items-center gap-1"><span class="">⚠️</span><span class="">Dar de Baja de Administración</span></button></div></div><p class="text-[11px] text-slate-500"><span class="font-semibold text-slate-700">Nota Operativa:</span> Al desvincular, el inmueble conservará intacto su CUIT fiscal propio y todo el historial de servicios.</p></div><div class="grid grid-cols-2 gap-3 text-xs"><div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ubicación &amp; Localidad</p><p class="font-bold text-slate-800 text-sm mt-0.5">Palermo, CABA</p><p class="text-[11px] text-slate-500">CP: C1414</p></div><div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Contacto en Sitio / Portería</p><p class="font-bold text-slate-800 text-sm mt-0.5">cesar</p><p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">📞 Sin teléfono guardado</p></div><div class="col-span-2 p-3.5 bg-slate-50 rounded-xl border border-slate-100"><p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Horarios Habilitados de Acceso</p><p class="font-bold text-slate-800 text-sm mt-0.5">Lunes a Viernes 08:00 a 13:00 hs</p></div></div><div class="p-3 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start gap-2.5"><span class="text-base">🔑</span><div><p class="font-bold text-[11px]">Protocolo de Llaves &amp; Acceso a Salas Técnicas</p><p class="text-[11px] text-amber-800 mt-0.5">Solicitar llaves de azotea y sala de máquinas en portería con el encargado de turno.</p></div></div><div class="pt-3 border-t border-slate-100 flex items-center justify-end"><button type="button" onclick="abrirModalCrearCita()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm transition flex items-center gap-2"><span class="">📅</span><span class="">Crear Cita de Relevamiento ➔</span></button></div></div></div>
 </div>
 </div>
 </div>
