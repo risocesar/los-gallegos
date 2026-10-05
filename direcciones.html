@@ -340,7 +340,93 @@
 </div>
 </div>
 <!-- Historial de Órdenes de Trabajo del Inmueble -->
-<div class="border-t border-slate-100 pt-4"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-2"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Historial Operativo en Sitio</p><span class="text-slate-300">•</span><h4 class="text-xs font-bold text-slate-900">Órdenes de Trabajo &amp; Citas (<span class="text-blue-600" id="count-ordenes-inmueble">0</span>)</h4></div><button class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 rounded-lg text-xs font-semibold transition shadow-xs" onclick="abrirModalCitaRelevamiento()" type="button"><span>📅</span> Agendar Nueva Cita / OT</button></div><div class="space-y-2.5 hidden" id="contenedor-lista-ordenes"></div><div class="p-6 text-center bg-slate-50 rounded-xl border border-slate-200" id="box-ordenes-vacio"><span class="text-xl">📋</span><p class="text-xs font-semibold text-slate-700 mt-2">No hay citas ni órdenes registradas para este inmueble</p><p class="text-[11px] text-slate-400 mt-0.5">Puedes coordinar una visita técnica inicial de relevamiento o mantenimiento.</p><button class="mt-3 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-xs inline-flex items-center gap-1.5" onclick="abrirModalCitaRelevamiento()" type="button"><span>+</span> Agendar Primera Cita de Relevamiento</button></div></div>
+<div class="border-t border-slate-100 pt-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3.5">
+<div>
+<div class="flex items-center gap-2">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Historial Operativo en Sitio</p>
+<span class="text-slate-300">•</span>
+<h4 class="text-xs font-bold text-slate-900">Órdenes de Trabajo &amp; Citas (<span class="text-blue-600 font-bold" id="count-ordenes-inmueble">2</span>)</h4>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5">Registro cronológico de servicios de desinfección, tanques, bombas y mantenimientos.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="inline-flex p-0.5 bg-slate-100 rounded-lg border border-slate-200 text-[11px] font-semibold" id="filtro-tabs-ordenes">
+<button class="px-2.5 py-1 rounded bg-white text-slate-800 shadow-xs font-bold" onclick="filtrarOrdenesEstado('todas', this)" type="button">Todas</button>
+<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition" onclick="filtrarOrdenesEstado('pendientes', this)" type="button">En Curso / Pend.</button>
+<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition" onclick="filtrarOrdenesEstado('realizadas', this)" type="button">Realizadas</button>
+<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900 transition" onclick="filtrarOrdenesEstado('facturadas', this)" type="button">Facturadas</button>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-700 rounded-lg text-xs font-semibold transition shadow-xs" onclick="abrirModalCitaRelevamiento()" type="button">
+<span>📅</span> Agendar Nueva Cita / OT
+      </button>
+</div>
+</div>
+<!-- Lista interactiva de Órdenes de Trabajo vinculadas -->
+<div class="space-y-2.5 flex flex-col" id="contenedor-lista-ordenes">
+<!-- OT Card 1 -->
+<div class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-200/90 transition flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-2xs">
+<div class="flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0 border border-blue-200">
+          🔧
+        </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-mono font-bold text-xs text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">#OT-2025-0842</span>
+<span class="font-bold text-xs text-slate-900">Limpieza y Desinfección de Tanques de Agua Potable</span>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200">Programada</span>
+</div>
+<p class="text-xs text-slate-500 mt-1 flex items-center gap-3 flex-wrap">
+<span>👷 <strong class="text-slate-700 font-semibold">Técnico:</strong> Carlos Méndez (Cuadrilla Sanitaria)</span>
+<span>📅 <strong class="text-slate-700 font-semibold">Fecha:</strong> 28/05/2025</span>
+<span>⏰ <strong class="text-slate-700 font-semibold">Franja:</strong> Mañana (08:30 a 12:30 hs)</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+<span class="text-[11px] font-medium bg-amber-50 text-amber-800 px-2 py-1 rounded border border-amber-200">Pendiente Factura</span>
+<a class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg shadow-xs transition" href="agenda.html">
+          Ver en Agenda ➔
+        </a>
+</div>
+</div>
+<!-- OT Card 2 -->
+<div class="p-3.5 bg-slate-50 hover:bg-blue-50/40 rounded-xl border border-slate-200/90 transition flex flex-col md:flex-row md:items-center justify-between gap-3 shadow-2xs">
+<div class="flex items-start gap-3">
+<div class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0 border border-emerald-200">
+          🔍
+        </div>
+<div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-mono font-bold text-xs text-slate-700 bg-slate-200/80 px-2 py-0.5 rounded border border-slate-300">#OT-2025-0719</span>
+<span class="font-bold text-xs text-slate-900">Relevamiento Técnico &amp; Inspección Físico-Química</span>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200">Realizada</span>
+</div>
+<p class="text-xs text-slate-500 mt-1 flex items-center gap-3 flex-wrap">
+<span>👷 <strong class="text-slate-700 font-semibold">Técnico:</strong> Matías Silva (Inspector)</span>
+<span>📅 <strong class="text-slate-700 font-semibold">Fecha:</strong> 15/05/2025</span>
+<span>⏰ <strong class="text-slate-700 font-semibold">Franja:</strong> Mediodía (12:30 a 15:30 hs)</span>
+</p>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0 self-end md:self-center">
+<span class="text-[11px] font-medium bg-emerald-50 text-emerald-800 px-2 py-1 rounded border border-emerald-200">Factura B-0004-921</span>
+<a class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg shadow-xs transition" href="facturacion.html">
+          Ver OCR ➔
+        </a>
+</div>
+</div>
+</div>
+<!-- Empty State en caso de 0 registros -->
+<div class="p-6 text-center bg-slate-50 rounded-xl border border-slate-200 hidden" id="box-ordenes-vacio">
+<span class="text-xl">📋</span>
+<p class="text-xs font-semibold text-slate-700 mt-2">No hay citas ni órdenes registradas para este inmueble</p>
+<p class="text-[11px] text-slate-400 mt-0.5">Puedes coordinar una visita técnica inicial de relevamiento o mantenimiento.</p>
+<button class="mt-3 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-xs inline-flex items-center gap-1.5" onclick="abrirModalCitaRelevamiento()" type="button">
+<span>+</span> Agendar Primera Cita de Relevamiento
+    </button>
+</div>
+</div>
 </div>
 </div>
 </div>
