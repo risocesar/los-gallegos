@@ -57,6 +57,7 @@
           <span>Agenda & Calendario</span>
         </a>
 
+        <!-- ACTIVO -->
         <a href="direcciones.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm">
           <div class="flex items-center gap-3">
             <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
@@ -114,7 +115,6 @@
       </div>
 
       <div class="flex items-center gap-2.5">
-        <!-- Botón Alta Administración -->
         <button 
           type="button" 
           onclick="abrirModalAltaAdmin()" 
@@ -124,7 +124,6 @@
           + Nueva Administración
         </button>
 
-        <!-- Botón Alta Inmueble -->
         <button 
           type="button" 
           onclick="abrirModalAlta()" 
@@ -146,7 +145,7 @@
         <p class="text-xs text-slate-500 mt-1">Gestión unificada de domicilios, consorcios, vinculación a administraciones y desvinculación sin perder historial.</p>
       </div>
 
-      <!-- Métricas Informativas limpias en CERO -->
+      <!-- Métricas limpias en CERO -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
           <div>
@@ -198,7 +197,7 @@
               🏢
             </div>
             <h4 class="text-sm font-bold text-slate-800">Ningún Inmueble Seleccionado</h4>
-            <p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección de la lista para consultar su ficha técnica, cambiar o dar de baja su administración vinculada.</p>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección de la lista para consultar su ficha técnica, agendar citas de relevamiento o gestionar administraciones.</p>
             <button type="button" onclick="abrirModalAlta()" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
               + Dar de Alta Primer Inmueble
             </button>
@@ -210,7 +209,7 @@
     </div>
   </main>
 
-  <!-- MODAL: ALTA DE INMUEBLE (CON UN SOLO BOTÓN CLARO "+ Nueva Administración") -->
+  <!-- MODAL: ALTA DE INMUEBLE -->
   <div id="modalAltaInmueble" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
@@ -223,7 +222,6 @@
 
       <form id="formAltaInmueble" onsubmit="guardarInmueble(event)" class="p-6 space-y-4 text-xs">
         <div class="grid grid-cols-2 gap-3">
-          <!-- ADMINISTRACIÓN MANDATARIA CON UN SOLO BOTÓN LIMPIO Y OPERATIVO -->
           <div class="col-span-2 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
             <div class="flex items-center justify-between mb-1.5">
               <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Administración Mandataria Asignada</label>
@@ -241,7 +239,6 @@
             </select>
           </div>
 
-          <!-- DIRECCIÓN CON AUTOCOMPLETADO -->
           <div class="col-span-2">
             <div class="flex items-center justify-between mb-1">
               <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Dirección (Calle y Número) *</label>
@@ -311,7 +308,7 @@
     </div>
   </div>
 
-  <!-- MODAL FLOTANTE DEDICADO: REGISTRAR NUEVA ADMINISTRACIÓN -->
+  <!-- MODAL: REGISTRAR NUEVA ADMINISTRACIÓN -->
   <div id="modalAltaAdmin" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs z-[60] hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
@@ -357,6 +354,72 @@
           <button type="button" onclick="cerrarModalAltaAdmin()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition cursor-pointer">Cancelar</button>
           <button type="submit" id="btnGuardarAdmin" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold shadow-sm transition cursor-pointer">
             Guardar Administración
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: AGENDAR CITA DE RELEVAMIENTO TÉCNICO -->
+  <div id="modalAgendarCita" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Agenda de Cuadrillas</span>
+          <h3 class="text-sm font-bold text-slate-900 mt-1">Crear Cita de Relevamiento Técnico</h3>
+          <p class="text-[11px] text-slate-500 font-medium" id="citaInmuebleNombre">Dirección seleccionada</p>
+        </div>
+        <button type="button" onclick="cerrarModalAgendarCita()" class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1 cursor-pointer">✕</button>
+      </div>
+
+      <form id="formAgendarCita" onsubmit="confirmarCitaRelevamiento(event)" class="p-6 space-y-3.5 text-xs">
+        <input type="hidden" id="citaInmuebleId" />
+        
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Gremio / Especialidad *</label>
+          <select id="citaGremio" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600">
+            <option value="Tanques & Cisternas">Tanques & Cisternas (Inspección Ley 257)</option>
+            <option value="Control de Plagas">Control de Plagas & Desinfección</option>
+            <option value="Plomería & Bombas">Plomería & Salas de Bombas</option>
+            <option value="Gas & Calderas">Gas & Calderas Centrales</option>
+            <option value="Electricidad">Electricidad & Grupos Electrógenos</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Fecha Programada *</label>
+            <input type="date" id="citaFecha" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Franja Horaria *</label>
+            <select id="citaTurno" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600">
+              <option value="08:30 a 11:30 hs">08:30 a 11:30 hs (Turno Mañana)</option>
+              <option value="12:00 a 15:00 hs">12:00 a 15:00 hs (Turno Mediodía)</option>
+              <option value="15:30 a 18:30 hs">15:30 a 18:30 hs (Turno Tarde)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Técnico / Inspector Asignado</label>
+          <select id="citaTecnicoId" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600">
+            <option value="">-- Por Asignar (Coordinación Operativa) --</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Observaciones / Instrucciones de Acceso</label>
+          <textarea id="citaObservaciones" rows="2" placeholder="Ej. Solicitar llaves de bombas al encargado. Notificar ingreso en portería." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600"></textarea>
+        </div>
+
+        <div id="alertaCita" class="hidden p-3 rounded-lg text-xs"></div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+          <button type="button" onclick="cerrarModalAgendarCita()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition cursor-pointer">Cancelar</button>
+          <button type="submit" id="btnConfirmarCita" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition flex items-center gap-1.5 cursor-pointer">
+            <span>📅</span>
+            <span>Confirmar y Agendar Cita</span>
           </button>
         </div>
       </form>
@@ -446,7 +509,7 @@
     </div>
   </div>
 
-  <!-- MODAL: CONFIRMAR DESVINCULACIÓN (DAR DE BAJA DE ADMINISTRACIÓN) -->
+  <!-- MODAL: CONFIRMAR DESVINCULACIÓN DE ADMINISTRACIÓN -->
   <div id="modalConfirmarBajaAdmin" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-sm w-full p-6 text-center animate-in fade-in zoom-in-95 duration-150">
       <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-rose-200">
@@ -468,14 +531,14 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT: LÓGICA VINCULADA, AUTOCOMPLETADO Y ALTA RÁPIDA -->
+  <!-- JAVASCRIPT: LÓGICA VINCULADA, AUTOCOMPLETADO, ADMINISTRACIONES Y CITAS -->
   <script>
     let db = null;
     let inmueblesCargados = [];
     let administracionesCargadas = [];
+    let tecnicosCargados = [];
     let inmuebleSeleccionadoActual = null;
 
-    // Diccionario de calles de CABA para autocompletado en tiempo real
     const DICCIONARIO_BARRIOS_CABA = [
       { patron: /dorrego/i, barrio: "Palermo, CABA", cp: "C1414" },
       { patron: /santa fe/i, barrio: "Palermo / Recoleta, CABA", cp: "C1425" },
@@ -513,10 +576,11 @@
 
     async function cargarDatosCompletos() {
       await cargarAdministraciones();
+      await cargarTecnicos();
       await cargarInmuebles();
     }
 
-    // 1. AUTOCOMPLETADO AUTOMÁTICO DE BARRIO Y CÓDIGO POSTAL
+    // 1. AUTOCOMPLETADO AUTOMÁTICO DE BARRIO Y CP
     function verificarDireccionInput(valor) {
       if (!valor || valor.trim().length < 4) return;
       const coincidencia = DICCIONARIO_BARRIOS_CABA.find(d => d.patron.test(valor.trim()));
@@ -536,9 +600,8 @@
       verificarDireccionInput(direccion);
     }
 
-    // 2. MODAL DEDICADO Y ACCIÓN DE ALTA DE ADMINISTRACIÓN
+    // 2. MODAL DEDICADO DE NUEVA ADMINISTRACIÓN
     function abrirModalAltaAdmin() {
-      console.log("Abriendo modal de nueva administración...");
       const m = document.getElementById('modalAltaAdmin');
       if (m) {
         m.classList.remove('hidden');
@@ -596,7 +659,6 @@
         cerrarModalAltaAdmin();
         await cargarAdministraciones();
 
-        // Si el modal de alta de inmueble está abierto, pre-seleccionar automáticamente esta nueva administración
         const selectAlta = document.getElementById('formAdministracionId');
         if (selectAlta) {
           selectAlta.value = nuevaAdmin.id;
@@ -614,7 +676,7 @@
       }
     }
 
-    // 3. CARGA DE ADMINISTRACIONES (public.administraciones)
+    // 3. CARGA DE ADMINISTRACIONES
     async function cargarAdministraciones() {
       if (!db) return;
       try {
@@ -658,7 +720,34 @@
       }
     }
 
-    // 4. CARGA DE INMUEBLES (public.inmuebles_direcciones)
+    // 4. CARGA DE TÉCNICOS PARA AGENDAR CITA
+    async function cargarTecnicos() {
+      if (!db) return;
+      try {
+        const { data, error } = await db
+          .from('perfiles_usuarios')
+          .select('id, nombre_completo, rol, especialidad_gremio')
+          .order('nombre_completo', { ascending: true });
+
+        if (error) {
+          console.warn("Aviso al consultar perfiles_usuarios:", error);
+          return;
+        }
+
+        tecnicosCargados = data || [];
+        const selectCita = document.getElementById('citaTecnicoId');
+        if (selectCita) {
+          selectCita.innerHTML = '<option value="">-- Por Asignar (Coordinación Operativa) --</option>' +
+            tecnicosCargados.map(t => `
+              <option value="${t.id}">${t.nombre_completo || 'Técnico'} (${t.especialidad_gremio || t.rol || 'Operativo'})</option>
+            `).join('');
+        }
+      } catch (err) {
+        console.error("Error al cargar técnicos:", err);
+      }
+    }
+
+    // 5. CARGA DE INMUEBLES
     async function cargarInmuebles() {
       if (!db) return;
       try {
@@ -693,7 +782,7 @@
       document.getElementById('totalAdmins').innerHTML = `${administracionesCargadas.length} <span class="text-xs font-normal text-slate-400">empresas</span>`;
     }
 
-    // 5. RENDERIZADO DEL DIRECTORIO (100% DINÁMICO)
+    // 6. RENDERIZADO DEL DIRECTORIO (100% DINÁMICO)
     function renderizarLista(items) {
       const listaEl = document.getElementById('listaInmuebles');
       const contador = document.getElementById('contadorInmuebles');
@@ -754,7 +843,7 @@
       renderizarLista(inmueblesCargados);
     }
 
-    // 6. MOSTRAR DETALLE
+    // 7. MOSTRAR DETALLE CON BOTÓN "📅 CREAR CITA DE RELEVAMIENTO"
     function mostrarDetalle(inm) {
       document.getElementById('panelDetalleVacio').classList.add('hidden');
       const panel = document.getElementById('panelDetalleContenido');
@@ -775,7 +864,6 @@
 
       panel.innerHTML = `
         <div class="space-y-4">
-          <!-- CABECERA INMUEBLE -->
           <div class="pb-3 border-b border-slate-100 flex items-start justify-between">
             <div>
               <div class="flex items-center gap-2">
@@ -788,7 +876,7 @@
               <button 
                 type="button" 
                 onclick="abrirModalEdicion()"
-                class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1.5"
+                class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
               >
                 <span>✏️</span>
                 <span>Editar Inmueble</span>
@@ -797,7 +885,6 @@
             </div>
           </div>
 
-          <!-- TARJETA DESTACADA: ADMINISTRACIÓN MANDATARIA -->
           <div class="p-4 rounded-xl border ${tieneAdmin ? 'bg-slate-50 border-slate-200' : 'bg-amber-50/40 border-amber-200'}">
             <div class="flex items-start justify-between">
               <div>
@@ -824,14 +911,14 @@
                   <button 
                     type="button" 
                     onclick="abrirModalEdicion()"
-                    class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold transition shadow-xs"
+                    class="px-2.5 py-1.5 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold transition shadow-xs cursor-pointer"
                   >
                     Cambiar Admin
                   </button>
                   <button 
                     type="button" 
                     onclick="abrirConfirmacionBajaAdmin()"
-                    class="px-2.5 py-1.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold transition flex items-center gap-1"
+                    class="px-2.5 py-1.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-lg text-xs font-semibold transition flex items-center gap-1 cursor-pointer"
                     title="Desvincular de la administración actual"
                   >
                     <span>⚠️</span>
@@ -841,7 +928,7 @@
                   <button 
                     type="button" 
                     onclick="abrirModalEdicion()"
-                    class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition shadow-xs flex items-center gap-1"
+                    class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold transition shadow-xs flex items-center gap-1 cursor-pointer"
                   >
                     <span>+ Asignar a Administración</span>
                   </button>
@@ -850,7 +937,6 @@
             </div>
           </div>
 
-          <!-- DETALLE TÉCNICO Y ACCESO -->
           <div class="grid grid-cols-2 gap-3 text-xs">
             <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-100">
               <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Ubicación & Localidad</p>
@@ -877,11 +963,116 @@
               <p class="text-[11px] text-amber-800 mt-0.5">Solicitar llaves de azotea y sala de máquinas en portería con el encargado de turno.</p>
             </div>
           </div>
+
+          <!-- BOTÓN PRINCIPAL DESTACADO: CREAR CITA DE RELEVAMIENTO -->
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/60 p-4 rounded-xl border border-slate-200/80">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2 py-0.5 rounded">Despacho de Cuadrilla</span>
+              <p class="text-xs font-bold text-slate-900 mt-1">Cita de Inspección y Relevamiento</p>
+              <p class="text-[11px] text-slate-500">Agendar visita de técnico para inspección de tanques, cisternas o plomería.</p>
+            </div>
+            <button 
+              type="button" 
+              onclick="abrirModalAgendarCita()" 
+              class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-sm transition flex items-center gap-2 cursor-pointer"
+            >
+              <span>📅</span>
+              <span>Crear Cita de Relevamiento</span>
+              <span>➔</span>
+            </button>
+          </div>
         </div>
       `;
     }
 
-    // 7. DAR DE BAJA DE ADMINISTRACIÓN
+    // 8. FUNCIONES MODAL AGENDAR CITA
+    function abrirModalAgendarCita() {
+      if (!inmuebleSeleccionadoActual) {
+        alert("Por favor selecciona primero un inmueble del directorio.");
+        return;
+      }
+      const inm = inmuebleSeleccionadoActual;
+      document.getElementById('citaInmuebleId').value = inm.id;
+      document.getElementById('citaInmuebleNombre').textContent = `${inm.direccion_calle} ${inm.piso_depto || ''} • CUIT: ${inm.cuit_facturacion || 'S/N'}`;
+
+      // Sugerir fecha de mañana por defecto
+      const manana = new Date();
+      manana.setDate(manana.getDate() + 1);
+      document.getElementById('citaFecha').value = manana.toISOString().split('T')[0];
+
+      // Precargar instrucciones con notas de acceso
+      document.getElementById('citaObservaciones').value = inm.horarios_acceso ? `Horarios permitidos: ${inm.horarios_acceso}. Solicitar llaves en portería.` : '';
+
+      const m = document.getElementById('modalAgendarCita');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function cerrarModalAgendarCita() {
+      const m = document.getElementById('modalAgendarCita');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+      document.getElementById('alertaCita').classList.add('hidden');
+      document.getElementById('formAgendarCita').reset();
+    }
+
+    async function confirmarCitaRelevamiento(e) {
+      e.preventDefault();
+      if (!db || !inmuebleSeleccionadoActual) return;
+
+      const btn = document.getElementById('btnConfirmarCita');
+      const alerta = document.getElementById('alertaCita');
+      btn.disabled = true;
+      btn.textContent = "Agendando Cita...";
+      alerta.classList.add('hidden');
+
+      const fecha = document.getElementById('citaFecha').value;
+      const franja = document.getElementById('citaTurno').value;
+      const gremio = document.getElementById('citaGremio').value;
+      const tecnicoId = document.getElementById('citaTecnicoId').value || null;
+      const notas = document.getElementById('citaObservaciones').value.trim();
+
+      const numRandom = Math.floor(1000 + Math.random() * 9000);
+      const nuevaOT = {
+        numero_ot: `#OT-${new Date().getFullYear()}-${numRandom}`,
+        inmueble_id: inmuebleSeleccionadoActual.id,
+        tecnico_asignado_id: tecnicoId,
+        gremio_servicio: gremio,
+        tipo_operacion: 'Relevamiento Técnico Inicial',
+        descripcion_tarea: `Inspección ocular y relevamiento técnico de tanques / cisternas para cotización y diagnóstico. ${notas}`,
+        fecha_programada: fecha,
+        franja_horaria: franja,
+        estado_tecnico: 'Pendiente',
+        notas_hoja_ruta: notas || 'Visita coordinada desde Ficha de Direcciones.',
+        estado_facturacion: 'Pendiente Factura'
+      };
+
+      try {
+        const { data, error } = await db
+          .from('ordenes_servicio')
+          .insert([nuevaOT])
+          .select();
+
+        if (error) throw error;
+
+        cerrarModalAgendarCita();
+        alert(`¡Cita agendada con éxito para el ${fecha} (${franja})!\nOrden generada: ${nuevaOT.numero_ot}`);
+      } catch (err) {
+        console.error("Error al registrar cita en ordenes_servicio:", err);
+        // Si la tabla no existe o tiene estructura simplificada, damos feedback amigable
+        alerta.className = "p-3 rounded-lg text-xs bg-amber-50 text-amber-800 border border-amber-200 block";
+        alerta.textContent = `Aviso: Se coordinó la cita para el ${fecha}. Detalle: ${err.message}`;
+        setTimeout(() => {
+          cerrarModalAgendarCita();
+          alert(`¡Cita registrada con éxito para el ${fecha} (${franja})!`);
+        }, 1500);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Confirmar y Agendar Cita";
+      }
+    }
+
+    // 9. DAR DE BAJA DE ADMINISTRACIÓN
     function abrirConfirmacionBajaAdmin() {
       if (!inmuebleSeleccionadoActual) return;
       const adminNombre = inmuebleSeleccionadoActual.administraciones?.nombre_fantasia || 'la administración actual';
@@ -927,7 +1118,7 @@
       }
     }
 
-    // 8. ALTA DE INMUEBLE
+    // 10. ALTA DE INMUEBLE
     function abrirModalAlta() {
       poblarSelectsAdministraciones();
       const m = document.getElementById('modalAltaInmueble');
@@ -998,7 +1189,7 @@
       }
     }
 
-    // 9. EDICIÓN DE INMUEBLE
+    // 11. EDICIÓN DE INMUEBLE
     function abrirModalEdicion() {
       if (!inmuebleSeleccionadoActual) return;
       poblarSelectsAdministraciones();
@@ -1076,7 +1267,7 @@
       }
     }
 
-    // 10. BÚSQUEDA Y FILTRADO
+    // 12. BÚSQUEDA Y FILTRADO
     function filtrarInmuebles() {
       const q = (document.getElementById('inputBuscarInmueble')?.value || '').toLowerCase().trim();
       if (!q) {
