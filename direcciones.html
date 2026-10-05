@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Empresa Los Gallegos - Ficha Técnica de Direcciones</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <!-- Supabase CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -19,271 +17,299 @@
 <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
-<meta content="web_dashboard" name="shell-type"/></head>
+<meta content="web_dashboard" name="shell-type"></head>
 <body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex">
 <!-- SIDEBAR LATERAL -->
-<aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
-<div>
-<div class="p-5 border-b border-slate-100 flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200">
-          LG
+<aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen"><div class="flex flex-col flex-1">
+  <!-- CABECERA INSTITUCIONAL CON LOGO CORPORATIVO -->
+  <div class="p-5 pb-4 border-b border-slate-100 flex flex-col gap-2">
+    <div class="flex items-center gap-2.5">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlBPiYzVEHRykjm831wOeJbuDPqnbplofsT9ZnUmDm9i7zNO2c_7efCKO_ZA2iRTitEEj5Sf3pDJSFpc6LqoUKWlx-xFtEGJ3TT0AKEdS0GGeXk0g_6TeEWB7LhOEDCVVWxrs8UfRwrxyk-MnPUuCxf0jF8R_rDeWIweRDZgbEJhOEn-RUdREJMBMHaJmF_p4GCQ6CpKsrhlvxtj6fe02bDYpSa5P-Fz8FE14G-qi7R6VUaZwOj1Ge_0oYogJDeQnMoYY" alt="Empresa Los Gallegos" class="h-10 w-auto object-contain">
+    </div>
+    <div class="mt-1">
+      <h2 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-none">LOS GALLEGOS</h2>
+      <p class="text-[11px] text-slate-500 font-medium tracking-wide mt-0.5">CRM Operaciones • Servicios &amp; Mantenimiento</p>
+    </div>
+  </div>
+
+  <!-- TARJETA DESTACADA: MÓDULO & ROL ACTIVO -->
+  <div class="px-4 py-3 bg-slate-50 border-b border-slate-100">
+    <div class="flex items-center gap-1.5 mb-1">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded flex items-center gap-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
+        MÓDULO ACTIVO
+      </span>
+    </div>
+    <p class="text-xs font-bold text-slate-900">Gestión Inmuebles &amp; Clientes</p>
+    <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Trazabilidad catastral y fiscal vinculada a Supabase</p>
+  </div>
+
+  <!-- MENÚ DE NAVEGACIÓN AGRUPADO -->
+  <nav class="p-3 flex-1 overflow-y-auto space-y-1">
+    <!-- GRUPO: GESTIÓN INMUEBLES & CLIENTES -->
+    <div class="px-3 pt-1 pb-1">
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Gestión Inmuebles &amp; Clientes</span>
+    </div>
+    <!-- ITEM ACTIVO: FICHA DE DIRECCIONES -->
+    <a href="direcciones.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-xs transition">
+      <div class="flex items-center gap-2.5">
+        <svg class="w-4 h-4 text-slate-900 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <span class="">Ficha de Direcciones</span>
+      </div>
+      <span class="text-[10px] bg-slate-200 text-slate-700 font-bold px-2 py-0.5 rounded-full">Activo</span>
+    </a>
+
+    <!-- GRUPO: SERVICIOS & OPERACIONES -->
+    <div class="px-3 pt-3 pb-1">
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Servicios &amp; Operaciones</span>
+    </div>
+    <a href="index.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+      <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+      </svg>
+      <span class="">Gestión de Órdenes</span>
+    </a>
+    <a href="agenda.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+      <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+      </svg>
+      <span class="">Agenda &amp; Calendario</span>
+    </a>
+    <a href="relevamientos.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+      <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+      <span class="">Relevamientos &amp; Insp.</span>
+    </a>
+
+    <!-- GRUPO: ADMINISTRACIÓN & FINANZAS -->
+    <div class="px-3 pt-3 pb-1">
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Administración &amp; Finanzas</span>
+    </div>
+    <a href="facturacion.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+      <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+      </svg>
+      <span class="">Facturación &amp; OCR</span>
+    </a>
+    <a href="tecnicos.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition">
+      <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+      </svg>
+      <span class="">Técnicos &amp; Personal</span>
+    </a>
+  </nav>
+</div>
+
+<!-- PIE DEL SIDEBAR: USUARIO, ROL ACTIVO Y SESIÓN -->
+<div class="p-3 border-t border-slate-200 bg-slate-50/70">
+  <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200/80 shadow-xs">
+    <div class="flex items-center gap-2.5 overflow-hidden">
+      <div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
+        LG
+      </div>
+      <div class="truncate">
+        <div class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+          <p class="text-xs font-bold text-slate-900 truncate">Operaciones Central</p>
         </div>
-<div>
-<h1 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight">Empresa Los Gallegos</h1>
-<p class="text-[11px] text-slate-500 font-medium">CRM Operaciones</p>
-</div>
-</div>
-<div class="px-5 py-3 bg-slate-50 border-b border-slate-100">
-<div class="flex items-center gap-2 text-slate-600 font-semibold text-[11px] uppercase tracking-wider">
-<svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-          Catálogo &amp; Registro
-        </div>
-<p class="text-xs font-medium text-slate-700 mt-0.5">Ficha Técnica de Inmuebles</p>
-</div>
-<nav class="p-3 space-y-1">
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="index.html">
-<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Gestión de Órdenes</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="agenda.html">
-<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Agenda &amp; Calendario</span>
-</a>
-<!-- ACTIVO -->
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm" href="direcciones.html">
-<div class="flex items-center gap-3">
-<svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Ficha de Direcciones</span>
-</div>
-<span class="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Activo</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="relevamientos.html">
-<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Relevamientos &amp; Insp.</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="facturacion.html">
-<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Facturación &amp; OCR</span>
-</a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="tecnicos.html">
-<svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Técnicos &amp; Personal</span>
-</a>
-</nav>
-</div>
-<div class="p-3 border-t border-slate-200 bg-slate-50/50">
-<div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200/80 shadow-xs">
-<div class="flex items-center gap-2.5 overflow-hidden">
-<div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
-            LG
-          </div>
-<div class="truncate">
-<p class="text-xs font-bold text-slate-900 truncate">Operaciones</p>
-<p class="text-[10px] text-blue-600 font-medium truncate">Los Gallegos CRM</p>
-</div>
-</div>
-<button class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition" onclick="cerrarSesion()" title="Cerrar sesión">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
-</div>
-</aside>
+        <p class="text-[10px] text-blue-600 font-medium truncate">Despacho &amp; Servicios</p>
+      </div>
+    </div>
+    <button onclick="cerrarSesion()" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition" title="Cerrar sesión">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+      </svg>
+    </button>
+  </div>
+</div></aside>
 <!-- CONTENIDO PRINCIPAL -->
 <main class="flex-1 flex flex-col min-w-0 overflow-y-auto"><div class="flex flex-col w-full">
 <!-- Link a estilos Leaflet sin tag style personalizada -->
-<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet"/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" rel="stylesheet">
 <script crossorigin="" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- BARRA DE CONTROL SUPERIOR Y ESTADÍSTICAS OPERATIVAS -->
-<section class="p-6 pb-2">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-<div>
-<div class="flex items-center gap-2">
-<span class="text-label-sm font-label-sm uppercase bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded">Infraestructura &amp; Mandatos</span>
-<span class="text-label-sm font-label-sm uppercase bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded">Catálogo Unificado CABA</span>
-</div>
-<p class="text-headline-xl font-headline-xl text-on-surface mt-1">Ficha Técnica &amp; Legajo de Inmuebles</p>
-<p class="text-body-sm font-body-sm text-on-surface-variant">Centralización catastral, mandatarias activas, historiales de consorcios y servicios técnicos en curso.</p>
-</div>
-<!-- Quick Metrics Strip -->
-<div class="flex items-center gap-3">
-<div class="bg-surface-container-lowest p-3 px-4 rounded-xl shadow-sm flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined text-headline-lg">domain</span>
-</div>
-<div>
-<span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Consorcios</span>
-<span class="text-headline-md font-headline-md text-on-surface" id="totalInmuebles">--</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-3 px-4 rounded-xl shadow-sm flex items-center gap-3">
-<div class="w-9 h-9 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined text-headline-lg">corporate_fare</span>
-</div>
-<div>
-<span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Mandatarias</span>
-<span class="text-headline-md font-headline-md text-on-surface" id="totalAdmins">--</span>
-</div>
-</div>
-<button class="bg-primary hover:bg-slate-800 text-on-primary font-label-lg text-label-lg px-4 py-2.5 rounded-lg flex items-center gap-2 shadow-sm transition active:scale-95" onclick="abrirModalAlta()" type="button">
-<span class="material-symbols-outlined text-headline-md">add_home_work</span>
-<span>Dar de Alta Inmueble</span>
-</button>
-</div>
-</div>
-</section>
+<section class="p-6 pb-2"><div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-200/80"><div class="space-y-1.5"><div class="flex items-center gap-2"><span class="bg-blue-50 text-blue-700 font-bold text-[11px] px-2.5 py-1 rounded-md uppercase tracking-wide border border-blue-100">MÓDULO CATÁLOGO DE PROPIEDADES • Trazabilidad de Servicios y Facturación</span></div><h1 class="text-2xl font-bold text-slate-900">Ficha Integral de Dirección &amp; Inmuebles</h1><p class="text-xs text-slate-500">Centralización catastral, asignación de administraciones mandatarias, notas de acceso técnico e historial de servicios.</p></div><div class="flex items-center gap-3 flex-wrap"><div class="bg-white border border-slate-200/90 p-2.5 px-4 rounded-xl shadow-xs flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Consorcios</span><span class="text-lg font-bold text-slate-900 leading-none" id="totalInmuebles">1</span></div></div><div class="bg-white border border-slate-200/90 p-2.5 px-4 rounded-xl shadow-xs flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div><span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Mandatarias</span><span class="text-lg font-bold text-slate-900 leading-none" id="totalAdmins">2</span></div></div><button class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-xs font-semibold px-3.5 py-2.5 rounded-lg text-xs flex items-center gap-1.5 transition active:scale-95 cursor-pointer" onclick="abrirModalAltaAdmin()" type="button"><span class="">➕</span><span class="">+ Nueva Administración</span></button><button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm px-4 py-2.5 rounded-lg text-xs flex items-center gap-2 transition active:scale-95 cursor-pointer" onclick="abrirModalAlta()" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span class="">+ Dar de Alta Inmueble</span></button></div></div></section>
 <!-- CONTENEDOR SPLIT: DIRECTORIO (4 COLS) + FICHA DETALLADA (8 COLS) -->
 <section class="p-6 pt-3 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 <!-- COLUMNA IZQUIERDA: DIRECTORIO & BUSCADOR -->
 <div class="lg:col-span-4 flex flex-col gap-4">
-<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm">
-<!-- Encabezado de Lista y Contador -->
-<div class="flex items-center justify-between pb-3">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-headline-md text-on-surface-variant">apartment</span>
-<span class="text-label-lg font-label-lg text-on-surface">Directorio de Inmuebles</span>
-</div>
-<span class="text-label-sm font-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full font-code-tabular" id="contadorInmuebles">Cargando...</span>
-</div>
-<!-- Buscador Reactivo Multicriterio -->
-<div class="relative mt-1">
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-headline-md text-outline">search</span>
-<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low text-body-sm font-body-sm text-on-surface rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary/40 placeholder:text-outline" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o admin..." type="text"/>
-</div>
-<!-- Lista de Direcciones -->
-<div class="mt-4 flex flex-col gap-2 max-h-[calc(100vh-270px)] overflow-y-auto pr-1" id="listaInmuebles">
-<div class="py-12 text-center text-on-surface-variant">
-<span class="material-symbols-outlined text-display-lg animate-spin text-secondary">progress_activity</span>
-<p class="text-body-sm font-body-sm mt-2">Conectando con Supabase...</p>
-</div>
-</div>
-</div>
+<div class="bg-white rounded-xl p-4 border border-slate-200/90 shadow-xs"><div class="flex items-center justify-between pb-3 border-b border-slate-100"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span class="text-xs font-bold text-slate-800 uppercase tracking-wider">Directorio de Inmuebles</span></div><span class="text-[11px] bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded-full" id="contadorInmuebles">1 activos</span></div><div class="relative mt-3"><svg class="w-4 h-4 absolute left-3 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><input class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 rounded-lg focus:outline-none focus:border-blue-600 focus:bg-white placeholder:text-slate-400 transition" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o admin..." type="text"></div><div class="mt-3 flex flex-col gap-2 max-h-[calc(100vh-270px)] overflow-y-auto pr-1" id="listaInmuebles">
+        <div onclick="seleccionarInmueble('3c5c2456-f3b5-42f5-8b27-953149d5d478')" class="p-3.5 rounded-xl cursor-pointer transition bg-secondary-fixed text-on-secondary-fixed shadow-sm">
+          <div class="flex items-start justify-between">
+            <div class="min-w-0 pr-2">
+              <p class="text-headline-md font-headline-md truncate">Dorrego 1525 </p>
+              <p class="text-body-sm font-body-sm opacity-80 truncate">sdfsdfsdf</p>
+              <div class="flex items-center gap-2 mt-2 flex-wrap">
+                <span class="text-label-sm font-label-sm bg-surface-container-lowest text-on-surface px-1.5 py-0.5 rounded font-code-tabular">CUIT: 65468465465</span>
+                <span class="text-label-sm font-label-sm bg-surface-container-lowest/80 text-on-surface px-1.5 py-0.5 rounded truncate max-w-[150px]">🏢 La puta</span>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-headline-md opacity-60">arrow_forward</span>
+          </div>
+        </div>
+      </div></div>
 </div>
 <!-- COLUMNA DERECHA: WORKBENCH / DETALLE INTEGRAL DE LA PROPIEDAD -->
 <div class="lg:col-span-8 flex flex-col gap-4">
 <!-- ESTADO VACÍO (SIN SELECCIÓN) -->
-<div class="bg-surface-container-lowest rounded-xl p-16 text-center shadow-sm" id="panelDetalleVacio">
-<div class="w-16 h-16 rounded-2xl bg-surface-container-low flex items-center justify-center mx-auto text-outline mb-4">
-<span class="material-symbols-outlined text-display-lg">location_away</span>
-</div>
-<p class="text-headline-lg font-headline-lg text-on-surface">Ningún Inmueble Seleccionado</p>
-<p class="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto mt-1">
-          Seleccione una propiedad desde el catálogo a la izquierda para inspeccionar sus datos fiscales, administración asignada, técnicos asignados y órdenes de trabajo históricas.
-        </p>
-</div>
+<div class="bg-white rounded-xl p-16 text-center border border-slate-200/90 shadow-xs hidden" id="panelDetalleVacio"><div class="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto text-slate-400 mb-4"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><p class="text-base font-bold text-slate-800">Ningún Inmueble Seleccionado</p><p class="text-xs text-slate-500 max-w-md mx-auto mt-1">Seleccione una propiedad desde el catálogo a la izquierda para inspeccionar sus datos fiscales, administración mandataria asignada, órdenes de trabajo y notas de acceso técnico.</p></div>
 <!-- PANEL PRINCIPAL DE DETALLE CARGADO DINÁMICAMENTE -->
-<div class="hidden flex flex-col gap-4" id="panelDetalleContenido">
-<!-- Render dinámico aquí vía JS -->
-</div>
+<div class="flex flex-col gap-4" id="panelDetalleContenido">
+      <!-- CABECERA FISCAL Y LOCALIZACIÓN -->
+      <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-label-sm font-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded uppercase">Inmueble Verificado</span>
+              <span class="text-label-sm font-label-sm text-secondary font-code-tabular font-bold">CUIT: 65468465465</span>
+            </div>
+            <h2 class="text-headline-xl font-headline-xl text-on-surface mt-1">Dorrego 1525 </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant">sdfsdfsdf</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="abrirModalEdicion()" class="px-3 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg text-label-md font-label-md flex items-center gap-1.5 transition">
+              <span class="material-symbols-outlined text-headline-md">edit</span>
+              <span class="">Editar Datos</span>
+            </button>
+            <button type="button" onclick="abrirModalAgendarCita()" class="px-4 py-2 bg-secondary hover:bg-secondary/90 text-on-secondary rounded-lg text-label-md font-label-md flex items-center gap-1.5 shadow-sm transition">
+              <span class="material-symbols-outlined text-headline-md">event</span>
+              <span class="">📅 Crear Cita de Relevamiento</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
+          <div class="bg-surface-container-low p-3 rounded-lg">
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Barrio / Comuna</span>
+            <span class="text-body-md font-body-md font-bold text-on-surface mt-0.5 block">CABA</span>
+          </div>
+          <div class="bg-surface-container-low p-3 rounded-lg">
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Código Postal</span>
+            <span class="text-body-md font-body-md font-bold text-on-surface mt-0.5 block font-code-tabular">S/N</span>
+          </div>
+          <div class="bg-surface-container-low p-3 rounded-lg">
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Encargado / Contacto</span>
+            <span class="text-body-md font-body-md font-bold text-on-surface mt-0.5 block truncate">dsfsdf</span>
+          </div>
+          <div class="bg-surface-container-low p-3 rounded-lg">
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant block">Teléfono Sitio</span>
+            <span class="text-body-md font-body-md font-bold text-on-surface mt-0.5 block font-code-tabular">665465</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO ADMINISTRACIÓN MANDATARIA & HISTORIAL DE REASIGNACIONES -->
+      <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+          <div>
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant">Mandato de Gestión</span>
+            <h3 class="text-headline-md font-headline-md text-on-surface mt-0.5">
+              La puta
+            </h3>
+            
+              <p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                CUIT Mandataria: 23598 • 
+                Tel: 234234 • 
+                Email: sdgsdf@csfs
+              </p>
+            
+          </div>
+
+          <div class="flex items-center gap-2">
+            
+              <button type="button" onclick="abrirModalCambiarAdmin()" class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg text-label-md font-label-md transition">
+                Cambiar Admin
+              </button>
+              <button type="button" onclick="abrirConfirmacionBajaAdmin()" class="px-3 py-1.5 bg-error-container text-on-error-container hover:bg-error-container/80 rounded-lg text-label-md font-label-md transition">
+                Dar de Baja
+              </button>
+            
+          </div>
+        </div>
+
+        <!-- ACORDEÓN DESPLEGABLE: HISTORIAL DE REASIGNACIONES -->
+        <div class="mt-3 pt-3 bg-surface-container-low p-3.5 rounded-xl">
+          <button type="button" onclick="toggleHistorialReasignaciones()" class="w-full flex items-center justify-between text-left text-label-md font-label-md text-on-surface">
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-headline-md text-secondary">history</span>
+              <span class="">Historial de Reasignaciones de Administración (0)</span>
+            </span>
+            <span class="material-symbols-outlined text-headline-md" id="iconoAcordeonHistorial">expand_more</span>
+          </button>
+
+          <div id="panelHistorialReasignaciones" class="hidden mt-3 space-y-2 pt-2">
+            
+              <p class="text-body-sm font-body-sm text-on-surface-variant italic">No se registran traspasos mandatarios históricos en la base de datos.</p>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO ÓRDENES DE TRABAJO DEL INMUEBLE -->
+      <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+          <div>
+            <span class="text-label-sm font-label-sm uppercase text-on-surface-variant">Historial Operativo en Sitio</span>
+            <h3 class="text-headline-md font-headline-md text-on-surface mt-0.5">Órdenes de Trabajo del Inmueble</h3>
+          </div>
+
+          <!-- PESTAÑAS DE FILTRADO -->
+          <div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+            <button type="button" onclick="cambiarFiltroOT('todas')" class="px-2.5 py-1 rounded text-label-sm font-label-sm transition bg-surface-container-lowest text-on-surface font-bold shadow-xs">Todas (0)</button>
+            <button type="button" onclick="cambiarFiltroOT('pendientes')" class="px-2.5 py-1 rounded text-label-sm font-label-sm transition text-on-surface-variant hover:text-on-surface">En Curso / Pend.</button>
+            <button type="button" onclick="cambiarFiltroOT('realizadas')" class="px-2.5 py-1 rounded text-label-sm font-label-sm transition text-on-surface-variant hover:text-on-surface">Realizadas</button>
+            <button type="button" onclick="cambiarFiltroOT('facturadas')" class="px-2.5 py-1 rounded text-label-sm font-label-sm transition text-on-surface-variant hover:text-on-surface">Facturadas</button>
+          </div>
+        </div>
+
+        <!-- LISTA DE TARJETAS DE ÓRDENES DE TRABAJO -->
+        <div class="mt-3 space-y-3">
+          
+            <div class="py-8 text-center bg-surface-container-low rounded-xl">
+              <span class="material-symbols-outlined text-headline-xl text-outline">assignment_late</span>
+              <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">No hay órdenes para el filtro seleccionado.</p>
+              <button type="button" onclick="abrirModalAgendarCita()" class="mt-3 text-secondary text-label-md font-label-md hover:underline">+ Agendar Primera Visita Técnica</button>
+            </div>
+          
+        </div>
+      </div>
+
+      <!-- PROTOCOLO DE LLAVES Y ACCESOS A SALAS TÉCNICAS -->
+      <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-surface-container-low p-4 rounded-xl flex items-start gap-3">
+          <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-headline-lg">key</span>
+          </div>
+          <div>
+            <h4 class="text-label-lg font-label-lg text-on-surface">Protocolo de Llaves &amp; Maquinarias</h4>
+            <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Las llaves para acceso a azotea, tanques de reserva y sala de bombas están custodiadas por el encargado de turno en portería. Obligatorio firmar planilla de ingreso técnico.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-surface-container-low p-4 rounded-xl flex items-start gap-3">
+          <div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-headline-lg">schedule</span>
+          </div>
+          <div>
+            <h4 class="text-label-lg font-label-lg text-on-surface">Horarios Habilitados de Acceso</h4>
+            <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              9a15. Fuera de este rango se requiere preaviso telefónico de 24 hs a administración.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 </section>
 </div>
 <!-- ========================================== -->
 <!-- MODAL: DAR DE ALTA INMUEBLE CON MAPA LEAFLET -->
 <!-- ========================================== -->
-<div class="fixed inset-0 bg-inverse-surface/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4 overflow-y-auto" id="modalAltaInmueble">
-<div class="bg-surface-container-lowest rounded-2xl shadow-xl max-w-2xl w-full overflow-hidden my-8">
-<div class="p-5 bg-surface-container-low flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-lg bg-secondary text-on-secondary flex items-center justify-center">
-<span class="material-symbols-outlined text-headline-md">add_location_alt</span>
-</div>
-<div>
-<span class="text-label-sm font-label-sm uppercase text-secondary font-bold">Ficha de Inmueble</span>
-<h3 class="text-headline-md font-headline-md text-on-surface leading-tight">Registrar Nuevo Consorcio / Propiedad</h3>
-</div>
-</div>
-<button class="text-outline hover:text-on-surface p-1 transition" onclick="cerrarModalAlta()" type="button">
-<span class="material-symbols-outlined text-headline-lg">close</span>
-</button>
-</div>
-<form class="p-6 space-y-4" id="formAltaInmueble" onsubmit="guardarInmueble(event)">
-<!-- Asignación de Administración con botón de creación exprés -->
-<div class="bg-surface-container-low p-3.5 rounded-xl">
-<div class="flex items-center justify-between mb-1.5">
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant">Administración Mandataria</label>
-<button class="text-secondary hover:underline text-label-sm font-label-sm flex items-center gap-1" onclick="abrirModalAltaAdmin()" type="button">
-<span class="material-symbols-outlined text-label-md">add_circle</span>
-<span>+ Nueva Administración</span>
-</button>
-</div>
-<select class="w-full px-3 py-2 bg-surface-container-lowest rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/50" id="formAdministracionId">
-<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>
-</select>
-</div>
-<!-- Dirección y Coordenadas -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-<div class="md:col-span-2">
-<div class="flex items-center justify-between mb-1">
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant">Dirección (Calle y Número) *</label>
-<span class="hidden text-label-sm font-label-sm text-on-tertiary-container bg-surface-container-low px-2 py-0.5 rounded" id="badgeAutocompletado">✓ Geolocalizado</span>
-</div>
-<div class="relative">
-<input class="w-full px-3 py-2 pr-9 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/50" id="formCalle" onblur="geocodificarEnMapa(this.value)" oninput="verificarDireccionInput(this.value)" placeholder="Ej. Dorrego 1525" required="" type="text"/>
-<button class="absolute right-2 top-2 text-outline hover:text-secondary" onclick="geocodificarEnMapa(document.getElementById('formCalle').value)" title="Ubicar en Mapa" type="button">
-<span class="material-symbols-outlined text-headline-md">my_location</span>
-</button>
-</div>
-</div>
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Piso / Depto</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formPisoDepto" placeholder="Ej. PB / Consorcio" type="text"/>
-</div>
-</div>
-<!-- MAPA INTERACTIVO LEAFLET OSM INTEGRADO -->
-<div class="flex flex-col gap-1.5">
-<div class="flex items-center justify-between">
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant flex items-center gap-1.5">
-<span class="material-symbols-outlined text-body-md text-secondary">map</span>
-<span>Ubicación Satelital / Callejero CABA (Arrastra el marcador para fijar)</span>
-</label>
-<span class="text-label-sm font-label-sm text-outline" id="mapCoordsLabel">-34.6037, -58.3816</span>
-</div>
-<div class="w-full h-44 rounded-xl bg-surface-container-high overflow-hidden shadow-inner z-0" id="mapaAltaInmueble"></div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Barrio / Comuna *</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formLocalidad" placeholder="Palermo, CABA" required="" type="text"/>
-</div>
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Código Postal</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formCodigoPostal" placeholder="C1414" type="text"/>
-</div>
-</div>
-<!-- Datos Fiscales -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">CUIT de Facturación *</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface font-code-tabular focus:outline-none" id="formCuit" placeholder="30-71445566-9" required="" type="text"/>
-</div>
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Razón Social Fiscal *</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formRazonSocial" placeholder="Consorcio de Propietarios Dorrego 1525" required="" type="text"/>
-</div>
-</div>
-<!-- Datos de Contacto y Portería -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Encargado / Portería</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formContactoNombre" placeholder="Ej. Juan Gómez" type="text"/>
-</div>
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Teléfono Encargado</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formContactoTel" placeholder="11 5566-7788" type="text"/>
-</div>
-<div>
-<label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Horarios Acceso</label>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none" id="formHorarios" placeholder="08:00 a 13:00 hs" type="text"/>
-</div>
-</div>
-<div class="hidden p-3 rounded-lg text-body-sm font-body-sm" id="alertaAltaInmueble"></div>
-<div class="flex items-center justify-end gap-2 pt-3">
-<button class="px-4 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-lg text-label-md font-label-md transition" onclick="cerrarModalAlta()" type="button">Cancelar</button>
-<button class="px-5 py-2.5 bg-primary hover:bg-slate-800 text-on-primary rounded-lg text-label-md font-label-md shadow-sm transition" id="btnGuardarInmueble" type="submit">Guardar Inmueble</button>
-</div>
-</form>
-</div>
-</div>
 <!-- ========================================== -->
 <!-- MODAL: CAMBIAR ADMINISTRACIÓN (CON MOTIVO) -->
 <!-- ========================================== -->
@@ -301,9 +327,11 @@
 <form class="p-6 space-y-4" onsubmit="ejecutarCambioAdministracion(event)">
 <div>
 <label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Nueva Empresa Administradora *</label>
-<select class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/50" id="cambioNuevaAdminId" required="">
-<!-- Opciones dinámicas -->
-</select>
+<select class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-secondary/50" id="cambioNuevaAdminId" required=""><option value="">-- Ninguna (Gestión Directa) --</option>
+        <option value="4d367984-2314-4c90-8f35-61ed4869729a">dorreg (CUIT: 235234)</option>
+      
+        <option value="cc43b9d7-bd32-465d-810e-5fd662d750ae">La puta (CUIT: 23598)</option>
+      </select>
 </div>
 <div>
 <label class="text-label-sm font-label-sm uppercase text-on-surface-variant block mb-1">Motivo del Traspaso / Acta de Asamblea</label>
@@ -329,7 +357,7 @@
       El inmueble pasará a estado de gestión directa. Se desvinculará de la administración pero conservará su CUIT fiscal, histórico de servicios y notas de llaves.
     </p>
 <div>
-<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface mb-4 focus:outline-none" id="motivoBajaDirecta" placeholder="Motivo de la baja (Opcional)" type="text"/>
+<input class="w-full px-3 py-2 bg-surface-container-low rounded-lg text-body-sm font-body-sm text-on-surface mb-4 focus:outline-none" id="motivoBajaDirecta" placeholder="Motivo de la baja (Opcional)" type="text">
 </div>
 <div class="flex items-center justify-center gap-2">
 <button class="px-4 py-2 bg-surface-container-low text-on-surface rounded-lg text-label-md font-label-md" onclick="cerrarModalBajaAdmin()" type="button">Cancelar</button>
@@ -1031,7 +1059,7 @@
   }
 </script></main>
 <!-- MODAL: ALTA DE INMUEBLE -->
-<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="modalAltaInmueble">
+<div class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto" id="modalAltaInmueble">
 <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
 <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
 <div>
@@ -1046,52 +1074,54 @@
 <div class="flex items-center justify-between mb-1.5">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Administración Mandataria Asignada</label>
 <button class="text-[11px] text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1 hover:underline cursor-pointer bg-blue-50 px-2 py-0.5 rounded border border-blue-200" onclick="abrirModalAltaAdmin()" type="button">
-<span>➕</span>
-<span>+ Nueva Administración</span>
+<span class="">➕</span>
+<span class="">+ Nueva Administración</span>
 </button>
 </div>
-<select class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:border-blue-600" id="formAdministracionId">
-<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>
-</select>
+<select class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs text-slate-800 focus:outline-none focus:border-blue-600" id="formAdministracionId"><option value="">-- Ninguna (Gestión Directa) --</option>
+        <option value="4d367984-2314-4c90-8f35-61ed4869729a">dorreg (CUIT: 235234)</option>
+      
+        <option value="cc43b9d7-bd32-465d-810e-5fd662d750ae">La puta (CUIT: 23598)</option>
+      </select>
 </div>
 <div class="col-span-2">
 <div class="flex items-center justify-between mb-1">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider">Dirección (Calle y Número) *</label>
 <span class="hidden text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium" id="badgeAutocompletado">✓ Barrio y CP autocompletados</span>
 </div>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCalle" onblur="autocompletarPorDireccion(this.value)" oninput="verificarDireccionInput(this.value)" placeholder="Ej. Dorrego 1525" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCalle" onblur="autocompletarPorDireccion(this.value)" oninput="verificarDireccionInput(this.value)" placeholder="Ej. Dorrego 1525" required="" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Piso / Depto</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formPisoDepto" placeholder="Ej. PB / Consorcio" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formPisoDepto" placeholder="Ej. PB / Consorcio" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Código Postal</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCodigoPostal" placeholder="C1414" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCodigoPostal" placeholder="C1414" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Barrio / Localidad *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formLocalidad" placeholder="Palermo, CABA" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formLocalidad" placeholder="Palermo, CABA" required="" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">CUIT de Facturación *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCuit" placeholder="30-XXXXXXXX-X" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCuit" placeholder="30-XXXXXXXX-X" required="" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Razón Social Fiscal (Consorcio) *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formRazonSocial" placeholder="Consorcio de Propietarios Dorrego 1525" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formRazonSocial" placeholder="Consorcio de Propietarios Dorrego 1525" required="" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Contacto Portería / Encargado</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formContactoNombre" placeholder="Ej. Juan Gómez" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formContactoNombre" placeholder="Ej. Juan Gómez" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono Encargado</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formContactoTel" placeholder="11 3344-5566" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formContactoTel" placeholder="11 3344-5566" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Horarios de Acceso</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formHorarios" placeholder="Lunes a Viernes 08:00 a 13:00 hs" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formHorarios" placeholder="Lunes a Viernes 08:00 a 13:00 hs" type="text">
 </div>
 </div>
 <div class="hidden p-3 rounded-lg text-xs" id="alertaAltaInmueble"></div>
@@ -1118,25 +1148,25 @@
 <form class="p-6 space-y-3.5 text-xs" id="formAltaAdmin" onsubmit="guardarNuevaAdministracion(event)">
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre de Fantasía *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminNombreFantasia" placeholder="Ej. Administración Belgrano Propiedades" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminNombreFantasia" placeholder="Ej. Administración Belgrano Propiedades" required="" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Razón Social</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminRazonSocial" placeholder="Belgrano Administraciones S.R.L." type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminRazonSocial" placeholder="Belgrano Administraciones S.R.L." type="text">
 </div>
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">CUIT Administración</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminCuit" placeholder="30-11223344-9" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminCuit" placeholder="30-11223344-9" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono Contacto</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminTelefono" placeholder="11 4455-6677" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminTelefono" placeholder="11 4455-6677" type="text">
 </div>
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Email de Contacto</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminEmail" placeholder="contacto@administracion.com" type="email"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-emerald-600" id="adminEmail" placeholder="contacto@administracion.com" type="email">
 </div>
 <div class="hidden p-3 rounded-lg text-xs" id="alertaAltaAdmin"></div>
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
@@ -1160,7 +1190,7 @@
 <button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1 cursor-pointer" onclick="cerrarModalAgendarCita()" type="button">✕</button>
 </div>
 <form class="p-6 space-y-3.5 text-xs" id="formAgendarCita" onsubmit="confirmarCitaRelevamiento(event)">
-<input id="citaInmuebleId" type="hidden"/>
+<input id="citaInmuebleId" type="hidden">
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Gremio / Especialidad *</label>
 <select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="citaGremio">
@@ -1174,7 +1204,7 @@
 <div class="grid grid-cols-2 gap-3">
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Fecha Programada *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="citaFecha" required="" type="date"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="citaFecha" required="" type="date">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Franja Horaria *</label>
@@ -1199,8 +1229,8 @@
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
 <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition cursor-pointer" onclick="cerrarModalAgendarCita()" type="button">Cancelar</button>
 <button class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition flex items-center gap-1.5 cursor-pointer" id="btnConfirmarCita" type="submit">
-<span>📅</span>
-<span>Confirmar y Agendar Cita</span>
+<span class="">📅</span>
+<span class="">Confirmar y Agendar Cita</span>
 </button>
 </div>
 </form>
@@ -1217,31 +1247,31 @@
 <button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalEdicion()" type="button">✕</button>
 </div>
 <form class="p-6 space-y-4 text-xs" id="formEditarInmueble" onsubmit="guardarEdicionInmueble(event)">
-<input id="editInmuebleId" type="hidden"/>
+<input id="editInmuebleId" type="hidden">
 <div class="grid grid-cols-2 gap-3">
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Dirección (Calle y Número) *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCalle" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCalle" required="" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Piso / Depto</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editPisoDepto" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editPisoDepto" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Código Postal</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCodigoPostal" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCodigoPostal" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Barrio / Localidad</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editLocalidad" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editLocalidad" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">CUIT de Facturación *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCuit" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editCuit" required="" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Razón Social Fiscal *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editRazonSocial" required="" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editRazonSocial" required="" type="text">
 </div>
 <div class="col-span-2">
 <div class="flex items-center justify-between mb-1">
@@ -1254,15 +1284,15 @@
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Contacto Portería / Encargado</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editContactoNombre" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editContactoNombre" type="text">
 </div>
 <div>
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono Encargado</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editContactoTel" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editContactoTel" type="text">
 </div>
 <div class="col-span-2">
 <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Horarios Habilitados de Acceso</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editHorarios" type="text"/>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="editHorarios" type="text">
 </div>
 </div>
 <div class="hidden p-3 rounded-lg text-xs" id="alertaEdicionInmueble"></div>
@@ -2052,4 +2082,6 @@
       window.location.href = 'index.html';
     }
   </script>
+
+
 </body></html>
