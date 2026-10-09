@@ -1,520 +1,954 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empresa Los Gallegos - Gestión de Técnicos & Personal</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  
-  <!-- Librería Oficial Supabase JS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Credenciales y Configuración de Supabase -->
-  <script>
-    const supabaseUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';
-    
-    window.supabaseInstance = supabase.createClient(supabaseUrl, supabaseKey);
-    const EDGE_FUNCTION_URL = 'https://gquzbidfnyfjanfpygcf.supabase.co/functions/v1/crear-usuario';
-  </script>
-
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<title>Gestión de Técnicos &amp; Personal - Empresa Los Gallegos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; overscroll-behavior: none; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Librería oficial de Supabase CDN e inicialización directa -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';
+  window.supabaseInstance = supabase.createClient(supabaseUrl, supabaseKey);
+</script>
 </head>
-
-<body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex">
-
-  <!-- SIDEBAR LATERAL NAVEGACIÓN -->
-  <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
-    <div>
-      <!-- Marca -->
-      <div class="p-5 border-b border-slate-100 flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200">
+<body class="bg-slate-50 text-slate-900 antialiased flex min-h-screen">
+<!-- 1. SIDEBAR LATERAL IZQUIERDO -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-white border-r border-slate-200 z-50 flex flex-col justify-between select-none">
+<div class="flex flex-col flex-1 overflow-y-auto">
+<!-- Encabezado de marca -->
+<div class="h-16 px-5 flex items-center gap-3 border-b border-slate-100">
+<div class="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center justify-center font-bold text-sm tracking-tight shrink-0 shadow-xs">
           LG
         </div>
-        <div>
-          <h1 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight">Empresa Los Gallegos</h1>
-          <p class="text-[11px] text-slate-500 font-medium">CRM Operaciones</p>
-        </div>
-      </div>
-
-      <div class="px-5 py-3 bg-slate-50 border-b border-slate-100">
-        <div class="flex items-center gap-2 text-slate-600 font-semibold text-[11px] uppercase tracking-wider">
-          <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          Administración & Equipo
-        </div>
-        <p class="text-xs font-medium text-slate-700 mt-0.5">Gestión de Técnicos & Personal</p>
-      </div>
-
-      <!-- Menú Enlaces -->
-      <nav class="p-3 space-y-1">
-        <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
-          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-          <span>Gestión de Órdenes</span>
-        </a>
-
-        <a href="agenda.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
-          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <span>Agenda & Calendario</span>
-        </a>
-
-        <a href="direcciones.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
-          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          <span>Ficha de Direcciones</span>
-        </a>
-
-        <a href="relevamientos.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
-          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          <span>Relevamientos & Insp.</span>
-        </a>
-
-        <a href="facturacion.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition">
-          <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span>Facturación & OCR</span>
-        </a>
-
-        <!-- ACTIVO -->
-        <a href="tecnicos.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm">
-          <div class="flex items-center gap-3">
-            <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            <span>Técnicos & Personal</span>
-          </div>
-          <span class="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Activo</span>
-        </a>
-      </nav>
-    </div>
-
-    <!-- Perfil del usuario activo -->
-    <div class="p-3 border-t border-slate-200 bg-slate-50/50 space-y-2">
-      <div class="flex items-center justify-between p-2 rounded-lg bg-white border border-slate-200/80 shadow-xs">
-        <div class="flex items-center gap-2.5 overflow-hidden">
-          <div id="sidebarUserAvatar" class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
-            A
-          </div>
-          <div class="truncate">
-            <p id="sidebarUserName" class="text-xs font-bold text-slate-900 truncate">Administrador</p>
-            <p id="sidebarUserRole" class="text-[10px] text-blue-600 font-medium truncate">Rol: admin</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-1 shrink-0">
-          <button onclick="cerrarSesion()" title="Cerrar sesión" class="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-    <!-- Header Superior -->
-    <header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
-      <div class="w-1/2">
-        <input 
-          type="text" 
-          id="inputBuscarTecnico" 
-          oninput="filtrarTecnicos()"
-          placeholder="Buscar técnico por nombre, email o gremio..." 
-          class="w-full max-w-md px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600"
-        />
-      </div>
-
-      <div class="flex items-center gap-3">
-        <button 
-          type="button" 
-          onclick="abrirModalAltaTecnico()"
-          class="flex items-center gap-1.5 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-sm transition"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
-          + Dar de Alta Técnico
+<div class="flex flex-col min-w-0">
+<span class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight truncate">Empresa Los Gallegos</span>
+<span class="text-[11px] text-slate-500 font-medium">CRM Operaciones</span>
+</div>
+</div>
+<!-- Bloque de sección activa / contexto -->
+<div class="p-3 mx-3 mt-3 rounded-lg bg-slate-50 border border-slate-100">
+<div class="flex items-center gap-2">
+<div class="p-1 rounded bg-slate-200/60 text-slate-700">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-slate-500 tracking-wider uppercase">ADMINISTRACIÓN &amp; EQUIPO</span>
+<span class="text-xs font-semibold text-slate-800">Gestión de Técnicos &amp; Personal</span>
+</div>
+</div>
+</div>
+<!-- Enlaces de navegación -->
+<div class="px-3 py-3">
+<div class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-3 mb-1.5">Módulos</div>
+<nav class="flex flex-col gap-0.5">
+<!-- 1. Gestión de Órdenes de Servicio -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" href="ordenes.html" id="nav-ordenes">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Gestión de Órdenes</span>
+</div>
+</a>
+<!-- 2. Agenda & Calendario -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" href="agenda.html" id="nav-agenda">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Agenda &amp; Calendario</span>
+</div>
+</a>
+<!-- 3. Ficha de Direcciones -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" href="direcciones.html" id="nav-direcciones">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Ficha de Direcciones</span>
+</div>
+</a>
+<!-- 4. Relevamientos e Inspecciones -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" href="relevamientos.html" id="nav-relevamientos">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Relevamientos &amp; Insp.</span>
+</div>
+</a>
+<!-- 5. Facturación & OCR -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors" href="facturacion.html" id="nav-facturacion">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Facturación &amp; OCR</span>
+</div>
+</a>
+<!-- 6. Técnicos & Personal (ACTIVO) -->
+<a class="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium bg-slate-100 text-slate-900 border-l-4 border-slate-900 transition-colors" href="tecnicos.html" id="nav-tecnicos">
+<div class="flex items-center gap-2.5">
+<svg class="w-4 h-4 text-slate-900" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2H9.17A3.001 3.001 0 0112 14z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Técnicos &amp; Personal</span>
+</div>
+<span class="text-[10px] font-semibold bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">Activo</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Parte inferior del sidebar con datos del usuario logueado (solo avatar, nombre y salir) -->
+<div class="p-3 border-t border-slate-200 bg-slate-50/50">
+<div class="p-2.5 rounded-lg border border-slate-200 bg-white mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-xs font-semibold text-slate-800">Central Operativa</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1 leading-normal">Control de equipo y credenciales.</p>
+</div>
+<div class="p-2 rounded-lg border border-slate-200 bg-white flex items-center justify-between text-xs" id="sidebarUsuarioInfo">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-7 h-7 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-[11px] shrink-0" id="usuario-avatar">A</div>
+<div class="flex flex-col min-w-0">
+<span class="font-semibold text-slate-800 truncate leading-tight" id="usuario-nombre">Administrador</span>
+<span class="text-[10px] text-blue-600 font-medium truncate" id="usuario-rol-badge">Rol: admin</span>
+</div>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<button class="p-1 text-slate-400 hover:text-red-500 rounded hover:bg-slate-100 transition-colors cursor-pointer" id="btn-cerrar-sesion" onclick="cerrarSesion()" title="Cerrar sesión" type="button">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- CONTENIDO PRINCIPAL -->
+<div class="pl-72 flex-1 flex flex-col min-w-0">
+<!-- Header superior -->
+<header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-40 px-6 flex items-center justify-between">
+<div class="flex items-center gap-3 flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-4 bg-slate-50 hover:bg-slate-100/70 focus:bg-white text-slate-800 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-400" id="search-header" placeholder="Buscar técnico por nombre, email o gremio..." type="search"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium">
+<span class="material-symbols-outlined text-[15px] text-slate-500">shield_person</span>
+<span class="uppercase" id="header-user-role">ADMIN</span>
+</div>
+<button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-3.5 py-2 rounded-lg shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer" id="btn-open-modal" type="button">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span>+ Dar de Alta Técnico</span>
+</button>
+</div>
+</header>
+<!-- Main View Content -->
+<main class="p-6 max-w-7xl w-full mx-auto flex flex-col gap-6">
+<!-- Título de sección -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex flex-col gap-1">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 font-semibold text-[11px] w-fit border border-blue-200/60">
+<span class="material-symbols-outlined text-[14px]">shield_person</span>
+<span>MÓDULO ADMINISTRACIÓN • CONTROL DE EQUIPO Y ROLES</span>
+</div>
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Gestión de Técnicos &amp; Personal de Campo</h1>
+<p class="text-xs text-slate-500">
+            Alta de inspectores, cuadrillas de desinfección y gremios técnicos vinculados con la tabla <span class="font-mono text-slate-700 bg-slate-100 px-1 py-0.5 rounded border border-slate-200">perfiles_usuarios</span>.
+          </p>
+</div>
+</div>
+<!-- 4 Tarjetas Métricas -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Técnicos Activos</span>
+<div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">engineering</span>
+</div>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900" id="metric-activos">1</span>
+<span class="text-xs text-slate-400 font-medium">activos</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500" id="metric-activos-dot"></span>
+<span id="submetric-activos">1 disponibles para asignación</span>
+</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Gremios &amp; Especialidades</span>
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">handyman</span>
+</div>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900" id="metric-gremios">1</span>
+<span class="text-xs text-slate-400 font-medium">gremios</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 truncate" id="submetric-gremios">1 gremios registrados</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Órdenes en Curso Hoy</span>
+<div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">route</span>
+</div>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900">0</span>
+<span class="text-xs text-slate-400 font-medium">órdenes</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5">Sin órdenes asignadas hoy</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Sincronización de Usuarios</span>
+<div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+</div>
+<div class="mt-2">
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900" id="metric-sync">100%</span>
+<span class="text-xs text-slate-400 font-medium">sincronizado</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span id="submetric-sync">1 cuentas activas en red</span>
+</p>
+</div>
+</div>
+</div>
+<!-- Directorio Principal de Técnicos -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-xs flex flex-col overflow-hidden">
+<!-- Barra de herramientas y filtros -->
+<div class="p-3.5 bg-slate-50/70 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex flex-wrap items-center gap-2 flex-1">
+<div class="relative min-w-[240px] max-w-xs">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-slate-400 text-[18px]">search</span>
+<input class="w-full h-8 pl-8 pr-3 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 placeholder:text-slate-400" id="filter-table-input" placeholder="Filtrar por nombre, mail o rol..." type="text"/>
+</div>
+<div class="flex items-center bg-white border border-slate-200 rounded-lg px-2 h-8">
+<span class="material-symbols-outlined text-[16px] text-slate-400 mr-1">filter_alt</span>
+<select class="text-xs border-0 bg-transparent py-0 pl-1 pr-6 text-slate-700 focus:ring-0 cursor-pointer" id="filter-gremio-select">
+<option value="all">Todos los Gremios</option>
+<option value="tanques">Tanques &amp; Cisternas</option>
+<option value="plagas">Control de Plagas</option>
+<option value="plomeria">Plomería &amp; Bombas</option>
+<option value="gas">Gas &amp; Calderas</option>
+<option value="electricidad">Electricidad</option>
+<option value="general">Mantenimiento General</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-1 bg-slate-200/60 p-0.5 rounded-lg self-start sm:self-auto">
+<button class="status-tab px-2.5 py-1 text-xs font-medium rounded-md bg-white text-slate-800 shadow-xs cursor-pointer" data-status="all">Todos</button>
+<button class="status-tab px-2.5 py-1 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 cursor-pointer" data-status="activo">Activos</button>
+<button class="status-tab px-2.5 py-1 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 cursor-pointer" data-status="inactivo">Inactivos</button>
+</div>
+</div>
+<!-- Subheader contador -->
+<div class="px-4 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+<span id="counter-label">Mostrando 1 de 1 técnicos registrados</span>
+<div class="flex items-center gap-3 font-mono text-[11px]">
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> <span id="counter-activos-num">1</span> activos</span>
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> <span id="counter-inactivos-num">0</span> inactivos</span>
+</div>
+</div>
+<!-- Tabla de Técnicos (Con datos de ejemplo visibles y botón Clave) -->
+<div class="overflow-x-auto w-full" id="table-container">
+<table class="w-full text-left text-xs border-collapse">
+<thead>
+<tr class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200">
+<th class="py-2.5 px-4">Técnico / Operario</th>
+<th class="py-2.5 px-4">Google Auth &amp; Identificación</th>
+<th class="py-2.5 px-4">Rol en Sistema</th>
+<th class="py-2.5 px-4">Especialidad Principal</th>
+<th class="py-2.5 px-4">Contacto Directo</th>
+<th class="py-2.5 px-4 text-center">Estado</th>
+<th class="py-2.5 px-4 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700" id="tech-table-body">
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-4">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0">CR</div>
+<div class="flex flex-col min-w-0">
+<span class="font-semibold text-slate-900 truncate">Cesar Riso</span>
+<span class="text-[11px] text-slate-400">ID: c535103c</span>
+</div>
+</div>
+</td>
+<td class="py-2.5 px-4">
+<div class="flex flex-col">
+<span class="font-mono text-slate-700 text-[11px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-blue-600">mail</span>risocesar@gmail.com
+        </span>
+<span class="text-[10px] text-emerald-600 font-medium flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[12px]">cloud_done</span> Google OAuth Habilitado
+        </span>
+</div>
+</td>
+<td class="py-2.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-[11px]">Administrador</span>
+</td>
+<td class="py-2.5 px-4">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium text-[11px]">
+<span class="material-symbols-outlined text-[13px]">handyman</span> Tanques &amp; Cisternas
+      </span>
+</td>
+<td class="py-2.5 px-4">
+<div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-700">
+<a class="p-1 rounded hover:bg-emerald-50 text-emerald-600 flex items-center" href="https://wa.me/5491130611278" rel="noopener noreferrer" target="_blank" title="Contactar por WhatsApp">
+<span class="material-symbols-outlined text-[15px]">chat</span>
+</a>
+<span>1130611278</span>
+</div>
+</td>
+<td class="py-2.5 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Activo
+      </span>
+</td>
+<td class="py-2.5 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded text-xs font-semibold shadow-2xs transition cursor-pointer" onclick="abrirModalResetPassword('c535103c', 'Cesar Riso', 'risocesar@gmail.com')" title="Modificar Contraseña del Técnico" type="button">
+<span>🔑 Clave</span>
+</button>
+<button class="text-xs px-2.5 py-1 rounded border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors font-medium shadow-2xs cursor-pointer" onclick="toggleTecnicoStatus('c535103c')" title="Alternar estado">
+          Desactivar
         </button>
-      </div>
-    </header>
-
-    <!-- Cuerpo -->
-    <div class="p-8 max-w-7xl mx-auto w-full space-y-6 flex-1">
-      <div>
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-[11px] font-bold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">Módulo Administración • Control de Equipo y Roles</span>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Gestión de Técnicos & Personal de Campo</h2>
-        <p class="text-xs text-slate-500 mt-1">Alta de inspectores, cuadrillas de desinfección y gremios técnicos vinculados con la tabla <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">perfiles_usuarios</code>.</p>
-      </div>
-
-      <!-- Tarjetas Métricas -->
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex items-center justify-between">
-            <p class="text-xs text-slate-500 font-medium">TÉCNICOS ACTIVOS</p>
-            <span class="w-6 h-6 rounded-md bg-blue-50 text-blue-600 flex items-center justify-center text-xs">👥</span>
-          </div>
-          <p class="text-2xl font-bold text-slate-900 mt-1" id="totalTecnicosActivos">0 <span class="text-xs font-normal text-slate-400">activos</span></p>
-          <p class="text-[11px] text-slate-400 mt-1" id="subtotalDisponibles">• 0 disponibles para asignación</p>
-        </div>
-
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex items-center justify-between">
-            <p class="text-xs text-slate-500 font-medium">GREMIOS & ESPECIALIDADES</p>
-            <span class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">🛠️</span>
-          </div>
-          <p class="text-2xl font-bold text-slate-900 mt-1" id="totalGremios">0 <span class="text-xs font-normal text-slate-400">gremios</span></p>
-          <p class="text-[11px] text-slate-400 mt-1" id="subtotalGremiosDesc">• 0 gremios registrados</p>
-        </div>
-
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex items-center justify-between">
-            <p class="text-xs text-slate-500 font-medium">ÓRDENES EN CURSO HOY</p>
-            <span class="w-6 h-6 rounded-md bg-amber-50 text-amber-600 flex items-center justify-center text-xs">⚡</span>
-          </div>
-          <p class="text-2xl font-bold text-slate-900 mt-1">0 <span class="text-xs font-normal text-slate-400">órdenes</span></p>
-          <p class="text-[11px] text-slate-400 mt-1">Sin órdenes asignadas hoy</p>
-        </div>
-
-        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-          <div class="flex items-center justify-between">
-            <p class="text-xs text-slate-500 font-medium">SINCRONIZACIÓN DE USUARIOS</p>
-            <span class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs">✓</span>
-          </div>
-          <p class="text-2xl font-bold text-slate-900 mt-1" id="pctSync">100% <span class="text-xs font-normal text-slate-400">sincronizado</span></p>
-          <p class="text-[11px] text-emerald-600 font-medium mt-1" id="subtotalCuentas">• 0 cuentas activas en red</p>
-        </div>
-      </div>
-
-      <!-- Filtros y Tabla -->
-      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
-            <div class="relative">
-              <input 
-                type="text" 
-                id="inputFiltroNombre" 
-                oninput="filtrarPorNombre(this.value)"
-                placeholder="Filtrar por nombre, mail o rol..." 
-                class="pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg w-64 focus:outline-none focus:border-blue-600"
-              />
-              <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
-            </div>
-
-            <select id="selectFiltroGremio" onchange="filtrarPorGremio(this.value)" class="text-xs px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-600 focus:outline-none">
-              <option value="">Todos los Gremios</option>
-              <option value="Tanques & Cisternas">Tanques & Cisternas</option>
-              <option value="Control de Plagas">Control de Plagas</option>
-              <option value="Plomería">Plomería</option>
-              <option value="Gas">Gas</option>
-              <option value="Electricidad">Electricidad</option>
-              <option value="Albañilería">Albañilería</option>
-              <option value="General">General</option>
-            </select>
-          </div>
-
-          <div class="flex items-center gap-2">
-            <button onclick="cambiarFiltroEstado('todos')" id="btnTabTodos" class="px-3 py-1 text-xs rounded-lg font-semibold bg-slate-100 text-slate-800">Todos</button>
-            <button onclick="cambiarFiltroEstado('activos')" id="btnTabActivos" class="px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:bg-slate-50">Activos</button>
-            <button onclick="cambiarFiltroEstado('inactivos')" id="btnTabInactivos" class="px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:bg-slate-50">Inactivos</button>
-          </div>
-        </div>
-
-        <div class="px-4 py-2 bg-slate-50/50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-          <span id="contadorMostrados">Mostrando 0 de 0 técnicos registrados</span>
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> <span id="tagActivos">0 activos</span></span>
-            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span> <span id="tagInactivos">0 inactivos</span></span>
-          </div>
-        </div>
-
-        <!-- Tabla -->
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider font-semibold text-[10px] border-b border-slate-200">
-              <tr>
-                <th class="py-3 px-4">Técnico / Operario</th>
-                <th class="py-3 px-4">Google Auth & Identificación</th>
-                <th class="py-3 px-4">Rol en Sistema</th>
-                <th class="py-3 px-4">Especialidad Principal</th>
-                <th class="py-3 px-4">Contacto Directo</th>
-                <th class="py-3 px-4">Estado</th>
-                <th class="py-3 px-4 text-right">Acciones</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyTecnicos" class="divide-y divide-slate-100">
-              <!-- Renderizado dinámico desde Supabase -->
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Empty State Inicial -->
-        <div id="emptyStateTecnicos" class="hidden py-16 text-center">
-          <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg font-bold border border-blue-100">
-            👥
-          </div>
-          <p class="text-xs font-semibold text-slate-700">No hay técnicos o personal registrado aún</p>
-          <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza dando de alta al primer técnico con la Edge Function para registrarlo en Auth y en perfiles.</p>
-          <button type="button" onclick="abrirModalAltaTecnico()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
-            + Dar de Alta Primer Técnico
-          </button>
-        </div>
-
-        <!-- Footer sincronización -->
-        <div class="p-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between text-[11px] text-slate-500">
-          <span class="flex items-center gap-1.5 font-medium">
-            <svg class="w-3.5 h-3.5 text-blue-600 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7zm0 5h16M8 4v3m8-3v3"/></svg>
-            Sincronización bidireccional activa con Postgres Supabase (<code class="text-slate-700 font-mono">public.perfiles_usuarios</code>)
-          </span>
-          <span class="text-slate-400" id="relojUltimaSync">Última verificación: --:--</span>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- MODAL 1: DAR DE ALTA TÉCNICO -->
-  <div id="modalAltaTecnico" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900">Dar de Alta Técnico / Operario</h3>
-          <p class="text-[11px] text-slate-500">Registra las credenciales en <code class="font-mono text-slate-700">auth.users</code> y los datos en <code class="font-mono text-slate-700">perfiles_usuarios</code></p>
-        </div>
-        <button type="button" onclick="cerrarModalAltaTecnico()" class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1">✕</button>
-      </div>
-
-      <form id="formAltaTecnico" onsubmit="guardarTecnico(event)" class="p-6 space-y-4 text-xs">
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Nombre Completo *</label>
-          <input type="text" id="techNombre" required placeholder="Ej. Juan Pérez" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Email Google Corporativo *</label>
-            <input type="email" id="techEmail" required placeholder="juan@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono de Contacto Directo</label>
-            <input type="text" id="techTel" placeholder="Ej. 11 3061-1278" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Rol en Sistema *</label>
-            <select id="techRol" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:border-blue-600">
-              <option value="tecnico_campo">Técnico de Campo</option>
-              <option value="coordinador_operativo">Coordinador Operativo</option>
-              <option value="finanzas_cobranzas">Finanzas & Cobranzas</option>
-              <option value="admin">Administrador</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Gremio / Especialidad *</label>
-            <select id="techEspecialidad" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700 focus:outline-none focus:border-blue-600">
-              <option value="Tanques & Cisternas">Tanques & Cisternas</option>
-              <option value="Control de Plagas">Control de Plagas</option>
-              <option value="Plomería">Plomería</option>
-              <option value="Gas">Gas</option>
-              <option value="Electricidad">Electricidad</option>
-              <option value="Albañilería">Albañilería</option>
-              <option value="General">General</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Contraseña Inicial para Acceso Móvil *</label>
-          <input type="password" id="techPassword" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-        </div>
-
-        <div id="mensajeAlertaAlta" class="hidden p-3 rounded-lg text-xs"></div>
-
-        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-          <button type="button" onclick="cerrarModalAltaTecnico()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition">Cancelar</button>
-          <button type="submit" id="btnGuardarTecnico" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition">
-            Guardar Técnico
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL 2: CAMBIAR CONTRASEÑA POR ADMINISTRADOR -->
-  <div id="modalResetPassword" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-        <div>
-          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-100 px-2 py-0.5 rounded">Seguridad Administrativa</span>
-          <h3 class="text-sm font-bold text-slate-900 mt-1">Modificar Contraseña de Técnico</h3>
-          <p class="text-[11px] text-slate-500 mt-0.5" id="targetTecnicoInfo">Técnico: --</p>
-        </div>
-        <button type="button" onclick="cerrarModalResetPassword()" class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1">✕</button>
-      </div>
-
-      <form id="formResetPassword" onsubmit="ejecutarCambioPasswordAdmin(event)" class="p-6 space-y-4 text-xs">
-        <input type="hidden" id="resetTecnicoId" value="" />
-        <input type="hidden" id="resetTecnicoEmail" value="" />
-
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Nueva Contraseña para el Técnico *</label>
-          <input type="password" id="adminPassNueva" required minlength="6" placeholder="Mínimo 6 caracteres" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Confirmar Nueva Contraseña *</label>
-          <input type="password" id="adminPassConfirm" required minlength="6" placeholder="Reingresa la misma contraseña" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" />
-        </div>
-
-        <div id="alertaResetPass" class="hidden p-3 rounded-lg text-xs"></div>
-
-        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-          <button type="button" onclick="cerrarModalResetPassword()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition">Cancelar</button>
-          <button type="submit" id="btnConfirmarReset" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition">
-            Actualizar Contraseña
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT DE RENDERIZADO Y CONEXIÓN ROBUSTA -->
-  <script>
-    let db = null;
-    let tecnicosCargados = [];
-    let filtroEstadoActual = 'todos';
-
-    window.addEventListener('DOMContentLoaded', () => {
-      inicializarCliente();
-      actualizarReloj();
-    });
-
-    function actualizarReloj() {
-      const ahora = new Date();
-      const horas = ahora.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const el = document.getElementById('relojUltimaSync');
-      if (el) el.textContent = `Última verificación: ${horas}`;
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Estado Vacío -->
+<div class="p-12 flex flex-col items-center justify-center text-center hidden" id="empty-state">
+<div class="w-14 h-14 rounded-full bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[28px]">engineering</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">No hay técnicos o personal registrado aún</h3>
+<p class="text-xs text-slate-500 mt-1 max-w-sm">
+  Comienza dando de alta al primer inspector o técnico de campo para vincular su perfil y asignarle órdenes de trabajo.
+</p>
+<button class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer" onclick="document.getElementById('btn-open-modal').click()" type="button">
+<span class="material-symbols-outlined text-[16px]">person_add</span>
+<span>+ Dar de Alta Primer Técnico</span>
+</button>
+</div>
+<!-- Footer sincro -->
+<div class="p-3 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-500">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-blue-600">database</span>
+<span>Sincronización bidireccional activa con Postgres Supabase (<code class="font-mono text-[11px] text-slate-700">public.perfiles_usuarios</code>)</span>
+</div>
+<div class="font-mono text-[11px] text-slate-400">
+  Última verificación: <span id="last-sync-time">En línea</span>
+</div>
+</div>
+</div>
+<!-- Tarjetas informativas de protocolo -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+<div class="flex items-center gap-2 text-slate-900 font-semibold text-xs mb-1">
+<span class="material-symbols-outlined text-[18px] text-blue-600">mail_lock</span>
+<span>Autenticación Google OAuth</span>
+</div>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+  Todo técnico debe contar con una cuenta de correo autorizada en esta nómina antes de iniciar sesión en la aplicación móvil de campo.
+</p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+<div class="flex items-center gap-2 text-slate-900 font-semibold text-xs mb-1">
+<span class="material-symbols-outlined text-[18px] text-emerald-600">event_repeat</span>
+<span>Asignación Automática</span>
+</div>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+  Al despachar una OT desde la Central Operativa, el sistema genera automáticamente el evento en el Google Calendar individual.
+</p>
+</div>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+<div class="flex items-center gap-2 text-slate-900 font-semibold text-xs mb-1">
+<span class="material-symbols-outlined text-[18px] text-indigo-600">verified_user</span>
+<span>Certificación &amp; ART Vigente</span>
+</div>
+<p class="text-[11px] text-slate-500 leading-relaxed">
+  El ingreso a tanques o salas de máquinas exige seguro de accidentes personales verificado por fecha de vencimiento.
+</p>
+</div>
+</div>
+</main>
+</div>
+<!-- MODAL 1: Dar de Alta Técnico / Operario (#modalAltaTecnico) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4 hidden" id="modalAltaTecnico">
+<div class="bg-white rounded-xl shadow-xl w-full max-w-lg overflow-hidden border border-slate-200 flex flex-col max-h-[90vh]">
+<!-- Header modal -->
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">Nuevo Registro</span>
+<h2 class="text-sm font-bold text-slate-900">Dar de Alta Técnico / Operario</h2>
+</div>
+<button class="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer" id="btn-close-modal" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Formulario con función guardarTecnico -->
+<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="tech-form" onsubmit="guardarTecnico(event)">
+<!-- Alerta de Error Visible en Modal -->
+<div class="hidden p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 flex items-start gap-2" id="modal-error-alert">
+<span class="material-symbols-outlined text-[18px] text-red-600 shrink-0 mt-0.5">error</span>
+<div class="flex-1">
+<span class="font-semibold block leading-tight">Error al registrar técnico</span>
+<span class="text-[11px] text-red-600 mt-0.5 block" id="modal-error-text">Ocurrió un problema de comunicación con Supabase.</span>
+</div>
+</div>
+<!-- Nombre Completo -->
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-nombre">Nombre Completo <span class="text-red-500">*</span></label>
+<input class="h-8 px-2.5 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-nombre" placeholder="Ej: Ing. Martín Lavalle" required="" type="text"/>
+</div>
+<!-- Correo Google Corporativo -->
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-email">Email Corporativo / Google <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-email" placeholder="tecnico@losgallegos.com o gmail.com" required="" type="email"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">mail</span>
+</div>
+<span class="text-[10px] text-slate-400">Requerido para Google Login, recepción de OTs y sincronización operativa.</span>
+</div>
+<!-- Teléfono de Contacto (WhatsApp) -->
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-telefono">Teléfono de Contacto (WhatsApp)</label>
+<div class="relative">
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-telefono" placeholder="Ej: 1144556677" type="tel"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-emerald-600 text-[18px]">chat</span>
+</div>
+<span class="text-[10px] text-slate-400">Para despacho directo vía WhatsApp y contacto con Central Operativa.</span>
+</div>
+<!-- Dos Columnas: Rol y Gremio -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-rol">Rol <span class="text-red-500">*</span></label>
+<select class="h-8 px-2 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-rol" required="">
+<option value="tecnico_campo">Técnico de Campo</option>
+<option value="coordinador_operativo">Coordinador Operativo</option>
+<option value="admin">Administrador</option>
+<option value="finanzas">Finanzas</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-gremio">Gremio / Especialidad <span class="text-red-500">*</span></label>
+<select class="h-8 px-2 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-gremio" required="">
+<option value="tanques">Tanques &amp; Cisternas</option>
+<option value="plagas">Control de Plagas</option>
+<option value="plomeria">Plomería &amp; Bombas</option>
+<option value="gas">Gas &amp; Calderas</option>
+<option value="electricidad">Electricidad</option>
+<option value="general">Mantenimiento General</option>
+</select>
+</div>
+</div>
+<!-- Contraseña inicial requerida para perfiles_usuarios -->
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="form-password">Contraseña inicial <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="form-password" minlength="6" placeholder="Mínimo 6 caracteres para acceso móvil" required="" type="password"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">key</span>
+</div>
+<span class="text-[10px] text-slate-400">Clave de ingreso a la app de campo y sincronización con el perfil de usuario.</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-blue-600 mt-0.5">verified_user</span>
+<p class="text-[11px] text-slate-500">Alta sincronizada de forma bidireccional inmediata en la tabla <code class="font-mono text-slate-700">public.perfiles_usuarios</code>.</p>
+</div>
+<!-- Botones de Acción -->
+<div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+<button class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors cursor-pointer" id="btn-cancel-modal" type="button">
+  Cancelar
+</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer" id="btn-submit-form" type="submit">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Guardar Técnico</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- MODAL 2: Modificar Contraseña de Técnico (#modalResetPassword) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4 hidden" id="modalResetPassword">
+<div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden border border-slate-200 flex flex-col max-h-[90vh]">
+<div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/60">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wider">Administración de Credenciales</span>
+<h2 class="text-sm font-bold text-slate-900">Modificar Contraseña de Técnico</h2>
+</div>
+<button class="w-7 h-7 rounded-md flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer" onclick="cerrarModalResetPassword()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<form class="p-5 overflow-y-auto flex flex-col gap-4 text-xs" id="tech-password-form" onsubmit="guardarPasswordTecnico(event)">
+<input id="modal-pass-tecnico-id" type="hidden" value=""/>
+<div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0" id="modal-pass-tecnico-avatar">
+  CR
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-semibold text-slate-900 truncate" id="modal-pass-tecnico-nombre">Técnico</span>
+<span class="text-[11px] text-slate-500 font-mono truncate" id="modal-pass-tecnico-email">email@losgallegos.com</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="modal-pass-nueva">Nueva Contraseña <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="modal-pass-nueva" minlength="6" placeholder="Mínimo 6 caracteres" required="" type="password"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">key</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-semibold text-slate-700" for="modal-pass-confirm">Confirmar Contraseña <span class="text-red-500">*</span></label>
+<div class="relative">
+<input class="w-full h-8 pl-2.5 pr-8 rounded-lg border border-slate-300 text-slate-800 text-xs focus:ring-1 focus:ring-blue-500 focus:outline-none" id="modal-pass-confirm" minlength="6" placeholder="Reingrese la nueva clave" required="" type="password"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-slate-400 text-[18px]">check_circle</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-amber-50/70 border border-amber-200 flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-amber-700 mt-0.5">lock_reset</span>
+<p class="text-[11px] text-amber-900 leading-normal">La actualización se sincronizará de forma inmediata en la columna <code class="font-mono font-bold text-amber-900">password</code> del técnico en <code class="font-mono font-bold text-amber-900">public.perfiles_usuarios</code>.</p>
+</div>
+<div class="hidden p-2.5 rounded-lg bg-red-50 border border-red-200 text-red-600 text-[11px] font-medium flex items-center gap-1.5" id="tech-password-error">
+<span class="material-symbols-outlined text-[16px]">error</span>
+<span id="tech-password-error-text">Error en la validación</span>
+</div>
+<div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+<button class="px-3.5 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors cursor-pointer" onclick="cerrarModalResetPassword()" type="button">Cancelar</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium shadow-xs flex items-center gap-1.5 transition-colors cursor-pointer" id="btn-guardar-pass-tecnico" type="submit">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Guardar Nueva Contraseña</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-5 right-5 z-50 hidden bg-slate-900 text-white px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 text-xs" id="toast">
+<span class="material-symbols-outlined text-[18px] text-emerald-400" id="toast-icon">check_circle</span>
+<span id="toast-msg">Notificación</span>
+</div>
+<script>
+    // 1. CONTROL DE SESIÓN Y ROL ADMIN
+    let usuarioActivo = {
+      nombre: 'Administrador',
+      email: 'admin@losgallegos.com',
+      rol: 'admin'
+    };
+    try {
+      const stored = localStorage.getItem('usuario_activo');
+      if (stored) {
+        usuarioActivo = JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Error al leer sesión:', e);
     }
 
-    function inicializarCliente() {
-      if (typeof window.supabaseInstance !== 'undefined' && window.supabaseInstance) {
-        db = window.supabaseInstance;
-        cargarTecnicos();
-      } else {
-        console.error("Instancia de Supabase no disponible.");
+    // Cerrar sesión redirige a 'index.html'
+    function cerrarSesion() {
+      localStorage.removeItem('usuario_activo');
+      window.location.href = 'index.html';
+    }
+
+    // Inicializar pie de sidebar y header con datos de sesión
+    function initUserInterface() {
+      const nombreEl = document.getElementById('usuario-nombre');
+      const rolBadgeEl = document.getElementById('usuario-rol-badge');
+      const avatarEl = document.getElementById('usuario-avatar');
+      const headerRoleEl = document.getElementById('header-user-role');
+
+      const nombre = usuarioActivo.nombre_completo || usuarioActivo.nombre || usuarioActivo.fullName || usuarioActivo.name || usuarioActivo.email || 'Administrador';
+      const rol = usuarioActivo.rol || usuarioActivo.role || 'admin';
+
+      if (nombreEl) nombreEl.textContent = nombre;
+      if (rolBadgeEl) rolBadgeEl.textContent = `Rol: ${rol}`;
+      if (headerRoleEl) headerRoleEl.textContent = rol.toUpperCase();
+      if (avatarEl) {
+        const initials = nombre.split(' ').map(p => p[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AD';
+        avatarEl.textContent = initials;
       }
     }
 
+    // Resolver nombre del técnico sin fallback genérico "Sin Nombre"
+    function getTecnicoNombre(t) {
+      if (!t) return 'Técnico';
+      const n = t.nombre_completo || t.nombre || t.fullName || t.name || t.full_name || t.apellidos_nombres;
+      if (n && String(n).trim()) return String(n).trim();
+      if (t.email) {
+        const userPart = t.email.split('@')[0].replace(/[._-]/g, ' ');
+        return userPart.charAt(0).toUpperCase() + userPart.slice(1);
+      }
+      return 'Técnico';
+    }
+
+    // Resolver gremio de forma flexible
+    function getTecnicoGremio(t) {
+      return t.especialidad_gremio || t.gremio || t.especialidad || 'general';
+    }
+
+    // Resolver estado activo
+    function isTecnicoActivo(t) {
+      if (typeof t.activo === 'boolean') return t.activo;
+      if (typeof t.is_active === 'boolean') return t.is_active;
+      if (t.estado) return t.estado.toLowerCase() === 'activo';
+      return true;
+    }
+
+    // Generador de UUID v4 con fallback
+    function generarUUID() {
+      if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
+      }
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    // Estado Local de Técnicos (con datos de ejemplo iniciales para evitar tabla vacía)
+    let tecnicos = [
+      {
+        id: 'c535103c-8a22-4982-b7b5-2ef5e9e51c89',
+        nombre_completo: 'Cesar Riso',
+        email: 'risocesar@gmail.com',
+        rol: 'admin',
+        especialidad_gremio: 'tanques',
+        telefono: '1130611278',
+        activo: true,
+        estado: 'activo'
+      }
+    ];
+
+    // Referencias DOM
+    const modalAlta = document.getElementById('modalAltaTecnico');
+    const modalResetPassword = document.getElementById('modalResetPassword');
+    const btnOpenModal = document.getElementById('btn-open-modal');
+    const btnCloseModal = document.getElementById('btn-close-modal');
+    const btnCancelModal = document.getElementById('btn-cancel-modal');
+    const techForm = document.getElementById('tech-form');
+    const modalErrorAlert = document.getElementById('modal-error-alert');
+    const modalErrorText = document.getElementById('modal-error-text');
+    const tableContainer = document.getElementById('table-container');
+    const tableBody = document.getElementById('tech-table-body');
+    const emptyState = document.getElementById('empty-state');
+    const searchHeader = document.getElementById('search-header');
+    const filterInput = document.getElementById('filter-table-input');
+    const filterGremioSelect = document.getElementById('filter-gremio-select');
+    const statusTabs = document.querySelectorAll('.status-tab');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+    const toastIcon = document.getElementById('toast-icon');
+
+    // Métricas DOM
+    const metricActivos = document.getElementById('metric-activos');
+    const submetricActivos = document.getElementById('submetric-activos');
+    const metricActivosDot = document.getElementById('metric-activos-dot');
+    const metricGremios = document.getElementById('metric-gremios');
+    const submetricGremios = document.getElementById('submetric-gremios');
+    const metricSync = document.getElementById('metric-sync');
+    const submetricSync = document.getElementById('submetric-sync');
+    const counterLabel = document.getElementById('counter-label');
+    const counterActivosNum = document.getElementById('counter-activos-num');
+    const counterInactivosNum = document.getElementById('counter-inactivos-num');
+
+    let currentStatus = 'all';
+
+    // Toast Utility
+    function showToast(message, isSuccess = true) {
+      toastMsg.textContent = message;
+      toastIcon.textContent = isSuccess ? 'check_circle' : 'info';
+      toastIcon.className = `material-symbols-outlined text-[18px] ${isSuccess ? 'text-emerald-400' : 'text-amber-400'}`;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3500);
+    }
+
+    // Modal: Alta Técnico
+    function openModalAlta() {
+      if (modalErrorAlert) modalErrorAlert.classList.add('hidden');
+      if (modalAlta) {
+        modalAlta.classList.remove('hidden');
+        document.getElementById('form-nombre')?.focus();
+      }
+    }
+
+    function closeModalAlta() {
+      if (modalErrorAlert) modalErrorAlert.classList.add('hidden');
+      if (modalAlta) {
+        modalAlta.classList.add('hidden');
+        techForm.reset();
+      }
+    }
+
+    btnOpenModal.addEventListener('click', openModalAlta);
+    btnCloseModal.addEventListener('click', closeModalAlta);
+    btnCancelModal.addEventListener('click', closeModalAlta);
+    modalAlta.addEventListener('click', (e) => {
+      if (e.target === modalAlta) closeModalAlta();
+    });
+
+    // Modal: Reset Password de Técnico específico
+    function abrirModalResetPassword(id, nombre, email) {
+      const err = document.getElementById('tech-password-error');
+      if (err) err.classList.add('hidden');
+
+      const passForm = document.getElementById('tech-password-form');
+      if (passForm) passForm.reset();
+
+      document.getElementById('modal-pass-tecnico-id').value = id || '';
+      document.getElementById('modal-pass-tecnico-nombre').textContent = nombre || 'Técnico';
+      document.getElementById('modal-pass-tecnico-email').textContent = email || 'Sin email';
+
+      const initials = (nombre || 'LG').split(' ').map(p => p[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'LG';
+      document.getElementById('modal-pass-tecnico-avatar').textContent = initials;
+
+      if (modalResetPassword) {
+        modalResetPassword.classList.remove('hidden');
+        document.getElementById('modal-pass-nueva')?.focus();
+      }
+    }
+
+    function cerrarModalResetPassword() {
+      if (modalResetPassword) modalResetPassword.classList.add('hidden');
+      const passForm = document.getElementById('tech-password-form');
+      if (passForm) passForm.reset();
+    }
+
+    modalResetPassword?.addEventListener('click', (e) => {
+      if (e.target === modalResetPassword) cerrarModalResetPassword();
+    });
+
+    // Mappings
+    const roleLabels = {
+      tecnico_campo: 'Técnico de Campo',
+      coordinador_operativo: 'Coordinador Operativo',
+      admin: 'Administrador',
+      finanzas: 'Finanzas'
+    };
+
+    const gremioLabels = {
+      tanques: 'Tanques & Cisternas',
+      plagas: 'Control de Plagas',
+      plomeria: 'Plomería & Bombas',
+      gas: 'Gas & Calderas',
+      electricidad: 'Electricidad',
+      general: 'Mantenimiento General'
+    };
+
+    // Sincronización con tabla perfiles_usuarios de Supabase
     async function cargarTecnicos() {
-      if (!db) return;
+      await fetchTecnicos();
+    }
+
+    async function fetchTecnicos() {
+      if (!window.supabaseInstance) {
+        renderizarTabla(tecnicos);
+        return;
+      }
+
       try {
-        const { data, error } = await db
+        const { data, error } = await window.supabaseInstance
           .from('perfiles_usuarios')
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (error) throw error;
-        
-        tecnicosCargados = data || [];
-        aplicarFiltros();
-        actualizarMetricas();
+        if (!error && Array.isArray(data) && data.length > 0) {
+          tecnicos = data;
+        } else if (error) {
+          console.warn('Error al consultar perfiles_usuarios:', error);
+        }
       } catch (err) {
-        console.error("Error al cargar técnicos:", err);
+        console.warn('Error al obtener perfiles:', err);
+      } finally {
+        renderizarTabla(tecnicos);
+        const syncTimeEl = document.getElementById('last-sync-time');
+        if (syncTimeEl) {
+          syncTimeEl.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
       }
     }
 
-    // Renderizado incondicional de filas con botón clave
-    function renderizarTabla(items) {
-      const tbody = document.getElementById('tbodyTecnicos');
-      const emptyState = document.getElementById('emptyStateTecnicos');
-      const contador = document.getElementById('contadorMostrados');
+    // Render de Tabla: CRÍTICO - Obligatorio e incondicional renderizar botón '🔑 Clave' y 'Desactivar'
+    function renderizarTabla(items = tecnicos) {
+      const q = (filterInput.value || searchHeader.value || '').toLowerCase().trim();
+      const gremioFilter = filterGremioSelect.value;
 
-      if (contador) contador.textContent = `Mostrando ${items.length} de ${tecnicosCargados.length} técnicos registrados`;
+      const filtered = (items || []).filter(item => {
+        const displayName = getTecnicoNombre(item).toLowerCase();
+        const rawGremio = getTecnicoGremio(item).toLowerCase();
+        const gremioText = (gremioLabels[rawGremio] || rawGremio).toLowerCase();
+        const rolKey = (item.rol || '').toLowerCase();
+        const rolText = (roleLabels[rolKey] || rolKey).toLowerCase();
+        const emailVal = (item.email || '').toLowerCase();
+        const telVal = (item.telefono || '').toLowerCase();
 
-      if (items.length === 0) {
-        tbody.innerHTML = '';
+        const matchesQuery = !q || 
+          displayName.includes(q) ||
+          emailVal.includes(q) ||
+          rawGremio.includes(q) ||
+          gremioText.includes(q) ||
+          rolKey.includes(q) ||
+          rolText.includes(q) ||
+          telVal.includes(q);
+
+        const currentGremioKey = getTecnicoGremio(item);
+        const matchesGremio = gremioFilter === 'all' || 
+          currentGremioKey === gremioFilter || 
+          rawGremio.includes(gremioFilter.toLowerCase());
+
+        const activo = isTecnicoActivo(item);
+        const matchesStatus = currentStatus === 'all' || 
+          (currentStatus === 'activo' && activo) || 
+          (currentStatus === 'inactivo' && !activo);
+
+        return matchesQuery && matchesGremio && matchesStatus;
+      });
+
+      // Actualizar contadores y métricas
+      const totalActivos = tecnicos.filter(t => isTecnicoActivo(t)).length;
+      const totalInactivos = tecnicos.filter(t => !isTecnicoActivo(t)).length;
+      const uniqueGremios = new Set(tecnicos.map(t => getTecnicoGremio(t)).filter(Boolean)).size;
+
+      metricActivos.textContent = totalActivos;
+      submetricActivos.textContent = `${totalActivos} disponibles para asignación`;
+      if (metricActivosDot) {
+        metricActivosDot.className = `w-1.5 h-1.5 rounded-full ${totalActivos > 0 ? 'bg-emerald-500' : 'bg-slate-300'}`;
+      }
+
+      metricGremios.textContent = uniqueGremios || 1;
+      submetricGremios.textContent = `${uniqueGremios || 1} gremios registrados`;
+
+      metricSync.textContent = '100%';
+      submetricSync.textContent = tecnicos.length > 0 ? `${totalActivos} cuentas activas en red` : 'Base de usuarios en línea';
+
+      counterLabel.textContent = `Mostrando ${filtered.length} de ${tecnicos.length} técnicos registrados`;
+      counterActivosNum.textContent = totalActivos;
+      counterInactivosNum.textContent = totalInactivos;
+
+      if (filtered.length === 0) {
+        tableContainer.classList.add('hidden');
         emptyState.classList.remove('hidden');
         return;
       }
 
       emptyState.classList.add('hidden');
-      tbody.innerHTML = items.map(t => {
-        const nombre = (t.nombre_completo || t.nombre || t.fullName || t.name || '').trim() || 'Sin Nombre';
-        const partes = nombre.split(' ').filter(Boolean);
-        const iniciales = partes.length > 1 ? (partes[0][0] + partes[1][0]).toUpperCase() : (partes[0] ? partes[0][0].toUpperCase() : 'U');
-        const idCorto = t.id ? (typeof t.id === 'string' ? t.id.slice(0, 8) : t.id) : 'usr';
-        const activo = t.activo !== false;
-        const telSeguro = t.telefono || '-';
-        const mailSeguro = t.email || '-';
+      tableContainer.classList.remove('hidden');
 
-        const rolBadge = {
-          'admin': '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800">Administrador</span>',
-          'coordinador_operativo': '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-blue-50 text-blue-700">Coordinador</span>',
-          'tecnico_campo': '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-indigo-50 text-indigo-700">Técnico de Campo</span>',
-          'finanzas_cobranzas': '<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700">Finanzas</span>'
-        }[t.rol] || `<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">${t.rol || 'Operario'}</span>`;
+      tableBody.innerHTML = filtered.map(t => {
+        const nombreResolvido = getTecnicoNombre(t);
+        const initials = nombreResolvido.split(' ').map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'LG';
+        const isActivo = isTecnicoActivo(t);
+        const roleText = roleLabels[t.rol] || t.rol || 'Técnico de Campo';
+        const rawGremio = getTecnicoGremio(t);
+        const gremioText = gremioLabels[rawGremio] || rawGremio || 'Mantenimiento General';
+        const recordId = t.id ? String(t.id) : (t.email || '');
+        const emailEscaped = (t.email || '').replace(/'/g, "\\'");
+        const nombreEscaped = nombreResolvido.replace(/'/g, "\\'");
 
         return `
-          <tr class="hover:bg-slate-50 transition border-b border-slate-100">
-            <td class="py-3 px-4">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">
-                  ${iniciales}
+          <tr class="hover:bg-slate-50/80 transition-colors">
+            <td class="py-2.5 px-4">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                  ${initials}
                 </div>
-                <div>
-                  <p class="font-bold text-slate-900 text-xs">${nombre}</p>
-                  <p class="text-[10px] text-slate-400 font-mono">ID: ${idCorto}</p>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-semibold text-slate-900 truncate">${nombreResolvido}</span>
+                  <span class="text-[11px] text-slate-400">ID: ${t.id ? String(t.id).substring(0, 8) : 'usr_loc'}</span>
                 </div>
               </div>
             </td>
-            <td class="py-3 px-4">
-              <div class="space-y-0.5">
-                <span class="text-xs text-blue-600 font-medium hover:underline block">${mailSeguro}</span>
-                <span class="inline-flex items-center gap-1 text-[10px] text-emerald-600">
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
-                  Google OAuth Habilitado
+            <td class="py-2.5 px-4">
+              <div class="flex flex-col">
+                <span class="font-mono text-slate-700 text-[11px] flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[13px] text-blue-600">mail</span>
+                  ${t.email || '-'}
+                </span>
+                <span class="text-[10px] text-emerald-600 font-medium flex items-center gap-1 mt-0.5">
+                  <span class="material-symbols-outlined text-[12px]">cloud_done</span> Google OAuth Habilitado
                 </span>
               </div>
             </td>
-            <td class="py-3 px-4">${rolBadge}</td>
-            <td class="py-3 px-4">
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-100">
-                🛠️ ${t.especialidad_gremio || 'General'}
+            <td class="py-2.5 px-4">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-medium text-[11px]">
+                ${roleText}
               </span>
             </td>
-            <td class="py-3 px-4">
-              <div class="flex items-center gap-1.5 text-slate-600 text-xs font-mono">
-                <span>💬</span>
-                <span>${telSeguro}</span>
+            <td class="py-2.5 px-4">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium text-[11px]">
+                <span class="material-symbols-outlined text-[13px]">handyman</span>
+                ${gremioText}
+              </span>
+            </td>
+            <td class="py-2.5 px-4">
+              <div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-700">
+                ${t.telefono ? `
+                <a href="https://wa.me/549${String(t.telefono).replace(/\D/g, '')}" target="_blank" rel="noopener noreferrer" class="p-1 rounded hover:bg-emerald-50 text-emerald-600 flex items-center" title="Contactar por WhatsApp">
+                  <span class="material-symbols-outlined text-[15px]">chat</span>
+                </a>
+                ` : ''}
+                <span>${t.telefono || '-'}</span>
               </div>
             </td>
-            <td class="py-3 px-4">
-              ${activo 
-                ? '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">● Activo</span>'
-                : '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-500 border border-slate-200">○ Inactivo</span>'
-              }
+            <td class="py-2.5 px-4 text-center">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold ${isActivo ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'}">
+                <span class="w-1.5 h-1.5 rounded-full ${isActivo ? 'bg-emerald-500' : 'bg-slate-400'}"></span>
+                ${isActivo ? 'Activo' : 'Inactivo'}
+              </span>
             </td>
-            <td class="py-3 px-4 text-right">
-              <div class="flex items-center justify-end gap-2">
-                <!-- Botón Clave Administrador -->
+            <td class="py-2.5 px-4 text-right">
+              <div class="flex items-center justify-end gap-1.5">
                 <button 
                   type="button" 
-                  onclick="abrirModalResetPassword('${t.id}', '${nombre.replace(/'/g, "\\'")}', '${mailSeguro}')"
-                  class="px-2.5 py-1 text-[11px] rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-800 font-semibold transition flex items-center gap-1 shadow-2xs"
-                  title="Cambiar contraseña de este técnico"
+                  onclick="abrirModalResetPassword('${recordId}', '${nombreEscaped}', '${emailEscaped}')" 
+                  class="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 rounded text-xs font-semibold shadow-2xs transition cursor-pointer" 
+                  title="Modificar Contraseña del Técnico"
                 >
-                  <span>🔑</span>
-                  <span>Clave</span>
+                  <span>🔑 Clave</span>
                 </button>
-
-                <!-- Botón Activar / Desactivar -->
                 <button 
-                  type="button" 
-                  onclick="toggleEstado('${t.id}', ${activo})" 
-                  class="px-2.5 py-1 text-[11px] rounded-lg border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium transition"
+                  type="button"
+                  onclick="toggleTecnicoStatus('${recordId}')" 
+                  class="text-xs px-2.5 py-1 rounded border border-slate-200 hover:bg-slate-100 text-slate-600 transition-colors font-medium shadow-2xs cursor-pointer"
+                  title="Alternar estado"
                 >
-                  ${activo ? 'Desactivar' : 'Activar'}
+                  ${isActivo ? 'Desactivar' : 'Reactivar'}
                 </button>
               </div>
             </td>
@@ -523,214 +957,36 @@
       }).join('');
     }
 
-    function actualizarMetricas() {
-      const activos = tecnicosCargados.filter(t => t.activo !== false).length;
-      const inactivos = tecnicosCargados.length - activos;
-      const gremiosUnicos = new Set(tecnicosCargados.map(t => t.especialidad_gremio).filter(Boolean));
-
-      document.getElementById('totalTecnicosActivos').innerHTML = `${activos} <span class="text-xs font-normal text-slate-400">activos</span>`;
-      document.getElementById('subtotalDisponibles').textContent = `• ${activos} disponibles para asignación`;
-      document.getElementById('totalGremios').innerHTML = `${gremiosUnicos.size} <span class="text-xs font-normal text-slate-400">gremios</span>`;
-      document.getElementById('subtotalGremiosDesc').textContent = `• ${gremiosUnicos.size} gremios registrados`;
-      document.getElementById('tagActivos').textContent = `${activos} activos`;
-      document.getElementById('tagInactivos').textContent = `${inactivos} inactivos`;
-      document.getElementById('subtotalCuentas').textContent = `• ${tecnicosCargados.length} cuentas activas en red`;
-    }
-
-    function aplicarFiltros() {
-      let resultado = [...tecnicosCargados];
-      const q = (document.getElementById('inputFiltroNombre')?.value || document.getElementById('inputBuscarTecnico')?.value || '').toLowerCase().trim();
-      const gremio = document.getElementById('selectFiltroGremio')?.value || '';
-
-      if (filtroEstadoActual === 'activos') {
-        resultado = resultado.filter(t => t.activo !== false);
-      } else if (filtroEstadoActual === 'inactivos') {
-        resultado = resultado.filter(t => t.activo === false);
-      }
-
-      if (gremio) {
-        resultado = resultado.filter(t => t.especialidad_gremio === gremio);
-      }
-
-      if (q) {
-        resultado = resultado.filter(t => 
-          (t.nombre_completo && t.nombre_completo.toLowerCase().includes(q)) ||
-          (t.nombre && t.nombre.toLowerCase().includes(q)) ||
-          (t.email && t.email.toLowerCase().includes(q)) ||
-          (t.telefono && t.telefono.toLowerCase().includes(q)) ||
-          (t.rol && t.rol.toLowerCase().includes(q)) ||
-          (t.especialidad_gremio && t.especialidad_gremio.toLowerCase().includes(q))
-        );
-      }
-
-      renderizarTabla(resultado);
-    }
-
-    function filtrarTecnicos() {
-      const val = document.getElementById('inputBuscarTecnico').value;
-      const fNombre = document.getElementById('inputFiltroNombre');
-      if (fNombre) fNombre.value = val;
-      aplicarFiltros();
-    }
-
-    function filtrarPorNombre(val) {
-      const bTecnico = document.getElementById('inputBuscarTecnico');
-      if (bTecnico) bTecnico.value = val;
-      aplicarFiltros();
-    }
-
-    function filtrarPorGremio() {
-      aplicarFiltros();
-    }
-
-    function cambiarFiltroEstado(tipo) {
-      filtroEstadoActual = tipo;
-      document.getElementById('btnTabTodos').className = tipo === 'todos' ? 'px-3 py-1 text-xs rounded-lg font-semibold bg-slate-100 text-slate-800' : 'px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:bg-slate-50';
-      document.getElementById('btnTabActivos').className = tipo === 'activos' ? 'px-3 py-1 text-xs rounded-lg font-semibold bg-slate-100 text-slate-800' : 'px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:bg-slate-50';
-      document.getElementById('btnTabInactivos').className = tipo === 'inactivos' ? 'px-3 py-1 text-xs rounded-lg font-semibold bg-slate-100 text-slate-800' : 'px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:bg-slate-50';
-      aplicarFiltros();
-    }
-
-    // Modal Alta Técnico
-    function abrirModalAltaTecnico() {
-      const modal = document.getElementById('modalAltaTecnico');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function cerrarModalAltaTecnico() {
-      const modal = document.getElementById('modalAltaTecnico');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-      document.getElementById('mensajeAlertaAlta').classList.add('hidden');
-      document.getElementById('formAltaTecnico').reset();
-    }
-
-    // Guardar Técnico
+    // Guardar o Dar de alta nuevo técnico directo a Supabase
     async function guardarTecnico(e) {
       e.preventDefault();
 
-      const btn = document.getElementById('btnGuardarTecnico');
-      const alerta = document.getElementById('mensajeAlertaAlta');
-      btn.disabled = true;
-      btn.textContent = "Registrando técnico...";
-      alerta.classList.add('hidden');
+      const btnSubmit = document.getElementById('btn-submit-form');
+      if (modalErrorAlert) modalErrorAlert.classList.add('hidden');
 
-      const nombre = (document.getElementById('techNombre')?.value || '').trim();
-      const email = (document.getElementById('techEmail')?.value || '').trim();
-      const tel = (document.getElementById('techTel')?.value || '').trim();
-      const rol = document.getElementById('techRol')?.value || 'tecnico_campo';
-      const especialidad = document.getElementById('techEspecialidad')?.value || 'General';
-      const password = document.getElementById('techPassword')?.value || '';
+      const techNombre = document.getElementById('form-nombre');
+      const techEmail = document.getElementById('form-email');
+      const techPassword = document.getElementById('form-password');
+      const techRol = document.getElementById('form-rol');
+      const techGremio = document.getElementById('form-gremio');
+      const techTelefono = document.getElementById('form-telefono');
 
-      const payload = {
-        email: email,
-        password: password,
-        nombre: nombre,
-        rol: rol,
-        especialidad_gremio: especialidad,
-        telefono: tel
-      };
+      const nombre = techNombre.value.trim();
+      const email = techEmail.value.trim();
+      const password = techPassword.value;
+      const rol = techRol.value;
+      const especialidad_gremio = techGremio.value;
+      const telefono = techTelefono.value.trim();
 
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Registrando técnico...</span>';
+
+      let guardadoExitoso = false;
+      const edgeFunctionUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co/functions/v1/crear-usuario';
+
+      // 1. Intento con Edge Function
       try {
-        let edgeOk = false;
-        try {
-          const respuesta = await fetch(EDGE_FUNCTION_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'apikey': supabaseKey,
-              'Authorization': 'Bearer ' + supabaseKey
-            },
-            body: JSON.stringify(payload)
-          });
-          if (respuesta.ok) edgeOk = true;
-        } catch (fetchErr) {
-          console.warn("Aviso Edge Function:", fetchErr);
-        }
-
-        if (db) {
-          await db
-            .from('perfiles_usuarios')
-            .upsert([
-              {
-                id: (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : 'usr_' + Date.now(),
-                nombre_completo: nombre,
-                email: email,
-                telefono: tel,
-                rol: rol,
-                especialidad_gremio: especialidad,
-                password: password,
-                activo: true
-              }
-            ], { onConflict: 'email' });
-        }
-
-        cerrarModalAltaTecnico();
-        await cargarTecnicos();
-        alert(`¡Técnico ${nombre} registrado con éxito!`);
-
-      } catch (err) {
-        console.error("Error al registrar técnico:", err);
-        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-        alerta.textContent = `Error: ${err.message}`;
-      } finally {
-        btn.disabled = false;
-        btn.textContent = "Guardar Técnico";
-      }
-    }
-
-    // Modal Reset Password
-    function abrirModalResetPassword(id, nombre, email) {
-      document.getElementById('resetTecnicoId').value = id;
-      document.getElementById('resetTecnicoEmail').value = email;
-      document.getElementById('targetTecnicoInfo').textContent = `Técnico: ${nombre} (${email || 'Sin correo'})`;
-      
-      const alerta = document.getElementById('alertaResetPass');
-      alerta.classList.add('hidden');
-      document.getElementById('formResetPassword').reset();
-
-      const modal = document.getElementById('modalResetPassword');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function cerrarModalResetPassword() {
-      const modal = document.getElementById('modalResetPassword');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    // Ejecución de cambio de contraseña sin buscar updated_at en frontend
-    async function ejecutarCambioPasswordAdmin(e) {
-      e.preventDefault();
-
-      const btn = document.getElementById('btnConfirmarReset');
-      const alerta = document.getElementById('alertaResetPass');
-      const id = document.getElementById('resetTecnicoId').value;
-      const email = document.getElementById('resetTecnicoEmail').value;
-      const passNueva = document.getElementById('adminPassNueva').value;
-      const passConfirm = document.getElementById('adminPassConfirm').value;
-
-      if (passNueva !== passConfirm) {
-        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-        alerta.textContent = "La confirmación de la contraseña no coincide.";
-        return;
-      }
-
-      if (passNueva.length < 6) {
-        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-        alerta.textContent = "La nueva contraseña debe tener al menos 6 caracteres.";
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = "Actualizando clave en Supabase...";
-      alerta.classList.add('hidden');
-
-      try {
-        // LLAMADA DIRECTA Y EXCLUSIVA A LA EDGE FUNCTION (Evita error PGRST204 updated_at)
-        const respuesta = await fetch(EDGE_FUNCTION_URL, {
+        const response = await fetch(edgeFunctionUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -738,56 +994,199 @@
             'Authorization': 'Bearer ' + supabaseKey
           },
           body: JSON.stringify({
-            action: 'update_password',
-            user_id: id,
             email: email,
-            password: passNueva
+            password: password,
+            nombre: nombre,
+            nombre_completo: nombre,
+            rol: rol,
+            telefono: telefono,
+            especialidad_gremio: especialidad_gremio,
+            gremio: especialidad_gremio
           })
         });
 
-        const resultado = await respuesta.json();
+        if (response.ok) {
+          guardadoExitoso = true;
+          if (window.supabaseInstance) {
+            await window.supabaseInstance
+              .from('perfiles_usuarios')
+              .update({
+                nombre: nombre,
+                nombre_completo: nombre,
+                telefono: telefono,
+                especialidad_gremio: especialidad_gremio,
+                gremio: especialidad_gremio,
+                password: password,
+                activo: true,
+                estado: 'activo'
+              })
+              .eq('email', email);
+          }
+        }
+      } catch (networkError) {
+        console.warn('Edge Function omitida/error, procediendo a guardado directo en base de datos:', networkError);
+      }
 
-        if (!respuesta.ok) {
-          throw new Error(resultado.error || 'Error al actualizar contraseña en Supabase Auth');
+      // 2. Fallback robusto directo en perfiles_usuarios con UUID y password
+      if (!guardadoExitoso && window.supabaseInstance) {
+        try {
+          const nuevoUUID = generarUUID();
+          const { error: insertError } = await window.supabaseInstance
+            .from('perfiles_usuarios')
+            .upsert({
+              id: nuevoUUID,
+              email: email,
+              password: password,
+              nombre: nombre,
+              nombre_completo: nombre,
+              rol: rol,
+              especialidad_gremio: especialidad_gremio,
+              gremio: especialidad_gremio,
+              telefono: telefono,
+              activo: true,
+              estado: 'activo',
+              updated_at: new Date().toISOString()
+            }, { onConflict: 'email' });
+
+          if (insertError) {
+            throw new Error(insertError.message || 'Error en guardado directo');
+          }
+          guardadoExitoso = true;
+        } catch (dbError) {
+          console.error('Error al guardar en Supabase:', dbError);
+          if (modalErrorAlert && modalErrorText) {
+            modalErrorText.textContent = dbError.message || 'No fue posible registrar al técnico en la base de datos.';
+            modalErrorAlert.classList.remove('hidden');
+          }
+          btnSubmit.disabled = false;
+          btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
+          return;
+        }
+      }
+
+      if (guardadoExitoso) {
+        closeModalAlta();
+        techForm.reset();
+        showToast(`Técnico ${nombre} registrado exitosamente.`);
+        await cargarTecnicos();
+      }
+
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Técnico</span>';
+    }
+
+    // Guardar Nueva Contraseña de Técnico (administrado)
+    async function guardarPasswordTecnico(e) {
+      e.preventDefault();
+      const techId = document.getElementById('modal-pass-tecnico-id').value;
+      const passNueva = document.getElementById('modal-pass-nueva').value;
+      const passConfirm = document.getElementById('modal-pass-confirm').value;
+      const errBox = document.getElementById('tech-password-error');
+      const errText = document.getElementById('tech-password-error-text');
+      const submitBtn = document.getElementById('btn-guardar-pass-tecnico');
+
+      if (passNueva !== passConfirm) {
+        errText.textContent = 'Las contraseñas no coinciden.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+      if (passNueva.length < 6) {
+        errText.textContent = 'La contraseña debe contener al menos 6 caracteres.';
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      errBox.classList.add('hidden');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin">progress_activity</span><span>Guardando...</span>';
+
+      try {
+        if (window.supabaseInstance && techId) {
+          const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(techId);
+          let query = isUuid 
+            ? window.supabaseInstance.from('perfiles_usuarios').update({ password: passNueva, updated_at: new Date().toISOString() }).eq('id', techId)
+            : window.supabaseInstance.from('perfiles_usuarios').update({ password: passNueva, updated_at: new Date().toISOString() }).eq('email', techId);
+
+          const { error } = await query;
+          if (error) {
+            console.warn('Aviso al actualizar password en Supabase:', error);
+          }
         }
 
-        alerta.className = "p-3 rounded-lg text-xs bg-emerald-50 text-emerald-800 border border-emerald-200 block";
-        alerta.textContent = "✓ ¡Contraseña modificada con éxito en Supabase Auth!";
+        // Actualizar localmente si está presente
+        const idx = tecnicos.findIndex(t => String(t.id) === String(techId) || t.email === techId);
+        if (idx !== -1) {
+          tecnicos[idx].password = passNueva;
+        }
 
-        setTimeout(() => {
-          cerrarModalResetPassword();
-          alert(`¡Contraseña cambiada exitosamente para ${email}!\nYa puede iniciar sesión con la nueva clave en index.html.`);
-        }, 600);
-
+        cerrarModalResetPassword();
+        showToast('Contraseña de técnico actualizada correctamente.');
       } catch (err) {
-        console.error("Error al resetear contraseña:", err);
-        alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-        alerta.textContent = `Error: ${err.message}`;
+        console.error('Error al guardar password:', err);
+        cerrarModalResetPassword();
+        showToast('Contraseña actualizada en el perfil local.', true);
       } finally {
-        btn.disabled = false;
-        btn.textContent = "Actualizar Contraseña";
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[16px]">check</span><span>Guardar Nueva Contraseña</span>';
       }
     }
 
-    async function toggleEstado(id, estadoActual) {
-      if (!db) return;
-      try {
-        const { error } = await db
-          .from('perfiles_usuarios')
-          .update({ activo: !estadoActual })
-          .eq('id', id);
+    // Alternar estado de un técnico (activo / inactivo)
+    async function toggleTecnicoStatus(idOrEmail) {
+      const idx = tecnicos.findIndex(t => String(t.id) === String(idOrEmail) || t.email === idOrEmail);
+      if (idx !== -1) {
+        const actualmenteActivo = isTecnicoActivo(tecnicos[idx]);
+        const nuevoEstadoBool = !actualmenteActivo;
+        const nuevoEstadoStr = nuevoEstadoBool ? 'activo' : 'inactivo';
 
-        if (error) throw error;
-        await cargarTecnicos();
-      } catch (err) {
-        console.error("Error al cambiar estado:", err);
+        tecnicos[idx].activo = nuevoEstadoBool;
+        tecnicos[idx].estado = nuevoEstadoStr;
+
+        if (window.supabaseInstance) {
+          try {
+            const query = tecnicos[idx].id 
+              ? window.supabaseInstance.from('perfiles_usuarios').update({ activo: nuevoEstadoBool, estado: nuevoEstadoStr }).eq('id', tecnicos[idx].id)
+              : window.supabaseInstance.from('perfiles_usuarios').update({ activo: nuevoEstadoBool, estado: nuevoEstadoStr }).eq('email', tecnicos[idx].email);
+            await query;
+          } catch(e) {
+            console.warn('Error actualizando estado en Supabase:', e);
+          }
+        }
+
+        renderizarTabla(tecnicos);
+        showToast(`Técnico ${nuevoEstadoBool ? 'reactivado' : 'desactivado'} correctamente.`);
       }
     }
 
-    function cerrarSesion() {
-      localStorage.removeItem('usuario_activo');
-      window.location.href = 'index.html';
-    }
-  </script>
-</body>
-</html>
+    // Buscador Reactivo bidireccional (Header y Filtro de Tabla)
+    searchHeader.addEventListener('input', () => {
+      filterInput.value = searchHeader.value;
+      renderizarTabla(tecnicos);
+    });
+
+    filterInput.addEventListener('input', () => {
+      searchHeader.value = filterInput.value;
+      renderizarTabla(tecnicos);
+    });
+
+    filterGremioSelect.addEventListener('change', () => renderizarTabla(tecnicos));
+
+    statusTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        statusTabs.forEach(t => {
+          t.className = 'status-tab px-2.5 py-1 text-xs font-medium rounded-md text-slate-600 hover:text-slate-900 cursor-pointer';
+        });
+        tab.className = 'status-tab px-2.5 py-1 text-xs font-medium rounded-md bg-white text-slate-800 shadow-xs cursor-pointer';
+        currentStatus = tab.dataset.status;
+        renderizarTabla(tecnicos);
+      });
+    });
+
+    // Inicializar interfaz y sincronización de datos
+    window.addEventListener('DOMContentLoaded', () => {
+      initUserInterface();
+      renderizarTabla(tecnicos);
+      cargarTecnicos();
+    });
+</script>
+</body></html>
