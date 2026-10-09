@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Empresa Los Gallegos - Ficha Técnica de Direcciones</title>
 <!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -219,8 +218,34 @@
 </div>
 </div>
 <!-- Cambiar Admin -->
-<div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-col gap-2.5"><div class="flex flex-col sm:flex-row sm:items-center gap-2.5"><label class="text-xs font-bold text-slate-700 shrink-0">CAMBIAR ADMIN:</label><div class="flex-1 flex flex-col sm:flex-row items-center gap-2"><select class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="selectCambiarAdmin"><option value="">-- Sin Administración / Gestión Directa --</option></select><input class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="inputMotivoCambioAdmin" placeholder="Motivo del traspaso (opcional)..." type="text"/><button class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shrink-0 w-full sm:w-auto" onclick="ejecutarCambioAdmin()" type="button">Asignar</button></div><button class="text-xs font-semibold text-blue-600 hover:text-blue-800 shrink-0 self-end sm:self-center" onclick="abrirModalNuevaAdmin()" type="button">+ Nueva Administración</button></div></div>
-</div><div class="bg-white rounded-xl border border-slate-200 p-4 md:p-5 shadow-2xs space-y-3" id="bloqueHistorialReasignaciones"><div class="flex items-center justify-between pb-2 border-b border-slate-100"><div class="flex items-center gap-2"><span class="text-sm">🏛️</span><h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Historial de Reasignaciones de Administración</h4><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600" id="badgeTotalReasignaciones">0 Registros</span></div><span class="text-[11px] text-slate-400 font-medium">Trazabilidad de Traspasos &amp; Mandatos</span></div><div class="space-y-2.5 max-h-56 overflow-y-auto custom-scroll pr-1" id="listaHistorialReasignaciones"><div class="py-4 text-center text-slate-400 text-xs">Sin historial de cambios registrado para este inmueble.</div></div></div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-col gap-2.5">
+<div class="flex flex-col sm:flex-row sm:items-center gap-2.5">
+<label class="text-xs font-bold text-slate-700 shrink-0">CAMBIAR ADMIN:</label>
+<div class="flex-1 flex flex-col sm:flex-row items-center gap-2">
+<select class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="selectCambiarAdmin">
+<option value="">-- Sin Administración / Gestión Directa --</option>
+</select>
+<input class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="inputMotivoCambioAdmin" placeholder="Motivo del traspaso (opcional)..." type="text"/>
+<button class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shrink-0 w-full sm:w-auto" onclick="ejecutarCambioAdmin()" type="button">Asignar</button>
+</div>
+<button class="text-xs font-semibold text-blue-600 hover:text-blue-800 shrink-0 self-end sm:self-center" onclick="abrirModalNuevaAdmin()" type="button">+ Nueva Administración</button>
+</div>
+</div>
+</div>
+<!-- HISTORIAL DE REASIGNACIONES -->
+<div class="bg-white rounded-xl border border-slate-200 p-4 md:p-5 shadow-2xs space-y-3" id="bloqueHistorialReasignaciones">
+<div class="flex items-center justify-between pb-2 border-b border-slate-100">
+<div class="flex items-center gap-2">
+<span class="text-sm">🏛️</span>
+<h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Historial de Reasignaciones de Administración</h4>
+<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600" id="badgeTotalReasignaciones">0 Registros</span>
+</div>
+<span class="text-[11px] text-slate-400 font-medium">Trazabilidad de Traspasos &amp; Mandatos</span>
+</div>
+<div class="space-y-2.5 max-h-56 overflow-y-auto custom-scroll pr-1" id="listaHistorialReasignaciones">
+<div class="py-4 text-center text-slate-400 text-xs">Sin historial de cambios registrado para este inmueble.</div>
+</div>
+</div>
 <!-- Datos de Ubicación y Contacto -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
 <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
@@ -478,6 +503,27 @@
     let mapaLeaflet = null;
     let marcadorMapa = null;
 
+    // Helper para verificar UUID válido antes de persistir en PostgreSQL
+    function esUuidValido(id) {
+      if (!id || typeof id !== 'string') return false;
+      return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id.trim());
+    }
+
+    function obtenerUsuarioResponsableUuid() {
+      try {
+        const storedId = localStorage.getItem('usuario_id') || localStorage.getItem('user_id') || localStorage.getItem('supabase_user_id');
+        if (storedId && esUuidValido(storedId)) return storedId;
+        const userObjStr = localStorage.getItem('usuario') || localStorage.getItem('perfil');
+        if (userObjStr) {
+          const userObj = JSON.parse(userObjStr);
+          if (userObj && userObj.id && esUuidValido(userObj.id)) return userObj.id;
+        }
+      } catch (e) {
+        console.warn("No se pudo obtener UUID válido del usuario en sesión local:", e);
+      }
+      return null;
+    }
+
     window.addEventListener('DOMContentLoaded', async () => {
       if (typeof window.supabaseInstance !== 'undefined') {
         db = window.supabaseInstance;
@@ -503,11 +549,11 @@
 
         const selForm = document.getElementById('formAdminId');
         const selCambio = document.getElementById('selectCambiarAdmin');
-        let opts = `<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>`;
+        let opts = `<option value="">-- Sin Administración / Gestión Directa --</option>`;
         listaAdministraciones.forEach(a => {
           opts += `<option value="${a.id}">${a.nombre_fantasia} (${a.cuit_administracion || 'Sin CUIT'})</option>`;
         });
-        if (selForm) selForm.innerHTML = opts;
+        if (selForm) selForm.innerHTML = `<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>` + listaAdministraciones.map(a => `<option value="${a.id}">${a.nombre_fantasia} (${a.cuit_administracion || 'Sin CUIT'})</option>`).join('');
         if (selCambio) selCambio.innerHTML = opts;
       } catch (e) {
         console.error("Error al cargar administraciones:", e);
@@ -641,7 +687,92 @@
       if (selCambio) selCambio.value = inm.administracion_id || '';
 
       renderizarDirectorio(listaInmuebles);
-      await cargarOrdenesInmueble(inm.id);
+      await Promise.all([
+        cargarOrdenesInmueble(inm.id),
+        cargarHistorialReasignaciones(inm.id)
+      ]);
+    }
+
+    // CARGA DE HISTORIAL DE REASIGNACIONES
+    async function cargarHistorialReasignaciones(inmuebleId) {
+      if (!db || !inmuebleId) return;
+      const contenedor = document.getElementById('listaHistorialReasignaciones');
+      const badge = document.getElementById('badgeTotalReasignaciones');
+      if (!contenedor) return;
+
+      contenedor.innerHTML = `<div class="py-4 text-center text-slate-400 text-xs">Cargando historial de mandatos desde Supabase...</div>`;
+
+      try {
+        const { data, error } = await db
+          .from('historico_reasignaciones_administracion')
+          .select('*')
+          .eq('inmueble_id', inmuebleId)
+          .order('fecha_cambio', { ascending: false });
+
+        if (error) {
+          console.error("Error al consultar historico_reasignaciones_administracion:", error);
+          contenedor.innerHTML = `
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800">
+              <span class="font-bold">Aviso Supabase:</span> ${error.message || 'No se pudo leer la tabla de histórico (verificar políticas RLS).'}
+            </div>
+          `;
+          if (badge) badge.textContent = `0 Registros`;
+          return;
+        }
+
+        if (badge) badge.textContent = `${data ? data.length : 0} Registros`;
+
+        if (!data || data.length === 0) {
+          contenedor.innerHTML = `<div class="py-4 text-center text-slate-400 text-xs">Sin historial de cambios registrado para este inmueble.</div>`;
+          return;
+        }
+
+        contenedor.innerHTML = data.map(item => {
+          const anteriorObj = listaAdministraciones.find(a => a.id === item.administracion_anterior_id);
+          const nuevaObj = listaAdministraciones.find(a => a.id === item.administracion_nueva_id);
+
+          const nombreAnterior = anteriorObj ? anteriorObj.nombre_fantasia : 'Gestión Directa';
+          const nombreNueva = nuevaObj ? nuevaObj.nombre_fantasia : 'Gestión Directa';
+
+          let fechaFormateada = '-';
+          if (item.fecha_cambio) {
+            const d = new Date(item.fecha_cambio);
+            fechaFormateada = d.toLocaleDateString('es-AR', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+          }
+
+          return `
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200/90 hover:bg-slate-100/60 transition text-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200">Traspaso</span>
+                  <span class="font-medium text-slate-700">
+                    <span class="font-semibold text-slate-900">${nombreAnterior}</span>
+                    <span class="text-blue-600 font-bold px-1.5">➔</span>
+                    <span class="font-semibold text-emerald-800">${nombreNueva}</span>
+                  </span>
+                </div>
+                ${item.motivo_cambio ? `<p class="text-[11px] text-slate-500 italic">“${item.motivo_cambio}”</p>` : '<p class="text-[11px] text-slate-400">Sin motivo especificado</p>'}
+              </div>
+              <div class="text-[11px] text-slate-400 font-mono shrink-0 sm:text-right">
+                🕒 ${fechaFormateada}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error("Excepción en cargarHistorialReasignaciones:", err);
+        contenedor.innerHTML = `
+          <div class="p-3 bg-rose-50 border border-rose-200 rounded-lg text-xs text-rose-800">
+            Error al consultar el historial: ${err.message}
+          </div>
+        `;
+      }
     }
 
     async function cargarOrdenesInmueble(inmuebleId) {
@@ -886,6 +1017,8 @@
         if (data && data.length > 0) {
           const selForm = document.getElementById('formAdminId');
           if (selForm) selForm.value = data[0].id;
+          const selCambio = document.getElementById('selectCambiarAdmin');
+          if (selCambio) selCambio.value = data[0].id;
         }
       } catch (err) {
         alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
@@ -895,33 +1028,121 @@
       }
     }
 
+    // EJECUTAR CAMBIO DE ADMINISTRACIÓN CON HISTORIAL ROBUSTO
     async function ejecutarCambioAdmin() {
-      if (!db || !inmuebleActivo) return;
+      if (!db || !inmuebleActivo) {
+        alert("Selecciona primero un inmueble activo.");
+        return;
+      }
+
       const nuevaAdminId = document.getElementById('selectCambiarAdmin').value || null;
+      const adminAnteriorId = inmuebleActivo.administracion_id || null;
+      const inputMotivo = document.getElementById('inputMotivoCambioAdmin');
+      const motivo = inputMotivo ? inputMotivo.value.trim() || null : null;
+
+      if (nuevaAdminId === adminAnteriorId) {
+        alert("El inmueble ya tiene asignada esta administración.");
+        return;
+      }
+
+      // Validar si el usuario en sesión es UUID válido de PostgreSQL o pasar null
+      const usuarioValidoUuid = obtenerUsuarioResponsableUuid();
+
       try {
-        const { error } = await db
+        // 1. Actualizar administración en inmuebles_direcciones
+        const { error: errUpdate } = await db
           .from('inmuebles_direcciones')
           .update({ administracion_id: nuevaAdminId })
           .eq('id', inmuebleActivo.id);
-        if (error) throw error;
-        await cargarInmuebles();
+
+        if (errUpdate) throw errUpdate;
+
+        // 2. Registrar en tabla de histórico
+        const payloadHistorial = {
+          inmueble_id: inmuebleActivo.id,
+          administracion_anterior_id: adminAnteriorId,
+          administracion_nueva_id: nuevaAdminId,
+          motivo_cambio: motivo || 'Reasignación de administración',
+          usuario_responsable_id: usuarioValidoUuid
+        };
+
+        const { error: errHist } = await db
+          .from('historico_reasignaciones_administracion')
+          .insert([payloadHistorial]);
+
+        if (errHist) {
+          console.error("Error al registrar en historico_reasignaciones_administracion:", errHist);
+          alert(`La administración se actualizó en el inmueble, pero hubo un detalle al registrar el historial en Supabase:\n\n${errHist.message}`);
+        } else {
+          alert("¡Administración reasignada e historial registrado con éxito!");
+        }
+
+        // 3. Limpiar inputs y refrescar datos
+        if (inputMotivo) inputMotivo.value = '';
+        inmuebleActivo.administracion_id = nuevaAdminId;
+
+        await Promise.all([
+          cargarInmuebles(),
+          cargarHistorialReasignaciones(inmuebleActivo.id)
+        ]);
+
       } catch (err) {
+        console.error("Error al ejecutar cambio de administración:", err);
         alert("Error al actualizar administración: " + err.message);
       }
     }
 
+    // DAR DE BAJA ADMINISTRACIÓN ACTUAL
     async function darDeBajaAdminActual() {
       if (!db || !inmuebleActivo) return;
-      if (!confirm(`¿Desvincular ${inmuebleActivo.direccion_calle} de su administración actual?`)) return;
+
+      if (!inmuebleActivo.administracion_id) {
+        alert("El inmueble no posee una administración asignada actualmente.");
+        return;
+      }
+
+      const motivo = prompt(`¿Confirmas dar de baja la administración de ${inmuebleActivo.direccion_calle}?\nIngresa el motivo de la baja:`, "Fin de mandato / rescisión");
+      if (motivo === null) return; // Cancelado por el usuario
+
+      const adminAnteriorId = inmuebleActivo.administracion_id;
+      const usuarioValidoUuid = obtenerUsuarioResponsableUuid();
+
       try {
-        const { error } = await db
+        // 1. Actualizar inmueble a null (gestión directa)
+        const { error: errUpdate } = await db
           .from('inmuebles_direcciones')
           .update({ administracion_id: null })
           .eq('id', inmuebleActivo.id);
-        if (error) throw error;
-        await cargarInmuebles();
+
+        if (errUpdate) throw errUpdate;
+
+        // 2. Insertar registro en histórico con administracion_nueva_id: null
+        const { error: errHist } = await db
+          .from('historico_reasignaciones_administracion')
+          .insert([{
+            inmueble_id: inmuebleActivo.id,
+            administracion_anterior_id: adminAnteriorId,
+            administracion_nueva_id: null,
+            motivo_cambio: motivo.trim() || 'Baja de administración mandataria',
+            usuario_responsable_id: usuarioValidoUuid
+          }]);
+
+        if (errHist) {
+          console.error("Error al registrar baja en histórico:", errHist);
+          alert(`Se desvinculó la administración pero el historial retornó:\n${errHist.message}`);
+        } else {
+          alert("¡Administración dada de baja e historial registrado con éxito!");
+        }
+
+        inmuebleActivo.administracion_id = null;
+        await Promise.all([
+          cargarInmuebles(),
+          cargarHistorialReasignaciones(inmuebleActivo.id)
+        ]);
+
       } catch (err) {
-        alert("Error al desvincular: " + err.message);
+        console.error("Error al desvincular:", err);
+        alert("Error al desvincular administración: " + err.message);
       }
     }
 
@@ -975,10 +1196,23 @@
       }
     }
 
+    function abrirModalEditarActivo() {
+      if (!inmuebleActivo) return;
+      abrirModalAlta();
+      document.getElementById('formCalle').value = inmuebleActivo.direccion_calle || '';
+      document.getElementById('formPisoDepto').value = inmuebleActivo.piso_depto || '';
+      document.getElementById('formLocalidad').value = inmuebleActivo.barrio_localidad || '';
+      document.getElementById('formCodigoPostal').value = inmuebleActivo.codigo_postal || '';
+      document.getElementById('formCuit').value = inmuebleActivo.cuit_facturacion || '';
+      document.getElementById('formRazonSocial').value = inmuebleActivo.razon_social_fiscal || '';
+      document.getElementById('formAdminId').value = inmuebleActivo.administracion_id || '';
+      document.getElementById('formContactoNombre').value = inmuebleActivo.contacto_porteria_nombre || '';
+      document.getElementById('formContactoTel').value = inmuebleActivo.contacto_porteria_tel || '';
+    }
+
     function cerrarSesion() {
       localStorage.clear();
       window.location.href = 'index.html';
     }
   </script>
-</body>
-</html>
+</body></html>
