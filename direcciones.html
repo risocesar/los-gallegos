@@ -11,7 +11,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Leaflet CSS & JS para Mapa de Inmuebles -->
-<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- Supabase JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -28,7 +28,7 @@
     .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     #mapaAltaInmueble { height: 180px; width: 100%; border-radius: 0.5rem; z-index: 10; }
   </style>
-</link></head>
+</head>
 <body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex flex-col md:flex-row pb-20 md:pb-0">
 <!-- SIDEBAR NAVEGACIÓN (Desktop) -->
 <aside class="hidden md:flex w-64 bg-white border-r border-slate-200 flex-col justify-between shrink-0 min-h-screen sticky top-0 h-screen z-30">
@@ -100,9 +100,9 @@
 <header class="h-16 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 sticky top-0 z-20 shadow-2xs">
 <div class="flex-1 max-w-lg mr-3">
 <div class="relative">
-<input class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600 focus:bg-white transition" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o administración..." type="text">
+<input class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600 focus:bg-white transition" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o administración..." type="text"/>
 <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</input></div>
+</div>
 </div>
 <div class="flex items-center gap-2">
 <button class="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition" onclick="abrirModalNuevaAdmin()" type="button">
@@ -219,21 +219,8 @@
 </div>
 </div>
 <!-- Cambiar Admin -->
-<div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center gap-3">
-<label class="text-xs font-bold text-slate-700 shrink-0">CAMBIAR ADMIN:</label>
-<div class="flex-1 max-w-md flex items-center gap-2">
-<select class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="selectCambiarAdmin">
-<option value="">-- Sin Administración / Gestión Directa --</option>
-</select>
-<button class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shrink-0" onclick="ejecutarCambioAdmin()" type="button">
-                  Asignar
-                </button>
-</div>
-<button class="text-xs font-semibold text-blue-600 hover:text-blue-800" onclick="abrirModalNuevaAdmin()" type="button">
-                + Nueva Administración
-              </button>
-</div>
-</div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-col gap-2.5"><div class="flex flex-col sm:flex-row sm:items-center gap-2.5"><label class="text-xs font-bold text-slate-700 shrink-0">CAMBIAR ADMIN:</label><div class="flex-1 flex flex-col sm:flex-row items-center gap-2"><select class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="selectCambiarAdmin"><option value="">-- Sin Administración / Gestión Directa --</option></select><input class="w-full sm:w-1/2 px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="inputMotivoCambioAdmin" placeholder="Motivo del traspaso (opcional)..." type="text"/><button class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shrink-0 w-full sm:w-auto" onclick="ejecutarCambioAdmin()" type="button">Asignar</button></div><button class="text-xs font-semibold text-blue-600 hover:text-blue-800 shrink-0 self-end sm:self-center" onclick="abrirModalNuevaAdmin()" type="button">+ Nueva Administración</button></div></div>
+</div><div class="bg-white rounded-xl border border-slate-200 p-4 md:p-5 shadow-2xs space-y-3" id="bloqueHistorialReasignaciones"><div class="flex items-center justify-between pb-2 border-b border-slate-100"><div class="flex items-center gap-2"><span class="text-sm">🏛️</span><h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Historial de Reasignaciones de Administración</h4><span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600" id="badgeTotalReasignaciones">0 Registros</span></div><span class="text-[11px] text-slate-400 font-medium">Trazabilidad de Traspasos &amp; Mandatos</span></div><div class="space-y-2.5 max-h-56 overflow-y-auto custom-scroll pr-1" id="listaHistorialReasignaciones"><div class="py-4 text-center text-slate-400 text-xs">Sin historial de cambios registrado para este inmueble.</div></div></div>
 <!-- Datos de Ubicación y Contacto -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
 <div class="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
@@ -332,8 +319,8 @@
 <div class="grid grid-cols-3 gap-2">
 <div class="col-span-2">
 <label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">DIRECCIÓN (CALLE Y NÚMERO) *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCalle" onchange="geocodificarDireccion()" placeholder="Ej. Av. Santa Fe 3420" required="" type="text">
-</input></div>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCalle" onchange="geocodificarDireccion()" placeholder="Ej. Av. Santa Fe 3420" required="" type="text"/>
+</div>
 <div>
 <label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">PISO / DEPTO</label>
 <input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formPisoDepto" placeholder="Ej. PB / Consorcio" type="text"/>
