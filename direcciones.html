@@ -1,67 +1,40 @@
+web application/stitch/projects/14362496602845144687/screens/14325971519394945726
 <!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-    }
-  </style>
-</head>
-<body>
-<!-- STITCH_THREEJS_START:ANIMATION_134 class="fixed inset-0 w-full h-full bg-transparent" -->
-<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
-<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
-<div id="threejs-container-ANIMATION_134" style="width:100%;height:100%"></div>
-<script>
-(function() {
-  const container = document.getElementById('threejs-container-ANIMATION_134');
-  const devicePixelRatio = window.devicePixelRatio || 1;
-  <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Empresa Los Gallegos - Ficha Técnica de Direcciones</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Leaflet CSS & JS para Mapa de Inmuebles -->
-<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<!-- Supabase JS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-    const supabaseUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';
-    window.supabaseInstance = supabase.createClient(supabaseUrl, supabaseKey);
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <!-- 1. Librería Oficial Supabase JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. Inicialización directa de Supabase sin buscar archivos externos -->
+  <script>
+    const supabaseUrl = 'https://gquzbidfnyfjanfpygcf.supabase.co'; // Pega tu URL de Supabase acá
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxdXpiaWRmbnlmamFuZnB5Z2NmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2ODUzMjYsImV4cCI6MjEwNjI2MTMyNn0.U_Ihq8xWEYbc0qNIjgbP6qRJ4Plt-Vz0qkiM11tbVhw';       // Pega tu clave Anon pública acá
+    
+    // Esto crea la variable global 'supabase' que heredarán el resto de tus funciones
+     window.supabaseInstance = supabase.createClient(supabaseUrl, supabaseKey);
   </script>
+
 <style>
     body { font-family: 'Inter', sans-serif; }
-    .custom-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
-    .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    #mapaAltaInmueble { height: 180px; width: 100%; border-radius: 0.5rem; z-index: 10; }
   </style>
-
-<body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex flex-col md:flex-row pb-20 md:pb-0">
-<!-- SIDEBAR NAVEGACIÓN (Desktop) -->
-<aside class="hidden md:flex w-64 bg-white border-r border-slate-200 flex-col justify-between shrink-0 min-h-screen sticky top-0 h-screen z-30">
+</head>
+  
+<body class="bg-[#f7f9fb] text-slate-800 antialiased min-h-screen flex">
+<!-- SIDEBAR LATERAL NAVEGACIÓN -->
+<aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 min-h-screen">
 <div>
+<!-- Marca -->
 <div class="p-5 border-b border-slate-100 flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200 shrink-0">
-        LG
-      </div>
+<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center font-bold text-emerald-800 text-lg border border-emerald-200">
+          LG
+        </div>
 <div>
 <h1 class="text-xs font-bold text-slate-900 tracking-wider uppercase leading-tight">Empresa Los Gallegos</h1>
 <p class="text-[11px] text-slate-500 font-medium">CRM Operaciones</p>
@@ -70,960 +43,401 @@
 <div class="px-5 py-3 bg-slate-50 border-b border-slate-100">
 <div class="flex items-center gap-2 text-slate-600 font-semibold text-[11px] uppercase tracking-wider">
 <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-        Catálogo &amp; Registro
-      </div>
+          Catálogo &amp; Registro
+        </div>
 <p class="text-xs font-medium text-slate-700 mt-0.5">Ficha Técnica de Inmuebles</p>
 </div>
-<!-- Enlaces Menú -->
+<!-- Menú Enlaces -->
 <nav class="p-3 space-y-1">
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="index.html">
 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Gestión de Órdenes</span>
+<span>Gestión de Órdenes de Servicio</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="agenda.html">
 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Agenda &amp; Calendario</span>
+<span>Agenda de Servicios &amp; Calendario</span>
 </a>
-<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-xs" href="direcciones.html">
+<!-- ACTIVO -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-900 border-l-4 border-slate-900 shadow-sm" href="direcciones.html">
 <div class="flex items-center gap-3">
 <svg class="w-4 h-4 text-slate-800" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Ficha de Direcciones</span>
+<span>Ficha Técnica de Direcciones</span>
 </div>
 <span class="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">Activo</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="relevamientos.html">
 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span>Relevamientos &amp; Insp.</span>
+<span>Relevamientos e Inspecciones</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="facturacion.html">
 <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
 <span>Facturación &amp; OCR</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition" href="tecnicos.html">
-<span class="text-sm">👷</span>
-<span>Técnicos &amp; Personal</span>
-</a>
 </nav>
 </div>
-<!-- Perfil & Logout -->
-<div class="p-4 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between">
-<div class="flex items-center gap-2.5 min-w-0">
-<div class="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shrink-0">LG</div>
-<div class="truncate">
-<p class="text-xs font-bold text-slate-900 leading-tight truncate" id="sideUserName">Operaciones</p>
-<p class="text-[10px] text-slate-500 truncate">Los Gallegos CRM</p>
-</div>
-</div>
-<button class="text-slate-400 hover:text-rose-600 p-1.5 rounded-lg hover:bg-white transition" onclick="cerrarSesion()" title="Cerrar Sesión">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-</div>
+<div class="p-4 border-t border-slate-200 text-[11px] text-slate-500">
+<span class="font-bold text-slate-700">Trazabilidad Fiscal:</span> El CUIT se ata al inmueble físico.
+    </div>
 </aside>
 <!-- CONTENIDO PRINCIPAL -->
-<main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-<!-- Top Header -->
-<header class="h-16 bg-white border-b border-slate-200 px-4 md:px-8 flex items-center justify-between shrink-0 sticky top-0 z-20 shadow-2xs">
-<div class="flex-1 max-w-lg mr-3">
-<div class="relative">
-<input class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600 focus:bg-white transition" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o administración..." type="text"/>
-<svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<main class="flex-1 flex flex-col min-w-0">
+<!-- Header Superior -->
+<header class="h-16 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
+<div class="w-1/2">
+<input class="w-full max-w-md px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="inputBuscarInmueble" oninput="filtrarInmuebles()" placeholder="Buscar por calle, CUIT o administración..." type="text"/>
 </div>
-</div>
-<div class="flex items-center gap-2">
-<button class="hidden sm:flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition" onclick="abrirModalNuevaAdmin()" type="button">
-        + Nueva Administración
-      </button>
-<button class="flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-xs transition" onclick="abrirModalAlta()" type="button">
+<div class="flex items-center gap-3">
+<!-- Indicador de conexión -->
+<span class="text-[11px] px-2.5 py-1 rounded-full font-medium bg-amber-50 text-amber-700 border border-amber-200" id="badgeConexion">
+          ● Conectando a Supabase...
+        </span>
+<!-- Botón Alta Principal -->
+<button class="flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-sm transition" onclick="abrirModalAlta()" type="button">
 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span class="hidden sm:inline">+ Dar de Alta Inmueble</span>
-<span class="sm:hidden">+ Inmueble</span>
-</button>
+          + Dar de Alta Inmueble
+        </button>
 </div>
 </header>
 <!-- Cuerpo de Ficha -->
-<div class="p-4 md:p-8 max-w-7xl mx-auto w-full space-y-5">
+<div class="p-8 max-w-7xl mx-auto w-full space-y-6 flex-1">
 <div>
 <div class="flex items-center gap-2 mb-1">
-<span class="text-[10px] font-bold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-100">Módulo Catálogo de Propiedades</span>
+<span class="text-[11px] font-bold tracking-wide uppercase px-2 py-0.5 rounded bg-blue-100 text-blue-800">Módulo Catálogo de Propiedades</span>
 <span class="text-[11px] text-slate-400">• Trazabilidad de Servicios y Facturación</span>
 </div>
-<h2 class="text-xl md:text-2xl font-bold text-slate-900 tracking-tight">Ficha Integral de Dirección &amp; Inmuebles</h2>
-<p class="text-xs text-slate-500 mt-0.5">Gestión unificada de domicilios, consorcios, vinculación a administraciones y órdenes vinculadas.</p>
+<h2 class="text-2xl font-bold text-slate-900 tracking-tight">Ficha Integral de Dirección &amp; Inmuebles</h2>
+<p class="text-xs text-slate-500 mt-1">Consulta el historial completo de trabajos, números de factura, estado de cobro y administración asignada a cada inmueble.</p>
 </div>
-<!-- Métricas -->
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-between">
-<div>
-<p class="text-[11px] text-slate-500 font-medium">TOTAL DIRECCIONES</p>
-<p class="text-2xl font-extrabold text-slate-900 mt-0.5" id="metricaInmuebles">0</p>
-<p class="text-[10px] text-slate-400">en Supabase</p>
+<!-- Tarjetas métricas en CERO -->
+<div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Direcciones Registradas</p>
+<p class="text-2xl font-bold text-slate-900 mt-1" id="totalInmuebles">0 <span class="text-xs font-normal text-slate-400">inmuebles</span></p>
 </div>
-<span class="text-2xl p-2 bg-blue-50 rounded-lg">🏢</span>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Administraciones Asignadas</p>
+<p class="text-2xl font-bold text-slate-900 mt-1" id="totalAdmins">0 <span class="text-xs font-normal text-slate-400">consorcios</span></p>
 </div>
-<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-between">
-<div>
-<p class="text-[11px] text-slate-500 font-medium">ADMINISTRACIONES</p>
-<p class="text-2xl font-extrabold text-slate-900 mt-0.5" id="metricaAdmins">0</p>
-<p class="text-[10px] text-slate-400">empresas gestoras</p>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Servicios Facturados</p>
+<p class="text-2xl font-bold text-slate-900 mt-1">$0 <span class="text-xs font-normal text-slate-400">cobrado</span></p>
 </div>
-<span class="text-2xl p-2 bg-emerald-50 rounded-lg">📋</span>
-</div>
-<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-between">
-<div>
-<p class="text-[11px] text-slate-500 font-medium">ÓRDENES ACTIVAS</p>
-<p class="text-2xl font-extrabold text-slate-900 mt-0.5" id="metricaOrdenesActivas">0</p>
-<p class="text-[10px] text-slate-400">en curso o pendientes</p>
-</div>
-<span class="text-2xl p-2 bg-amber-50 rounded-lg">⚡</span>
-</div>
-<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs flex items-center justify-between">
-<div>
-<p class="text-[11px] text-slate-500 font-medium">SINCRONIZACIÓN</p>
-<p class="text-2xl font-extrabold text-emerald-600 mt-0.5">100%</p>
-<p class="text-[10px] text-slate-400">Postgres en Vivo</p>
-</div>
-<span class="text-2xl p-2 bg-purple-50 rounded-lg">☁️</span>
+<div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+<p class="text-xs text-slate-500 font-medium">Facturas Pendientes</p>
+<p class="text-2xl font-bold text-slate-900 mt-1">$0 <span class="text-xs font-normal text-slate-400">saldo</span></p>
 </div>
 </div>
-<!-- DIRECTORIO SUPERIOR DE INMUEBLES -->
-<section class="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs">
-<div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
-<div class="flex items-center gap-2">
-<span class="text-base">🏢</span>
+<!-- Directorio + Detalle -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[480px]">
+<!-- COLUMNA IZQUIERDA: DIRECTORIO -->
+<div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm p-4 flex flex-col">
+<div class="flex items-center justify-between pb-3 border-b border-slate-100">
 <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wider">Directorio de Inmuebles</h3>
-<span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600" id="badgeTotalInmuebles">0 Inmuebles</span>
+<span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600" id="contadorInmuebles">0 Total</span>
 </div>
-<span class="text-[11px] text-slate-400 hidden sm:inline">💡 Clic en cualquier tarjeta para ver mandato y órdenes completas</span>
+<div class="divide-y divide-slate-100 mt-3 flex-1 overflow-y-auto" id="listaInmuebles">
+<!-- Empty state inicial cuando la base está en cero -->
+<div class="py-16 text-center" id="emptyStateLista">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-72 overflow-y-auto custom-scroll pr-1" id="gridDirectorioInmuebles">
-<div class="col-span-full py-12 text-center text-slate-400 text-xs">Cargando directorio desde Supabase...</div>
+<p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+<p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
+<button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm" onclick="abrirModalAlta()" type="button">
+                + Cargar Inmueble
+              </button>
 </div>
-</section>
-<!-- FICHA DETALLE DEL INMUEBLE SELECCIONADO (Inferior) -->
-<section class="bg-white rounded-xl border border-slate-200 shadow-2xs p-5 md:p-6" id="seccionDetalleInmueble">
-<div class="py-16 text-center" id="detalleVacio">
-<div class="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-3 text-2xl">📍</div>
+</div>
+</div>
+<!-- COLUMNA DERECHA: FICHA DETALLE -->
+<div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm p-6 flex flex-col justify-center items-center text-center">
+<div id="panelDetalleVacio">
+<div class="w-14 h-14 rounded-2xl bg-blue-50/60 border border-blue-100 flex items-center justify-center mx-auto mb-3 text-blue-600">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</div>
 <h4 class="text-sm font-bold text-slate-800">Ningún Inmueble Seleccionado</h4>
-<p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-4">Selecciona una dirección del directorio superior o registra una nueva para ver su ficha completa.</p>
-<button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 shadow-xs transition" onclick="abrirModalAlta()" type="button">
-          + Dar de Alta Primer Inmueble
-        </button>
-</div>
-<div class="hidden space-y-6" id="detalleContenido">
-<!-- Cabecera Inmueble -->
-<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 pb-5 border-b border-slate-100">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">INMUEBLE ACTIVO</span>
-<span class="text-xs font-mono font-semibold text-slate-500" id="detCuitHeader">CUIT: -</span>
-</div>
-<h3 class="text-xl md:text-2xl font-bold text-slate-900" id="detCalle">Av. Santa Fe 3240</h3>
-<p class="text-xs text-slate-500 mt-0.5" id="detRazonSocial">Consorcio Propietarios</p>
-</div>
-<div class="flex items-center gap-2 shrink-0">
-<button class="flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition" onclick="abrirModalEditarActivo()" type="button">
-              ✏️ Editar Inmueble
-            </button>
-<button class="flex items-center gap-1.5 px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition" onclick="abrirModalCitaRelevamiento()" type="button">
-              📅 Crear Cita de Relevamiento
+<p class="text-xs text-slate-400 max-w-sm mx-auto mt-1 mb-5">Selecciona una dirección de la lista o registra un nuevo consorcio para ver el detalle técnico e historial fiscal.</p>
+<button class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm" onclick="abrirModalAlta()" type="button">
+              + Dar de Alta Primer Inmueble
             </button>
 </div>
-</div>
-<!-- Mandato de Administración -->
-<div class="p-4 md:p-5 rounded-xl bg-slate-50 border border-slate-200">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-<div>
-<span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded">MANDATO DE GESTIÓN ACTIVO</span>
-<h4 class="text-base font-bold text-slate-900 mt-1" id="detAdminNombre">Administración Mar del Plata SRL</h4>
-<p class="text-xs text-slate-500" id="detAdminDetalles">CUIT Mandataria: 30-71194218-4 • Contacto: Lic. Horacio Peña</p>
-</div>
-<div>
-<button class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-lg text-xs font-semibold transition" onclick="darDeBajaAdminActual()" type="button">
-                Dar de Baja Admin
-              </button>
-</div>
-</div>
-<!-- Cambiar Admin -->
-<div class="mt-4 pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center gap-3">
-<label class="text-xs font-bold text-slate-700 shrink-0">CAMBIAR ADMIN:</label>
-<div class="flex-1 max-w-md flex items-center gap-2">
-<select class="w-full px-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs focus:ring-1 focus:ring-blue-500" id="selectCambiarAdmin">
-<option value="">-- Sin Administración / Gestión Directa --</option>
-</select>
-<button class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shrink-0" onclick="ejecutarCambioAdmin()" type="button">
-                Asignar
-              </button>
-</div>
-<button class="text-xs font-semibold text-blue-600 hover:text-blue-800" onclick="abrirModalNuevaAdmin()" type="button">
-              + Nueva Administración
-            </button>
-</div>
-</div>
-<!-- Datos de Ubicación y Contacto -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-<div class="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">UBICACIÓN &amp; LOCALIDAD</p>
-<p class="text-sm font-bold text-slate-900" id="detBarrioLocalidad">Palermo, CABA</p>
-<p class="text-slate-500" id="detCodigoPostal">Código Postal: C1425</p>
-</div>
-<div class="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">CONTACTO EN SITIO / PORTERÍA</p>
-<div class="flex items-center justify-between">
-<div>
-<p class="text-sm font-bold text-slate-900" id="detPorteroNombre">Ramón Benítez (Portero)</p>
-<p class="text-slate-500" id="detPorteroTel">Tel: 11 5566-7788</p>
-</div>
-<a class="px-3 py-1.5 bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold rounded-lg transition" href="tel:" id="btnLlamarPortero">
-                📞 Llamar
-              </a>
-</div>
-</div>
-<div class="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
-<p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">HORARIOS HABILITADOS DE ACCESO</p>
-<p class="font-semibold text-slate-800" id="detHorariosAcceso">Lunes a Viernes 08:00 a 13:00 / 16:00 a 20:00 hs</p>
-</div>
-<div class="p-4 bg-amber-50/60 rounded-xl border border-amber-200 space-y-1">
-<p class="text-[10px] font-bold text-amber-800 uppercase tracking-wider">🔑 PROTOCOLO DE LLAVES &amp; SALAS TÉCNICAS</p>
-<p class="text-amber-900" id="detNotasLlaves">Solicitar llaves de azotea y sala de máquinas en portería con el encargado de turno.</p>
-</div>
-</div>
-<!-- SECCIÓN: ÓRDENES DE TRABAJO & CITAS VINCULADAS -->
-<div class="pt-4 border-t border-slate-200">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-<div class="flex items-center gap-2">
-<span class="text-base">📋</span>
-<h4 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Órdenes de Trabajo &amp; Citas</h4>
-<span class="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800" id="badgeContadorOrdenes">0 OTs</span>
-</div>
-<div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg text-xs">
-<button class="px-2.5 py-1 rounded font-bold bg-white text-slate-900 shadow-2xs" id="btnFiltroTodas" onclick="filtrarOrdenesEstado('TODAS')" type="button">Todas</button>
-<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900" id="btnFiltroPendientes" onclick="filtrarOrdenesEstado('Pendiente')" type="button">Pendientes</button>
-<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900" id="btnFiltroEnCurso" onclick="filtrarOrdenesEstado('En Curso')" type="button">En Curso</button>
-<button class="px-2.5 py-1 rounded text-slate-600 hover:text-slate-900" id="btnFiltroRealizadas" onclick="filtrarOrdenesEstado('Ejecutada con Éxito')" type="button">Realizadas</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="contenedorListaOrdenes">
-<!-- Carga dinámica -->
+<div class="hidden w-full text-left" id="panelDetalleContenido">
+<!-- Rellenado dinámico al hacer clic en una dirección -->
 </div>
 </div>
 </div>
-</section>
 </div>
 </main>
-<!-- BOTTOM TAB NAVIGATION (Mobile) -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-3 py-2 flex items-center justify-around z-40 shadow-lg">
-<a class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900" href="index.html">
-<span class="text-lg">📋</span>
-<span class="text-[10px] font-medium">Órdenes</span>
-</a>
-<a class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900" href="agenda.html">
-<span class="text-lg">📅</span>
-<span class="text-[10px] font-medium">Agenda</span>
-</a>
-<a class="flex flex-col items-center gap-0.5 text-blue-600 font-bold" href="direcciones.html">
-<span class="text-lg">📍</span>
-<span class="text-[10px]">Direcciones</span>
-</a>
-<a class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900" href="relevamientos.html">
-<span class="text-lg">📝</span>
-<span class="text-[10px] font-medium">Relevamientos</span>
-</a>
-<a class="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900" href="tecnicos.html">
-<span class="text-lg">👷</span>
-<span class="text-[10px] font-medium">Técnicos</span>
-</a>
-</nav>
-<!-- MODAL 1: ALTA INMUEBLE CON MAPA LEAFLET -->
-<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 md:p-4 overflow-y-auto" id="modalAltaInmueble">
-<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-xl w-full my-auto overflow-hidden">
-<div class="p-4 md:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+<!-- MODAL FLOTANTE DE ALTA DE INMUEBLE -->
+<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" id="modalAltaInmueble">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+<div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
 <div>
 <h3 class="text-sm font-bold text-slate-900">Dar de Alta Nuevo Inmueble / Consorcio</h3>
-<p class="text-[11px] text-slate-500">Se guardará en Supabase con CUIT y geolocalización.</p>
 </div>
 <button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalAlta()" type="button">✕</button>
 </div>
-<form class="p-4 md:p-6 space-y-4 text-xs" id="formAltaInmueble" onsubmit="guardarInmueble(event)">
-<div class="space-y-3">
-<div>
-<div class="flex items-center justify-between mb-1">
-<label class="font-bold text-slate-700 uppercase tracking-wider text-[11px]">ADMINISTRACIÓN MANDATARIA</label>
-<button class="text-blue-600 font-bold hover:underline text-[11px]" onclick="abrirModalNuevaAdmin()" type="button">+ Nueva Administración</button>
+<form class="p-6 space-y-4 text-xs" id="formAltaInmueble" onsubmit="guardarInmueble(event)">
+<div class="grid grid-cols-2 gap-4">
+  <div class="col-span-2"> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Dirección (Calle y Número) *</label> 
+    <input type="text" id="formCalle" name="formCalle" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" placeholder="Ej. Av. Rivadavia 1420" /> 
+  </div>
+  
+  <div> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Piso / Depto</label> 
+    <input type="text" id="formPisoDepto" name="formPisoDepto" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" /> 
+  </div>
+  
+  <div> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Barrio / Localidad</label> 
+    <input type="text" id="formLocalidad" name="formLocalidad" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" placeholder="Palermo, CABA" /> 
+  </div>
+
+  <div class="col-span-2"> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">CUIT de Facturación *</label> 
+    <input type="text" id="formCuit" name="formCuit" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" placeholder="30-XXXXXXXX-X" /> 
+  </div>
+  
+  <div class="col-span-2"> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Razón Social Fiscal *</label> 
+    <input type="text" id="formRazonSocial" name="formRazonSocial" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" /> 
+  </div>
+
+  <div class="col-span-2"> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Administración Gestora</label> 
+    <input type="text" id="formAdministracion" name="formAdministracion" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" /> 
+  </div>
+  
+  <div> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Contacto Portería / Encargado</label> 
+    <input type="text" id="formContactoNombre" name="formContactoNombre" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" /> 
+  </div>
+  
+  <div> 
+    <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1">Teléfono Encargado</label> 
+    <input type="text" id="formContactoTel" name="formContactoTel" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" /> 
+  </div>
 </div>
-<select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-1 focus:ring-blue-600" id="formAdminId">
-<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>
-</select>
-</div>
-<div class="grid grid-cols-3 gap-2">
-<div class="col-span-2">
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">DIRECCIÓN (CALLE Y NÚMERO) *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:outline-none focus:border-blue-600" id="formCalle" onchange="geocodificarDireccion()" placeholder="Ej. Av. Santa Fe 3420" required="" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">PISO / DEPTO</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formPisoDepto" placeholder="Ej. PB / Consorcio" type="text"/>
-</div>
-</div>
-<!-- Mapa Leaflet -->
-<div>
-<div class="flex items-center justify-between text-[11px] text-slate-500 mb-1">
-<span class="font-bold uppercase tracking-wider">🗺️ Ubicación Satelital CABA</span>
-<span class="font-mono text-[10px] text-slate-400" id="labelCoordenadas">-34.587, -58.411</span>
-</div>
-<div id="mapaAltaInmueble"></div>
-</div>
-<div class="grid grid-cols-2 gap-2">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">BARRIO / LOCALIDAD *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formLocalidad" placeholder="Palermo, CABA" required="" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">CÓDIGO POSTAL</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formCodigoPostal" placeholder="C1425" type="text"/>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-2">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">CUIT DE FACTURACIÓN *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono" id="formCuit" placeholder="30-71194218-4" required="" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">RAZÓN SOCIAL FISCAL *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formRazonSocial" placeholder="Consorcio Edificio Santa Fe 3420" required="" type="text"/>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-2">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">CONTACTO PORTERÍA</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formContactoNombre" placeholder="Ramón Benítez" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">TELÉFONO ENCARGADO</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="formContactoTel" placeholder="11 5566-7788" type="text"/>
-</div>
-</div>
-</div>
-<div class="hidden p-3 rounded-lg text-xs" id="alertaAltaInmueble"></div>
+
+<div class="hidden p-3 rounded-lg text-xs" id="mensajeAlerta"></div>
 <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
 <button class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition" onclick="cerrarModalAlta()" type="button">Cancelar</button>
-<button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-xs transition" id="btnGuardarInmueble" type="submit">Guardar Inmueble</button>
+<button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm transition" id="btnGuardarInmueble" type="submit">
+            Guardar Inmueble
+          </button>
 </div>
 </form>
 </div>
 </div>
-<!-- MODAL 2: ALTA RÁPIDA DE ADMINISTRACIÓN -->
-<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="modalNuevaAdmin">
-<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-md w-full overflow-hidden">
-<div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-<h3 class="text-sm font-bold text-slate-900">🏢 Registrar Nueva Administración</h3>
-<button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalNuevaAdmin()" type="button">✕</button>
-</div>
-<form class="p-5 space-y-3 text-xs" id="formNuevaAdmin" onsubmit="guardarNuevaAdmin(event)">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">NOMBRE / RAZÓN SOCIAL *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="adminNombre" placeholder="Ej. Administración Belgrano Propiedades" required="" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">CUIT MANDATARIA</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono" id="adminCuit" placeholder="30-87654321-4" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-2">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">TELÉFONO</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="adminTel" placeholder="011 4788-9900" type="text"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">EMAIL</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="adminEmail" placeholder="contacto@admin.com" type="email"/>
-</div>
-</div>
-<div class="hidden p-3 rounded-lg text-xs" id="alertaNuevaAdmin"></div>
-<div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-<button class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition" onclick="cerrarModalNuevaAdmin()" type="button">Cancelar</button>
-<button class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold shadow-xs transition" id="btnGuardarAdmin" type="submit">Guardar Mandataria</button>
-</div>
-</form>
-</div>
-</div>
-<!-- MODAL 3: CREAR CITA DE RELEVAMIENTO / AGENDAR OT -->
-<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" id="modalCitaRelevamiento">
-<div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden">
-<div class="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-<div>
-<h3 class="text-sm font-bold text-slate-900">📅 Agendar Cita / Orden de Trabajo</h3>
-<p class="text-[11px] text-slate-500" id="citaSubtituloInmueble">Para el domicilio seleccionado</p>
-</div>
-<button class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1" onclick="cerrarModalCitaRelevamiento()" type="button">✕</button>
-</div>
-<form class="p-5 space-y-3 text-xs" id="formCitaRelevamiento" onsubmit="guardarCitaRelevamiento(event)">
-<div class="grid grid-cols-2 gap-3">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">GREMIO / SERVICIO *</label>
-<select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaGremio" required="">
-<option value="Tanques &amp; Cisternas">Tanques &amp; Cisternas</option>
-<option value="Control de Plagas">Control de Plagas</option>
-<option value="Gasistas Matriculados">Gasistas Matriculados</option>
-<option value="Plomería Integral">Plomería Integral</option>
-<option value="Electricidad">Electricidad</option>
-<option value="Albañilería">Albañilería</option>
-</select>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">TIPO OPERACIÓN</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaTipoOperacion" type="text" value="Inspección y Relevamiento Semestral"/>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">FECHA PROGRAMADA *</label>
-<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaFecha" required="" type="date"/>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">FRANJA HORARIA *</label>
-<select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaFranja" required="">
-<option value="08:30 a 11:30 hs">Mañana 1: 08:30 a 11:30 hs</option>
-<option value="11:30 a 14:30 hs">Mañana 2: 11:30 a 14:30 hs</option>
-<option value="14:30 a 17:30 hs">Tarde: 14:30 a 17:30 hs</option>
-</select>
-</div>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">TÉCNICO / INSPECTOR ASIGNADO *</label>
-<select class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaTecnicoId" required="">
-<option value="">Cargando técnicos desde Supabase...</option>
-</select>
-</div>
-<div>
-<label class="block font-bold text-slate-700 uppercase tracking-wider text-[11px] mb-1">DESCRIPCIÓN DE LA TAREA</label>
-<textarea class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs" id="citaDescripcion" placeholder="Detalle técnico de inspección..." rows="2"></textarea>
-</div>
-<div class="hidden p-3 rounded-lg text-xs" id="alertaCita"></div>
-<div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
-<button class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold transition" onclick="cerrarModalCitaRelevamiento()" type="button">Cancelar</button>
-<button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-xs transition" id="btnGuardarCita" type="submit">Confirmar y Agendar</button>
-</div>
-</form>
-</div>
-</div>
-<!-- SCRIPT SUPABASE & CONTROL -->
+<!-- SCRIPT DE INTERACCIÓN Y CONEXIÓN ROBUSTA -->
 <script>
   let db = null;
-  let listaInmuebles = [];
-  let listaAdministraciones = [];
-  let listaTecnicos = [];
-  let listaOrdenesInmueble = [];
-  let inmuebleActivo = null;
-  let filtroEstadoActual = 'TODAS';
-  let mapaLeaflet = null;
-  let marcadorMapa = null;
+  let inmueblesCargados = [];
 
-  window.addEventListener('DOMContentLoaded', async () => {
-    if (typeof window.supabaseInstance !== 'undefined') {
-      db = window.supabaseInstance;
-    }
-    await inicializarDatos();
+  // Verificación y arranque al cargar la página
+  window.addEventListener('DOMContentLoaded', () => {
+    inicializarClienteSupabase();
   });
 
-  async function inicializarDatos() {
-    if (!db) return;
-    await Promise.all([
-      cargarAdministraciones(),
-      cargarTecnicos(),
-      cargarInmuebles()
-    ]);
-  }
-
-  async function cargarAdministraciones() {
-    try {
-      const { data, error } = await db.from('administraciones').select('*').order('nombre_fantasia');
-      if (error) throw error;
-      listaAdministraciones = data || [];
-      document.getElementById('metricaAdmins').textContent = listaAdministraciones.length;
-
-      const selForm = document.getElementById('formAdminId');
-      const selCambio = document.getElementById('selectCambiarAdmin');
-      let opts = `<option value="">-- Ninguna (Gestión Directa / Sin Administración) --</option>`;
-      listaAdministraciones.forEach(a => {
-        opts += `<option value="${a.id}">${a.nombre_fantasia} (${a.cuit_administracion || 'Sin CUIT'})</option>`;
-      });
-      if (selForm) selForm.innerHTML = opts;
-      if (selCambio) selCambio.innerHTML = opts;
-    } catch (e) {
-      console.error("Error al cargar administraciones:", e);
-    }
-  }
-
-  async function cargarTecnicos() {
-    try {
-      const { data, error } = await db.from('perfiles_usuarios').select('*').eq('activo', true).order('nombre_completo');
-      if (error) throw error;
-      listaTecnicos = data || [];
-      const selTec = document.getElementById('citaTecnicoId');
-      if (selTec) {
-        selTec.innerHTML = listaTecnicos.map(t => 
-          `<option value="${t.id}">${t.nombre_completo || t.email} (${t.especialidad_gremio || t.rol})</option>`
-        ).join('');
-      }
-    } catch (e) {
-      console.error("Error al cargar tecnicos:", e);
-    }
-  }
-
-  async function cargarInmuebles() {
-    try {
-      const { data, error } = await db.from('inmuebles_direcciones').select('*').order('created_at', { ascending: false });
-      if (error) throw error;
-      listaInmuebles = data || [];
-
-      document.getElementById('metricaInmuebles').textContent = listaInmuebles.length;
-      document.getElementById('badgeTotalInmuebles').textContent = `${listaInmuebles.length} Inmuebles`;
-
-      renderizarDirectorio(listaInmuebles);
-
-      if (listaInmuebles.length > 0) {
-        if (!inmuebleActivo) {
-          seleccionarInmueble(listaInmuebles[0]);
-        } else {
-          const encontrado = listaInmuebles.find(i => i.id === inmuebleActivo.id);
-          seleccionarInmueble(encontrado || listaInmuebles[0]);
-        }
-      } else {
-        inmuebleActivo = null;
-        document.getElementById('detalleVacio').classList.remove('hidden');
-        document.getElementById('detalleContenido').classList.add('hidden');
-      }
-    } catch (e) {
-      console.error("Error al cargar inmuebles:", e);
-    }
-  }
-
-  function renderizarDirectorio(items) {
-    const grid = document.getElementById('gridDirectorioInmuebles');
-    if (!grid) return;
-
-    if (!items || items.length === 0) {
-      grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-400 text-xs">No hay inmuebles cargados aún en la base de datos.</div>`;
-      return;
+  function inicializarClienteSupabase() {
+    const badge = document.getElementById('badgeConexion');
+    
+    // Leemos la instancia corregida
+    if (typeof window.supabaseInstance !== 'undefined' && window.supabaseInstance) {
+      db = window.supabaseInstance;
     }
 
-    grid.innerHTML = items.map(inm => {
-      const esActivo = inmuebleActivo && inmuebleActivo.id === inm.id;
-      const adminObj = listaAdministraciones.find(a => a.id === inm.administracion_id);
-      const adminNombre = adminObj ? adminObj.nombre_fantasia : 'Gestión Directa';
-
-      return `
-        <div onclick="seleccionarInmueblePorId('${inm.id}')" 
-          class="p-3.5 rounded-xl border cursor-pointer transition flex flex-col justify-between gap-2 ${
-            esActivo 
-              ? 'bg-blue-50/50 border-blue-500 shadow-xs ring-1 ring-blue-500' 
-              : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/50'
-          }">
-          <div class="flex items-start justify-between gap-1">
-            <div>
-              <span class="text-[10px] font-mono font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">
-                CUIT ${inm.cuit_facturacion || 'S/N'}
-              </span>
-              <h4 class="text-xs font-bold text-slate-900 mt-1 line-clamp-1">${inm.direccion_calle} ${inm.piso_depto || ''}</h4>
-              <p class="text-[11px] text-slate-500 line-clamp-1">${inm.barrio_localidad || 'CABA'}</p>
-            </div>
-            ${esActivo ? '<span class="w-2 h-2 rounded-full bg-blue-600 shrink-0"></span>' : ''}
-          </div>
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px]">
-            <span class="text-slate-500 truncate max-w-[150px]">🏢 ${adminNombre}</span>
-            <span class="text-blue-600 font-bold">Ver ➔</span>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function seleccionarInmueblePorId(id) {
-    const inm = listaInmuebles.find(i => i.id === id);
-    if (inm) seleccionarInmueble(inm);
-  }
-
-  async function seleccionarInmueble(inm) {
-    inmuebleActivo = inm;
-    document.getElementById('detalleVacio').classList.add('hidden');
-    const det = document.getElementById('detalleContenido');
-    det.classList.remove('hidden');
-
-    document.getElementById('detCuitHeader').textContent = `CUIT: ${inm.cuit_facturacion || '-'}`;
-    document.getElementById('detCalle').textContent = `${inm.direccion_calle} ${inm.piso_depto || ''}`;
-    document.getElementById('detRazonSocial').textContent = inm.razon_social_fiscal || 'Sin Razón Social';
-    document.getElementById('detBarrioLocalidad').textContent = inm.barrio_localidad || 'CABA';
-    document.getElementById('detCodigoPostal').textContent = `Código Postal: ${inm.codigo_postal || 'S/E'}`;
-    document.getElementById('detPorteroNombre').textContent = inm.contacto_porteria_nombre || 'No registrado';
-    document.getElementById('detPorteroTel').textContent = `Tel: ${inm.contacto_porteria_tel || 'No informado'}`;
-
-    const btnTel = document.getElementById('btnLlamarPortero');
-    if (inm.contacto_porteria_tel) {
-      btnTel.href = `tel:${inm.contacto_porteria_tel}`;
-      btnTel.classList.remove('hidden');
+    if (db) {
+      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+      badge.textContent = "● Conectado a Supabase";
+      cargarInmuebles();
     } else {
-      btnTel.classList.add('hidden');
-    }
-
-    document.getElementById('detHorariosAcceso').textContent = inm.horarios_acceso || 'Lunes a Viernes 08:00 a 13:00 hs';
-    document.getElementById('detNotasLlaves').textContent = inm.notas_seguridad_llaves || 'Solicitar llaves en portería.';
-
-    const adminObj = listaAdministraciones.find(a => a.id === inm.administracion_id);
-    if (adminObj) {
-      document.getElementById('detAdminNombre').textContent = adminObj.nombre_fantasia;
-      document.getElementById('detAdminDetalles').textContent = `CUIT: ${adminObj.cuit_administracion || 'S/N'} • Tel: ${adminObj.telefono_contacto || 'S/N'}`;
-    } else {
-      document.getElementById('detAdminNombre').textContent = 'Gestión Autónoma / Directa';
-      document.getElementById('detAdminDetalles').textContent = 'El inmueble no pertenece a ninguna administración.';
-    }
-
-    const selCambio = document.getElementById('selectCambiarAdmin');
-    if (selCambio) selCambio.value = inm.administracion_id || '';
-
-    renderizarDirectorio(listaInmuebles);
-    await cargarOrdenesInmueble(inm.id);
-  }
-
-  async function cargarOrdenesInmueble(inmuebleId) {
-    if (!db || !inmuebleId) return;
-    const contenedor = document.getElementById('contenedorListaOrdenes');
-    const badge = document.getElementById('badgeContadorOrdenes');
-    if (contenedor) {
-      contenedor.innerHTML = `<div class="col-span-full py-8 text-center text-slate-400 text-xs">Consultando órdenes en Supabase...</div>`;
-    }
-
-    try {
-      const { data: ordenes, error } = await db
-        .from('ordenes_servicio')
-        .select('*')
-        .eq('inmueble_id', inmuebleId)
-        .order('fecha_programada', { ascending: false });
-
-      if (error) throw error;
-      listaOrdenesInmueble = ordenes || [];
-      if (badge) badge.textContent = `${listaOrdenesInmueble.length} OTs`;
-
-      renderizarTarjetasOrdenes(listaOrdenesInmueble);
-    } catch (err) {
-      console.error("Error al cargar ordenes:", err);
+      badge.className = "text-[11px] px-2.5 py-1 rounded-full font-medium bg-rose-50 text-rose-700 border border-rose-200";
+      badge.textContent = "⚠️ Error de instancia Supabase";
     }
   }
 
-  function renderizarTarjetasOrdenes(ordenes) {
-    const contenedor = document.getElementById('contenedorListaOrdenes');
-    if (!contenedor) return;
 
-    const filtradas = filtroEstadoActual === 'TODAS'
-      ? ordenes
-      : ordenes.filter(o => (o.estado_tecnico || 'Pendiente').toLowerCase() === filtroEstadoActual.toLowerCase());
-
-    if (!filtradas || filtradas.length === 0) {
-      contenedor.innerHTML = `
-        <div class="col-span-full py-10 text-center bg-slate-50 rounded-xl border border-dashed border-slate-200">
-          <p class="text-xs font-bold text-slate-700">Sin órdenes ni citas registradas</p>
-          <p class="text-[11px] text-slate-400 mt-0.5">No hay órdenes para este inmueble con el filtro actual.</p>
-          <button type="button" onclick="abrirModalCitaRelevamiento()" class="mt-3 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-semibold shadow-xs transition">
-            + Agendar Primera Cita / OT
-          </button>
-        </div>
-      `;
-      return;
-    }
-
-    contenedor.innerHTML = filtradas.map(ot => {
-      const tecObj = listaTecnicos.find(t => t.id === ot.tecnico_asignado_id);
-      const nombreTec = tecObj ? (tecObj.nombre_completo || tecObj.email) : 'Técnico de campo';
-
-      let colorBadge = "bg-amber-50 text-amber-700 border-amber-200";
-      if (ot.estado_tecnico === 'Ejecutada con Éxito' || ot.estado_tecnico === 'Realizada') {
-        colorBadge = "bg-emerald-50 text-emerald-700 border-emerald-200";
-      } else if (ot.estado_tecnico === 'En Curso') {
-        colorBadge = "bg-blue-50 text-blue-700 border-blue-200";
-      }
-
-      return `
-        <div class="p-4 rounded-xl bg-white border border-slate-200 hover:border-slate-300 shadow-2xs transition flex flex-col justify-between gap-3">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1.5">
-              <span class="font-mono font-bold text-xs text-blue-900 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
-                ${ot.numero_ot || '#OT-' + ot.id.slice(0,6)}
-              </span>
-              <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${colorBadge}">
-                ● ${ot.estado_tecnico || 'Pendiente'}
-              </span>
-            </div>
-            <p class="text-xs font-bold text-slate-800 line-clamp-1">${ot.gremio_servicio || 'Servicio Técnico'}</p>
-            <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5">${ot.descripcion_tarea || ot.tipo_operacion || 'Sin observaciones'}</p>
-          </div>
-          <div class="pt-2.5 border-t border-slate-100 space-y-1 text-[11px]">
-            <div class="flex items-center justify-between text-slate-600">
-              <span class="text-slate-400">📅 Fecha:</span>
-              <span class="font-semibold text-slate-800">${ot.fecha_programada || 'A coordinar'}</span>
-            </div>
-            <div class="flex items-center justify-between text-slate-600">
-              <span class="text-slate-400">⏰ Franja:</span>
-              <span class="font-medium text-slate-700">${ot.franja_horaria || 'A convenir'}</span>
-            </div>
-            <div class="flex items-center justify-between text-slate-600">
-              <span class="text-slate-400">👷 Técnico:</span>
-              <span class="font-semibold text-slate-900 truncate max-w-[130px]">${nombreTec}</span>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function filtrarOrdenesEstado(estado) {
-    filtroEstadoActual = estado;
-    ['Todas', 'Pendientes', 'EnCurso', 'Realizadas'].forEach(tab => {
-      const btn = document.getElementById('btnFiltro' + tab);
-      if (!btn) return;
-      const match = (tab === 'Todas' && estado === 'TODAS') || (tab.toLowerCase().includes(estado.toLowerCase().slice(0,4)));
-      if (match) {
-        btn.className = "px-2.5 py-1 rounded font-bold bg-white text-slate-900 shadow-2xs";
-      } else {
-        btn.className = "px-2.5 py-1 rounded text-slate-600 hover:text-slate-900";
-      }
-    });
-    renderizarTarjetasOrdenes(listaOrdenesInmueble);
-  }
-
-  function filtrarInmuebles() {
-    const q = document.getElementById('inputBuscarInmueble').value.toLowerCase().trim();
-    if (!q) {
-      renderizarDirectorio(listaInmuebles);
-      return;
-    }
-    const filtrados = listaInmuebles.filter(i => 
-      (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
-      (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
-      (i.razon_social_fiscal && i.razon_social_fiscal.toLowerCase().includes(q)) ||
-      (i.barrio_localidad && i.barrio_localidad.toLowerCase().includes(q))
-    );
-    renderizarDirectorio(filtrados);
-  }
-
+  // Funciones del Modal
   function abrirModalAlta() {
     const modal = document.getElementById('modalAltaInmueble');
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-
-    setTimeout(() => {
-      if (!mapaLeaflet) {
-        mapaLeaflet = L.map('mapaAltaInmueble').setView([-34.587, -58.411], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(mapaLeaflet);
-        marcadorMapa = L.marker([-34.587, -58.411], { draggable: true }).addTo(mapaLeaflet);
-        marcadorMapa.on('dragend', function (e) {
-          const coord = e.target.getLatLng();
-          document.getElementById('labelCoordenadas').textContent = `${coord.lat.toFixed(4)}, ${coord.lng.toFixed(4)}`;
-        });
-      } else {
-        mapaLeaflet.invalidateSize();
-      }
-    }, 200);
   }
 
   function cerrarModalAlta() {
     const modal = document.getElementById('modalAltaInmueble');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+    document.getElementById('mensajeAlerta').classList.add('hidden');
     document.getElementById('formAltaInmueble').reset();
-    document.getElementById('alertaAltaInmueble').classList.add('hidden');
   }
 
-  async function geocodificarDireccion() {
-    const calle = document.getElementById('formCalle').value.trim();
-    if (!calle) return;
-    try {
-      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(calle + ', Buenos Aires, Argentina')}&limit=1`);
-      const data = await res.json();
-      if (data && data.length > 0) {
-        const lat = parseFloat(data[0].lat);
-        const lon = parseFloat(data[0].lon);
-        if (mapaLeaflet && marcadorMapa) {
-          mapaLeaflet.setView([lat, lon], 16);
-          marcadorMapa.setLatLng([lat, lon]);
-          document.getElementById('labelCoordenadas').textContent = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-        }
-        if (data[0].display_name) {
-          const partes = data[0].display_name.split(',');
-          if (partes.length > 2 && !document.getElementById('formLocalidad').value) {
-            document.getElementById('formLocalidad').value = partes[1].trim() + ', CABA';
-          }
-        }
-      }
-    } catch (err) {
-      console.log("Error de geocodificación:", err);
-    }
-  }
-
-  async function guardarInmueble(e) {
-    e.preventDefault();
+  // Cargar inmuebles desde Supabase
+  async function cargarInmuebles() {
     if (!db) return;
-    const btn = document.getElementById('btnGuardarInmueble');
-    const alerta = document.getElementById('alertaAltaInmueble');
-    btn.disabled = true;
-
-    const nuevo = {
-      direccion_calle: document.getElementById('formCalle').value.trim(),
-      piso_depto: document.getElementById('formPisoDepto').value.trim() || null,
-      barrio_localidad: document.getElementById('formLocalidad').value.trim() || 'CABA',
-      codigo_postal: document.getElementById('formCodigoPostal').value.trim() || null,
-      cuit_facturacion: document.getElementById('formCuit').value.trim(),
-      razon_social_fiscal: document.getElementById('formRazonSocial').value.trim(),
-      administracion_id: document.getElementById('formAdminId').value || null,
-      contacto_porteria_nombre: document.getElementById('formContactoNombre').value.trim() || null,
-      contacto_porteria_tel: document.getElementById('formContactoTel').value.trim() || null
-    };
-
     try {
-      const { data, error } = await db.from('inmuebles_direcciones').insert([nuevo]).select();
-      if (error) throw error;
-      cerrarModalAlta();
-      await cargarInmuebles();
-      if (data && data.length > 0) seleccionarInmueble(data[0]);
-    } catch (err) {
-      alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-      alerta.textContent = `Error: ${err.message}`;
-    } finally {
-      btn.disabled = false;
-    }
-  }
-
-  function abrirModalNuevaAdmin() {
-    document.getElementById('modalNuevaAdmin').classList.remove('hidden');
-    document.getElementById('modalNuevaAdmin').classList.add('flex');
-  }
-
-  function cerrarModalNuevaAdmin() {
-    document.getElementById('modalNuevaAdmin').classList.add('hidden');
-    document.getElementById('modalNuevaAdmin').classList.remove('flex');
-    document.getElementById('formNuevaAdmin').reset();
-    document.getElementById('alertaNuevaAdmin').classList.add('hidden');
-  }
-
-  async function guardarNuevaAdmin(e) {
-    e.preventDefault();
-    if (!db) return;
-    const btn = document.getElementById('btnGuardarAdmin');
-    const alerta = document.getElementById('alertaNuevaAdmin');
-    btn.disabled = true;
-
-    const nueva = {
-      nombre_fantasia: document.getElementById('adminNombre').value.trim(),
-      cuit_administracion: document.getElementById('adminCuit').value.trim() || null,
-      telefono_contacto: document.getElementById('adminTel').value.trim() || null,
-      email_contacto: document.getElementById('adminEmail').value.trim() || null,
-      estado: 'Activa'
-    };
-
-    try {
-      const { data, error } = await db.from('administraciones').insert([nueva]).select();
-      if (error) throw error;
-      cerrarModalNuevaAdmin();
-      await cargarAdministraciones();
-      if (data && data.length > 0) {
-        const selForm = document.getElementById('formAdminId');
-        if (selForm) selForm.value = data[0].id;
-      }
-    } catch (err) {
-      alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-      alerta.textContent = `Error: ${err.message}`;
-    } finally {
-      btn.disabled = false;
-    }
-  }
-
-  async function ejecutarCambioAdmin() {
-    if (!db || !inmuebleActivo) return;
-    const nuevaAdminId = document.getElementById('selectCambiarAdmin').value || null;
-    try {
-      const { error } = await db
+      const { data, error } = await db
         .from('inmuebles_direcciones')
-        .update({ administracion_id: nuevaAdminId })
-        .eq('id', inmuebleActivo.id);
+        .select('*')
+        .order('created_at', { ascending: false });
+
       if (error) throw error;
-      await cargarInmuebles();
+      inmueblesCargados = data || [];
+      renderizarLista(inmueblesCargados);
     } catch (err) {
-      alert("Error al actualizar administración: " + err.message);
+      console.error("Error al consultar inmuebles:", err);
     }
   }
 
-  async function darDeBajaAdminActual() {
-    if (!db || !inmuebleActivo) return;
-    if (!confirm(`¿Desvincular ${inmuebleActivo.direccion_calle} de su administración actual?`)) return;
-    try {
-      const { error } = await db
-        .from('inmuebles_direcciones')
-        .update({ administracion_id: null })
-        .eq('id', inmuebleActivo.id);
-      if (error) throw error;
-      await cargarInmuebles();
-    } catch (err) {
-      alert("Error al desvincular: " + err.message);
+  // Filtro del buscador
+  function filtrarInmuebles() {
+    const q = document.getElementById('inputBuscarInmueble').value.toLowerCase().trim();
+    if (!q) {
+      renderizarLista(inmueblesCargados);
+      return;
     }
+    const filtrados = inmueblesCargados.filter(i =>
+      (i.direccion_calle && i.direccion_calle.toLowerCase().includes(q)) ||
+      (i.cuit_facturacion && i.cuit_facturacion.toLowerCase().includes(q)) ||
+      (i.razon_social_fiscal && i.razon_social_fiscal.toLowerCase().includes(q))
+    );
+    renderizarLista(filtrados);
   }
 
-  function abrirModalCitaRelevamiento() {
-    if (!inmuebleActivo) return alert("Selecciona primero un inmueble");
-    document.getElementById('citaSubtituloInmueble').textContent = `${inmuebleActivo.direccion_calle} (${inmuebleActivo.cuit_facturacion || ''})`;
-    const manana = new Date();
-    manana.setDate(manana.getDate() + 1);
-    document.getElementById('citaFecha').value = manana.toISOString().split('T')[0];
-    document.getElementById('modalCitaRelevamiento').classList.remove('hidden');
-    document.getElementById('modalCitaRelevamiento').classList.add('flex');
-  }
+  // Renderizar directorio
+  function renderizarLista(items) {
+    const listaEl = document.getElementById('listaInmuebles');
+    const contador = document.getElementById('contadorInmuebles');
+    const totalInm = document.getElementById('totalInmuebles');
 
-  function cerrarModalCitaRelevamiento() {
-    document.getElementById('modalCitaRelevamiento').classList.add('hidden');
-    document.getElementById('modalCitaRelevamiento').classList.remove('flex');
-    document.getElementById('formCitaRelevamiento').reset();
-    document.getElementById('alertaCita').classList.add('hidden');
-  }
+    contador.textContent = `${items.length} Total`;
+    totalInm.innerHTML = `${inmueblesCargados.length} <span class="text-xs font-normal text-slate-400">inmuebles</span>`;
 
-  async function guardarCitaRelevamiento(e) {
-    e.preventDefault();
-    if (!db || !inmuebleActivo) return;
-    const btn = document.getElementById('btnGuardarCita');
-    const alerta = document.getElementById('alertaCita');
-    btn.disabled = true;
-
-    const nuevaOT = {
-      numero_ot: `#OT-${Date.now().toString().slice(-6)}`,
-      inmueble_id: inmuebleActivo.id,
-      gremio_servicio: document.getElementById('citaGremio').value,
-      tipo_operacion: document.getElementById('citaTipoOperacion').value.trim(),
-      fecha_programada: document.getElementById('citaFecha').value,
-      franja_horaria: document.getElementById('citaFranja').value,
-      tecnico_asignado_id: document.getElementById('citaTecnicoId').value || null,
-      descripcion_tarea: document.getElementById('citaDescripcion').value.trim() || 'Relevamiento inicial',
-      estado_tecnico: 'Pendiente',
-      estado_facturacion: 'Pendiente Factura'
-    };
-
-    try {
-      const { error } = await db.from('ordenes_servicio').insert([nuevaOT]);
-      if (error) throw error;
-      cerrarModalCitaRelevamiento();
-      await cargarOrdenesInmueble(inmuebleActivo.id);
-    } catch (err) {
-      alerta.className = "p-3 rounded-lg text-xs bg-rose-50 text-rose-800 border border-rose-200 block";
-      alerta.textContent = `Error: ${err.message}`;
-    } finally {
-      btn.disabled = false;
+    if (items.length === 0) {
+      listaEl.innerHTML = `
+        <div class="py-16 text-center">
+          <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400 border border-slate-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <p class="text-xs font-semibold text-slate-700">No hay inmuebles registrados aún</p>
+          <p class="text-[11px] text-slate-400 mt-1 max-w-xs mx-auto">Comienza agregando el primer edificio o consorcio para iniciar la gestión operativa.</p>
+          <button type="button" onclick="abrirModalAlta()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-semibold hover:bg-blue-700 transition shadow-sm">
+            + Cargar Inmueble
+          </button>
+        </div>
+      `;
+      return;
     }
+
+    listaEl.innerHTML = '';
+    items.forEach((inm) => {
+      const card = document.createElement('div');
+      card.className = "p-3.5 hover:bg-slate-50 rounded-lg cursor-pointer transition border border-transparent hover:border-slate-200 mb-1";
+      card.onclick = () => mostrarDetalle(inm);
+      card.innerHTML = `
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-xs font-bold text-slate-900">${inm.direccion_calle} ${inm.piso_depto || ''}</p>
+            <p class="text-[11px] text-slate-500">${inm.razon_social_fiscal || 'Sin Razón Social'}</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="text-[10px] bg-blue-50 text-blue-700 px-1.5 py-0.5 rounded font-mono font-medium">CUIT: ${inm.cuit_facturacion}</span>
+              <span class="text-[10px] text-slate-400">${inm.barrio_localidad || 'CABA'}</span>
+            </div>
+          </div>
+          <span class="text-slate-400 text-xs">➔</span>
+        </div>
+      `;
+      listaEl.appendChild(card);
+    });
   }
 
-  function cerrarSesion() {
-    localStorage.clear();
-    window.location.href = 'index.html';
+  // Mostrar ficha de detalle del inmueble seleccionado
+  function mostrarDetalle(inm) {
+    document.getElementById('panelDetalleVacio').classList.add('hidden');
+    const panel = document.getElementById('panelDetalleContenido');
+    panel.classList.remove('hidden');
+    panel.innerHTML = `
+      <div class="space-y-4">
+        <div class="pb-3 border-b border-slate-100 flex items-start justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Consorcio Activo</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-1">${inm.direccion_calle} ${inm.piso_depto || ''}</h3>
+            <p class="text-xs text-slate-500">${inm.razon_social_fiscal}</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded">CUIT: ${inm.cuit_facturacion}</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 text-xs">
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <p class="text-[11px] text-slate-400 font-medium">Localidad / Zona</p>
+            <p class="font-semibold text-slate-800 mt-0.5">${inm.barrio_localidad || 'CABA'}</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <p class="text-[11px] text-slate-400 font-medium">Contacto Portería / Encargado</p>
+            <p class="font-semibold text-slate-800 mt-0.5">${inm.contacto_porteria_nombre || 'No registrado'} (${inm.contacto_porteria_tel || 'S/N'})</p>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <p class="text-xs text-slate-500">Inmueble listo para despacho de cuadrillas.</p>
+          <a href="relevamientos.html" class="px-3.5 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition">
+            Cargar Relevamiento de Tanques ➔
+          </a>
+        </div>
+      </div>
+    `;
   }
+// Guardar nuevo inmueble en la tabla 'inmuebles_direcciones'
+async function guardarInmueble(e) {
+  e.preventDefault();
+  if (!db) return;
+
+  const btn = document.getElementById('btnGuardarInmueble');
+  const alerta = document.getElementById('mensajeAlerta');
+  if (btn) btn.disabled = true;
+
+  // CAPTURA DIRECTA Y MANUAL DE LOS VALORES REALES DE LA PANTALLA
+  const nuevoInmueble = {
+    direccion_calle: document.getElementById('formCalle')?.value || '',
+    piso_depto: document.getElementById('formPisoDepto')?.value || '',
+    barrio_localidad: document.getElementById('formLocalidad')?.value || 'CABA',
+    cuit_facturacion: document.getElementById('formCuit')?.value || '',
+    razon_social_fiscal: document.getElementById('formRazonSocial')?.value || '',
+    contacto_porteria_nombre: document.getElementById('formContactoNombre')?.value || '',
+    contacto_porteria_tel: document.getElementById('formContactoTel')?.value || ''
+  };
+
+  // CONTROL EN CONSOLA: Esto te va a mostrar en tu pantalla qué está leyendo el código antes de mandarlo
+  console.log("Datos que se van a enviar a Supabase:", nuevoInmueble);
+
+  try {
+    const { data, error } = await db
+      .from('inmuebles_direcciones')
+      .insert([nuevoInmueble])
+      .select();
+
+    if (error) throw error;
+
+    cerrarModalAlta();
+    await cargarInmuebles();
+
+  } catch (err) {
+    console.error("Error al guardar inmueble en Supabase:", err);
+    if (alerta) {
+      alerta.textContent = `Error de Supabase: ${err.message}`;
+      alerta.classList.remove('hidden');
+    }
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
 </script>
+
 </body>
 
-})();
-
-</div>
-<!-- STITCH_THREEJS_END:ANIMATION_134 -->
-</body>
 </html>
